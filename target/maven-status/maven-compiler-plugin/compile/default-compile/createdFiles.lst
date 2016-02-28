@@ -1,0 +1,10 @@
+controller\MiCuenta.class
+controller\ForgotPassword$1.class
+controller\Logout.class
+classes\Usuario.class
+controller\Config.class
+model\Connect.class
+model\Dao.class
+controller\Prueba.class
+controller\Register.class
+controller\ForgotPassword.class
