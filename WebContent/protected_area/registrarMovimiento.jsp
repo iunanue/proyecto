@@ -16,10 +16,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="/common/userHeader.jsp" />
-	<div class="marginNavbar"></div>
-	<div class="contentWrapper">
-		<div class="container">
+<div id="container">
+	<div id="header">
+		<jsp:include page="/common/userHeader.jsp" />
+	</div>
+	<div id="body">
+<!-- 	<div class="marginNavbar"></div> -->
+	<div  class="contentWrapper">
+		
 			<div id="login-form" class="registro-form">
 				<h3>Registrar movimiento (Ingreso/Gasto)</h3>
 				<h2></h2>
@@ -145,7 +149,7 @@
 				</fieldset>
 			</div>
 			<%-- 			<a href="<%=Config.getInstance().getRoot()%>protected_area/updateUsuario.jsp">Acceder</a> --%>
-		</div>
+		
 		<%
 			if (request.getSession().getAttribute("mensaje") != null) {
 		%>
@@ -156,10 +160,11 @@
 			}
 			request.getSession().setAttribute("mensaje", null);
 		%>
+<!-- 	<div class="marginEnd"></div> -->
 	</div>
-	<div>
-		<jsp:include page="/common/footer.jsp" />
+	<div id="footer">
+		<jsp:include page="/common/footer.jsp" /></div>
 	</div>
-
+</div>
 </body>
 </html>

@@ -7,31 +7,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
 	href="<%=Config.getInstance().getRoot()%>css/style.css" type="text/css">
-<!-- 	href="css/style.css" type="text/css"> -->
 
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="navbarWrapper">
-		<div class="navbar">
-			<div >
-				<a id="logo" class="left" href="<%=Config.getInstance().getRoot()%>index.jsp">ProyectoIN</a>
+	<div class="navbar">
+		<div>
+			<a id="logo" class="left"
+				href="<%=Config.getInstance().getRoot()%>index.jsp">ProyectoIN</a>
+		</div>
+		<div>
+			<div class="menu">
+				<ul>
+					<li><a
+						href="<%=Config.getInstance().getRoot()%>protected_area/index.jsp">Acceder</a></li>
+					<li><a
+						href="<%=Config.getInstance().getRoot()%>protected_area/registrarMovimiento">Nuevo
+							movimiento</a></li>
+				</ul>
 			</div>
-			<div>
-				<div class="menu">
-					<ul>
-						<li><a href="<%=Config.getInstance().getRoot()%>protected_area/index.jsp">Acceder</a></li>
-						<li><a href="<%=Config.getInstance().getRoot()%>protected_area/registrarMovimiento">Nuevo movimiento</a></li>
-					</ul>
-				</div>
-				<div class="userbox">
-							<ul>
-							<li><a class="button" href="<%=Config.getInstance().getRoot()%>Logout">Logout</a></li>	
-							<li><a class="button" href="<%=Config.getInstance().getRoot()%>/protected_area/miCuenta">Mi Cuenta</a></li>						
-							</ul>
-						</div>
-				<div class="clear"></div>
+			<div class="userbox">
+				<ul>
+					<li><a class="button"
+						href="<%=Config.getInstance().getRoot()%>Logout">Logout</a></li>
+					<li><a class="button"
+						href="<%=Config.getInstance().getRoot()%>/protected_area/miCuenta">Mi
+							Cuenta</a></li>
+				</ul>
 			</div>
+			<div class="clear"></div>
 		</div>
 	</div>
 </body>

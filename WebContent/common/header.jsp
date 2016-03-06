@@ -12,26 +12,28 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="navbarWrapper">
-		<div class="navbar">
-			<div >
-				<a id="logo" class="left" href="<%=Config.getInstance().getRoot()%>index.jsp">Proyecto</a>
+	<div class="navbar">
+		<div>
+			<a id="logo" class="left"
+				href="<%=Config.getInstance().getRoot()%>index.jsp">Proyecto</a>
+		</div>
+		<div>
+			<div class="menu">
+				<ul>
+					<li><a
+						href="<%=Config.getInstance().getRoot()%>protected_area/index.jsp">Acceder</a></li>
+					<li><a href="<%=Config.getInstance().getRoot()%>register.jsp">Registrarse</a></li>
+				</ul>
 			</div>
-			<div>
-				<div class="menu">
-					<ul>
-						<li><a href="<%=Config.getInstance().getRoot()%>protected_area/index.jsp">Acceder</a></li>
-						<li><a href="<%=Config.getInstance().getRoot()%>register.jsp">Registrarse</a></li>
-					</ul>
-				</div>
-				<div class="userbox">
-							<ul>
-									<li><a class="button" href="<%=Config.getInstance().getRoot()%>protected_area/index.jsp">Acceder</a></li>
-									<li><a class="button" href= "<%=Config.getInstance().getRoot()%>register.jsp">Registrarse</a></li>								
-							</ul>
-						</div>
-				<div class="clear"></div>
+			<div class="userbox">
+				<ul>
+					<li><a class="button"
+						href="<%=Config.getInstance().getRoot()%>protected_area/index.jsp">Acceder</a></li>
+					<li><a class="button"
+						href="<%=Config.getInstance().getRoot()%>register.jsp">Registrarse</a></li>
+				</ul>
 			</div>
+			<div class="clear"></div>
 		</div>
 	</div>
 </body>
