@@ -14,7 +14,6 @@
 
 	<div class="marginNavbar"></div>
 	<div class="contentWrapper">
-
 		<div class="container">
 			<div id="login-form">
 				<fieldset>
@@ -25,7 +24,8 @@
 							name="mail" placeholder="E-mail"> <input class="field"
 							type="password" name="password" placeholder="Contraseña">
 						<input class="field" type="password" name="password2"
-							placeholder="Repetir contraseña"> <input
+							placeholder="Repetir contraseña"> 
+							<input
 							class="button blue" type="submit" value="Registrarse">
 						<footer class="clearfix"> </footer>
 					</form>
@@ -42,10 +42,6 @@
 			}
 			request.getSession().setAttribute("mensaje", null);
 		%>
-
-
-
-
 	</div>
 	<div>
 		<jsp:include page="/common/footer.jsp" />

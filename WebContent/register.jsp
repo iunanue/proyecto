@@ -17,8 +17,6 @@
 		<div class="container">
 			<div id="login-form">
 				<fieldset>
-
-					
 					<form method="POST"
 						action="<%=Config.getInstance().getRoot()%>Register">
 						<input class="field" type="text" name="username"

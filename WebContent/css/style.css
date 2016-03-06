@@ -253,13 +253,27 @@ label{
 	padding-bottom:5px;
 	width: 100%;
 }
-#login-form input[type="text"], #login-form input[type="password"], #login-form input[type="date"] {
+#login-form input[type="text"], #login-form input[type="password"]{
 	border: 1px solid #dcdcdc;
 	padding: 12px 10px;
-	width: 100%;
+	width: 90%;
 }
-.descripcion{
+#login-form input[type="number"]{
+	border: 1px solid #dcdcdc;
+	padding: 12px 10px;
+	width: 15%;
+}
+#login-form input[type="date"]{
+	border: 1px solid #dcdcdc;
+	padding: 12px 10px;
+	width: 20%;
+}
+#login-form textarea{
+	font-size: 14px;
 	height:100px;
+	border: 1px solid #dcdcdc;
+	padding: 12px 10px;
+	width: 90%;
 }
 #login-form input[type="date"]{
 	padding: 12px 10px;

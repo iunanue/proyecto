@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import classes.ClaseGasto;
+import classes.ClaseIngreso;
+import classes.Cuenta;
 import classes.Usuario;
 
 public class Dao {
@@ -126,6 +130,118 @@ public class Dao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public ArrayList<Usuario> getUsers() {
+
+		ArrayList<Usuario> listaUsers = new ArrayList<Usuario>();
+		
+		Usuario usuario = null;
+
+		Connection c;
+		try {
+			c = connect.getConnection();
+			if (c != null) {
+
+				String sql = "SELECT * FROM usuario";
+
+				PreparedStatement statement = (PreparedStatement) c.prepareStatement(sql);
+
+				ResultSet rs = statement.executeQuery();
+
+				while (rs.next()) {
+					usuario = new Usuario(rs.getString("username"), rs.getString("mail"), rs.getString("password"));
+					listaUsers.add(usuario);
+				}
+			}			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listaUsers;
+	}
+	public ArrayList<ClaseIngreso> getClaseIngreso() {
+
+		ArrayList<ClaseIngreso> listaClaseIngreso = new ArrayList<ClaseIngreso>();
+		
+		ClaseIngreso claseingreso = null;
+
+		Connection c;
+		try {
+			c = connect.getConnection();
+			if (c != null) {
+
+				String sql = "SELECT * FROM claseingreso";
+
+				PreparedStatement statement = (PreparedStatement) c.prepareStatement(sql);
+
+				ResultSet rs = statement.executeQuery();
+
+				while (rs.next()) {
+					claseingreso = new ClaseIngreso(rs.getInt("id_claseIngreso"), rs.getString("descripcion"));
+					listaClaseIngreso.add(claseingreso);
+				}
+			}			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listaClaseIngreso;
+	}
+	public ArrayList<ClaseGasto> getClaseGasto() {
+
+		ArrayList<ClaseGasto> listaClaseGasto = new ArrayList<ClaseGasto>();
+		
+		ClaseGasto clasegasto = null;
+
+		Connection c;
+		try {
+			c = connect.getConnection();
+			if (c != null) {
+
+				String sql = "SELECT * FROM clasegasto";
+
+				PreparedStatement statement = (PreparedStatement) c.prepareStatement(sql);
+
+				ResultSet rs = statement.executeQuery();
+
+				while (rs.next()) {
+					clasegasto = new ClaseGasto(rs.getInt("id_claseGasto"), rs.getString("descripcion"));
+					listaClaseGasto.add(clasegasto);
+				}
+			}			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listaClaseGasto;
+	}
+	public ArrayList<Cuenta> getCuentas() {
+
+		ArrayList<Cuenta> listaCuentas = new ArrayList<Cuenta>();
+		
+		Cuenta cuenta = null;
+
+		Connection c;
+		try {
+			c = connect.getConnection();
+			if (c != null) {
+
+				String sql = "SELECT * FROM cuenta";
+
+				PreparedStatement statement = (PreparedStatement) c.prepareStatement(sql);
+
+				ResultSet rs = statement.executeQuery();
+
+				while (rs.next()) {
+					cuenta = new Cuenta(rs.getInt("id_cuenta"), rs.getFloat("saldo"), rs.getString("descripcion"));
+					listaCuentas.add(cuenta);
+				}
+			}			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listaCuentas;
 	}
 
 }

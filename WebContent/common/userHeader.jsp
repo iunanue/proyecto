@@ -21,7 +21,7 @@
 				<div class="menu">
 					<ul>
 						<li><a href="<%=Config.getInstance().getRoot()%>protected_area/index.jsp">Acceder</a></li>
-						<li><a href="<%=Config.getInstance().getRoot()%>register.jsp">Registrarse</a></li>
+						<li><a href="<%=Config.getInstance().getRoot()%>protected_area/registrarMovimiento">Nuevo movimiento</a></li>
 					</ul>
 				</div>
 				<div class="userbox">
