@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import classes.ClaseGasto;
 import classes.ClaseIngreso;
@@ -244,4 +246,34 @@ public class Dao {
 		return listaCuentas;
 	}
 
+	public void addMovimiento(String tipo,Timestamp fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion) {
+
+		
+		try {
+			Connection c = connect.getConnection();
+			if (c != null) {
+
+				String sql = "INSERT INTO movimiento (tipo, fecha, id_clase, username, id_cuenta, importe, descripcion) values (?, ?, ?, ?, ?, ?, ?)";
+
+				PreparedStatement statement = (PreparedStatement) c.prepareStatement(sql);
+
+				statement.setString(1, tipo);
+				statement.setTimestamp(2, fecha);
+				statement.setInt(3, id_clase);
+				statement.setString(4, username);
+				statement.setInt(5, id_cuenta);
+				statement.setFloat(6, importe);
+				statement.setString(7, descripcion);
+
+				statement.executeUpdate();
+
+			}
+			// c.close();
+		} catch (SQLException e) {
+	
+			e.printStackTrace();
+		}
+
+
+	}
 }

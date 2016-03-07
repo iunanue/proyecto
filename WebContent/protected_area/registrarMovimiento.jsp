@@ -16,155 +16,155 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id="container">
-	<div id="header">
-		<jsp:include page="/common/userHeader.jsp" />
-	</div>
-	<div id="body">
-<!-- 	<div class="marginNavbar"></div> -->
-	<div  class="contentWrapper">
-		
-			<div id="login-form" class="registro-form">
-				<h3>Registrar movimiento (Ingreso/Gasto)</h3>
-				<h2></h2>
-				<fieldset>
-					<form method="POST" id="form" action="<%=Config.getInstance().getRoot()%>/protected_area/addMovimiento"">
-						<label>Fecha:</label> <input type="date" name="fecha">
-						
-						<label>Tipo de movimiento:</label>
-						<div id="tipo">
-							<input type="radio" id="ingreso" name="tipo" value="ingreso" checked onclick="check()">Ingreso<br>
-  							<input type="radio" id="gasto" name="tipo" value="gasto" onclick="check()">Gasto<br>
-						</div>
-						
-<!-- 						<label>Tipo de movimiento:</label> -->
-<!-- 						<div class="dropdown"> -->
-<!-- 							<select id="tipoMovimiento" name="tipoMovimiento" class="dropdown-select" -->
-<!-- 								onclick='test()'> -->
-<!-- 								<option value="ingreso">Ingreso</option> -->
-<!-- 								<option value="gasto">Gasto</option> -->
-<!-- 							</select> -->
-<!-- 						</div> -->
-						
-						<div id="claseIngreso" style="display: none">
-							<label>Clase de Ingreso:</label>
-							<div class="dropdown">
-								<select name="claseIngreso" class="dropdown-select">
-									<%
-										ArrayList<ClaseIngreso> listaClaseIngreso = (ArrayList) request.getAttribute("listaClaseIngreso");
-										for (ClaseIngreso claseingreso : listaClaseIngreso) {
-									%><option value=<%=claseingreso.getId_claseIngreso()%>><%=claseingreso.getDescripcion()%></option>
-									<%
-										}
-									%>
-								</select>
-							</div>
-						</div>
-
-						<div id="claseGasto" style="display: none">
-							<label>Clase de Gasto:</label>
-							<div class="dropdown">
-								<select name="claseGasto" class="dropdown-select">
-									<%
-										ArrayList<ClaseGasto> listaClaseGasto = (ArrayList) request.getAttribute("listaClaseGasto");
-										for (ClaseGasto clasegasto : listaClaseGasto) {
-									%><option value=<%=clasegasto.getId_claseGasto()%>><%=clasegasto.getDescripcion()%></option>
-									<%
-										}
-									%>
-								</select>
-							</div>
-
-						</div>
-						
-						<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-						<script>
-						$(document).ready(function() {
-							$("#claseIngreso").show();
-							});
-						function check() {
-						    if((document.getElementById("ingreso").checked) == true)
-							    {
-						    	$("#claseIngreso").show();
-								$("#claseGasto").hide();
-							    }
-						    else{
-						    	$("#claseIngreso").hide();
-								$("#claseGasto").show();
-							    }
-						}
-						</script>
-						
-<!-- 						<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> -->
-<!-- 						<script> -->
-<!-- // 							$(document).ready(function() { -->
-<!-- // 								$("#claseIngreso").show(); -->
-<!-- // 								$("#tipoMovimiento").change(function() { -->
-<!-- // 									if ($(this).val() == "ingreso") { -->
-<!-- // 										$("#claseIngreso").show(); -->
-<!-- // 										$("#claseGasto").hide(); -->
-<!-- // 									} else { -->
-<!-- // 										$("#claseIngreso").hide(); -->
-<!-- // 										$("#claseGasto").show(); -->
-<!-- // 									} -->
-<!-- // 								}); -->
-<!-- // 							}); -->
-<!-- 						</script> -->
-
-
-						<label>Usuario asociado al movimiento:</label>
-						<div class="dropdown">
-							<select name="username" class="dropdown-select">
-								<%
-									ArrayList<Usuario> listaUsers = (ArrayList) request.getAttribute("listaUsers");
-									for (Usuario usuario : listaUsers) {
-								%><option value=<%=usuario.getUsername()%>><%=usuario.getUsername()%></option>
-								<%
-									}
-								%>
-							</select>
-						</div>
-						<label>Cuenta asociada al movimiento:</label>
-						<div class="dropdown">
-							<select name="cuenta" class="dropdown-select">
-								<%
-									ArrayList<Cuenta> listaCuentas = (ArrayList) request.getAttribute("listaCuentas");
-									for (Cuenta cuenta : listaCuentas) {
-								%><option value=<%=cuenta.getId_cuenta()%>><%=cuenta.getDescripcion()%></option>
-								<%
-									}
-								%>
-							</select>
-						</div>
-						<label>Importe:</label>
-						<input type="number" name="importe" min="0" step="0.01">
-						<label>Descripción:</label>
-						<textarea class="descripcion" name="descripcion"></textarea>
-
-						<input class="button blue" name="update" type="submit"
-							value="Registrar"
-							onClick="return confirm('¿Desea registrar este movimiento?');">
-						<footer class="clearfix"> </footer>
-					</form>
-				</fieldset>
-			</div>
-			<%-- 			<a href="<%=Config.getInstance().getRoot()%>protected_area/updateUsuario.jsp">Acceder</a> --%>
-		
-		<%
-			if (request.getSession().getAttribute("mensaje") != null) {
-		%>
-		<div class="errormsg">
-			<p class="errorfont"><%=request.getSession().getAttribute("mensaje")%></p>
+	<div id="container">
+		<div id="header">
+			<jsp:include page="/common/userHeader.jsp" />
 		</div>
-		<%
-			}
-			request.getSession().setAttribute("mensaje", null);
-		%>
-<!-- 	<div class="marginEnd"></div> -->
+		<div id="body">
+			<div class="contentWrapper">
+				<div id="login-form" class="registro-form">
+					<h3>Registrar movimiento (Ingreso/Gasto)</h3>
+					<h2></h2>
+					<fieldset>
+						<form method="POST" id="form"
+							action="<%=Config.getInstance().getRoot()%>/protected_area/addMovimiento"">
+							<label>Fecha:</label> <input type="date" name="fecha"> <label>Tipo
+								de movimiento:</label>
+							<div id="tipo">
+								<input type="radio" id="ingreso" name="tipo" value="ingreso"
+									checked onclick="check()">Ingreso<br> <input
+									type="radio" id="gasto" name="tipo" value="gasto"
+									onclick="check()">Gasto<br>
+							</div>
+
+							<!-- 						<label>Tipo de movimiento:</label> -->
+							<!-- 						<div class="dropdown"> -->
+							<!-- 							<select id="tipoMovimiento" name="tipoMovimiento" class="dropdown-select" -->
+							<!-- 								onclick='test()'> -->
+							<!-- 								<option value="ingreso">Ingreso</option> -->
+							<!-- 								<option value="gasto">Gasto</option> -->
+							<!-- 							</select> -->
+							<!-- 						</div> -->
+
+							<div id="claseIngreso" style="display: none">
+								<label>Clase de Ingreso:</label>
+								<div class="dropdown">
+									<select name="claseIngreso" class="dropdown-select">
+										<%
+											ArrayList<ClaseIngreso> listaClaseIngreso = (ArrayList) request.getAttribute("listaClaseIngreso");
+											for (ClaseIngreso claseingreso : listaClaseIngreso) {
+										%><option value=<%=claseingreso.getId_claseIngreso()%>><%=claseingreso.getDescripcion()%></option>
+										<%
+											}
+										%>
+									</select>
+								</div>
+							</div>
+
+							<div id="claseGasto" style="display: none">
+								<label>Clase de Gasto:</label>
+								<div class="dropdown">
+									<select name="claseGasto" class="dropdown-select">
+										<%
+											ArrayList<ClaseGasto> listaClaseGasto = (ArrayList) request.getAttribute("listaClaseGasto");
+											for (ClaseGasto clasegasto : listaClaseGasto) {
+										%><option value=<%=clasegasto.getId_claseGasto()%>><%=clasegasto.getDescripcion()%></option>
+										<%
+											}
+										%>
+									</select>
+								</div>
+
+							</div>
+
+							<script
+								src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+							<script>
+								$(document).ready(function() {
+									$("#claseIngreso").show();
+								});
+								function check() {
+									if ((document.getElementById("ingreso").checked) == true) {
+										$("#claseIngreso").show();
+										$("#claseGasto").hide();
+									} else {
+										$("#claseIngreso").hide();
+										$("#claseGasto").show();
+									}
+								}
+							</script>
+
+							<!-- 						<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> -->
+							<!-- 						<script> -->
+							<!-- // 							$(document).ready(function() { -->
+							<!-- // 								$("#claseIngreso").show(); -->
+							<!-- // 								$("#tipoMovimiento").change(function() { -->
+							<!-- // 									if ($(this).val() == "ingreso") { -->
+							<!-- // 										$("#claseIngreso").show(); -->
+							<!-- // 										$("#claseGasto").hide(); -->
+							<!-- // 									} else { -->
+							<!-- // 										$("#claseIngreso").hide(); -->
+							<!-- // 										$("#claseGasto").show(); -->
+							<!-- // 									} -->
+							<!-- // 								}); -->
+							<!-- // 							}); -->
+							<!-- 						</script> -->
+
+
+							<label>Usuario asociado al movimiento:</label>
+							<div class="dropdown">
+								<select name="username" class="dropdown-select">
+									<%
+										ArrayList<Usuario> listaUsers = (ArrayList) request.getAttribute("listaUsers");
+										for (Usuario usuario : listaUsers) {
+									%><option value=<%=usuario.getUsername()%>><%=usuario.getUsername()%></option>
+									<%
+										}
+									%>
+								</select>
+							</div>
+							<label>Cuenta asociada al movimiento:</label>
+							<div class="dropdown">
+								<select name="cuenta" class="dropdown-select">
+									<%
+										ArrayList<Cuenta> listaCuentas = (ArrayList) request.getAttribute("listaCuentas");
+										for (Cuenta cuenta : listaCuentas) {
+									%><option value=<%=cuenta.getId_cuenta()%>><%=cuenta.getDescripcion()%></option>
+									<%
+										}
+									%>
+								</select>
+							</div>
+							<label>Importe:</label> <input type="number" name="importe"
+								min="0" step="0.01"> <label>Descripción:</label>
+							<textarea class="descripcion" name="descripcion"></textarea>
+
+							<input class="button blue" name="update" type="submit"
+								value="Registrar"
+								onClick="return confirm('¿Desea registrar este movimiento?');">
+							<footer class="clearfix"> </footer>
+						</form>
+					</fieldset>
+				</div>
+				<%-- 			<a href="<%=Config.getInstance().getRoot()%>protected_area/updateUsuario.jsp">Acceder</a> --%>
+
+				<%
+					if (request.getSession().getAttribute("mensaje") != null) {
+				%>
+				<div class="errormsg">
+					<p class="errorfont"><%=request.getSession().getAttribute("mensaje")%></p>
+				</div>
+				<%
+					}
+					request.getSession().setAttribute("mensaje", null);
+				%>
+				<!-- 	<div class="marginEnd"></div> -->
+			</div>
+
+		</div>
+		<div id="footer">
+			<jsp:include page="/common/footer.jsp" />
+			</div>
 	</div>
-	<div id="footer">
-		<jsp:include page="/common/footer.jsp" /></div>
-	</div>
-</div>
 </body>
 </html>

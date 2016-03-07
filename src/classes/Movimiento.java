@@ -1,19 +1,19 @@
 package classes;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Movimiento {
 	
 	private int id_movimiento;
 	private String tipo;//ingreso/gasto
-	private Date fecha;
+	private Timestamp fecha;
 	private int id_clase;//dependiendo de si es ingreso/gasto, las clases de ingreso/gasto
 	private String username;
 	private int id_cuenta;
 	private float importe;
 	private String descripcion;
 
-	public Movimiento(int id_movimiento,String tipo,Date fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion)
+	public Movimiento(int id_movimiento,String tipo,Timestamp fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion)
 	{
 		this.id_movimiento = id_movimiento;
 		this.tipo = tipo;
@@ -41,11 +41,11 @@ public class Movimiento {
 		this.tipo = tipo;
 	}
 
-	public Date getFecha() {
+	public Timestamp getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(Timestamp fecha) {
 		this.fecha = fecha;
 	}
 

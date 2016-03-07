@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Connect;
+
 /**
  * Servlet implementation class AddMovimiento
  */
@@ -18,8 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 public class AddMovimiento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	Connect c = new Connect();
+	
 	String tipo;
-	Date fecha;
+	Timestamp fecha;
 	int id_clase;
 	String username;
 	int id_cuenta;
@@ -50,13 +55,22 @@ public class AddMovimiento extends HttpServlet {
 	
 		this.tipo = request.getParameter("tipo");
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date aux = null;
 		try {
-			this.fecha = sdf.parse(request.getParameter("fecha"));
+			aux = format.parse(request.getParameter("fecha"));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		fecha = new Timestamp(aux.getTime());
+		
+//		proceso inverso
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+//		String string  = dateFormat.format(new Date());
+//		System.out.println(string);
+		
+		
 		if(tipo.equals("ingreso"))
 		{
 			this.id_clase =  Integer.parseInt(request.getParameter("claseIngreso"));
@@ -76,13 +90,16 @@ public class AddMovimiento extends HttpServlet {
 		
 
 		System.out.println(tipo);
-		System.out.println(fecha);
+		System.out.println("Fecha " + fecha);
+		System.out.println("Fecha param " + request.getParameter("fecha"));
 		System.out.println(id_clase);
 		System.out.println(username);
 		System.out.println(id_cuenta);
 		System.out.println(importe);
 		System.out.println(descripcion);
 
+		
+		c.getDao().addMovimiento(tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 

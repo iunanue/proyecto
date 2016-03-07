@@ -10,23 +10,23 @@
 <title>Index</title>
 </head>
 <body>
-	<jsp:include page="/common/header.jsp" />
-
-	<div class="marginNavbar"></div>
-	<div class="contentWrapper">
-		<div id="body">
-			<h2>Bienvenido, para acceder al sistema pulse el botón inferior</h2>
-			<h2><%=request.getAttribute("saludo")%></h2>
-			<p>
-				<a class="button"
-					href="<%=Config.getInstance().getRoot()%>protected_area/index.jsp">Acceder</a>
-				<a class="button"
-					href="<%=Config.getInstance().getRoot()%>register.jsp">Registrarse</a>
-			</p>
+	<div id="container">
+		<div id="header">
+			<jsp:include page="/common/userHeader.jsp" />
 		</div>
-	</div>
-	<div>
-		<jsp:include page="/common/footer.jsp" />
+		<div id="body">
+			<div class="contentWrapper">
+				
+					<h2>Bienvenido, para acceder al sistema pulse el botón
+						inferior</h2>
+					<h2><%=request.getAttribute("saludo")%></h2>	
+
+			</div>
+			<div id="footer">
+			<jsp:include page="/common/footer.jsp" />
+		</div>
+		</div>
+		
 	</div>
 </body>
 </html>
