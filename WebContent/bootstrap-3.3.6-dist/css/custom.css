@@ -1,245 +1,57 @@
 @CHARSET "ISO-8859-1";
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
-	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
-	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
-	b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
-	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
-	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
-	output, ruby, section, summary, time, mark, audio, video {
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-	margin: 0;
-	padding: 0;
-	
-}
-
-article, aside, details, figcaption, figure, footer, header, hgroup,
-	menu, nav, section {
-	display: block
-}
-
-body {
-	line-height: 1
-	height: 100%;
-}
-
-ol, ul {
-	list-style: disc
-}
-
-blockquote, q {
-	quotes: none
-}
-
-blockquote:before, blockquote:after, q:before, q:after {
-	content: none
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0
-}
-
-a, p, h1, h2, h3, h4, h5 {
-	/* 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif */
-	font-family: 'Ubuntu Regular p', serif;
-}
-
-@font-face {
-	font-family: 'Ubuntu Regular p';
-	font-style: normal;
-	font-weight: 1000;
-	src: url(../fonts/Ubuntu-R.ttf);
-}
-
-a {
-	text-decoration: none;
-}
-
-a:VISITED {
-	
-}
-
-body {
-	/* 	background: rgb(238, 238, 238); */
-	/* 	background: rgb(258, 258, 258); */
-	background: white;
-	height: 100%;
-}
-
-/* header */
-.navbarWrapper {
-	position: fixed;
-	width: 100%;
-	/* 	background: rgb(16, 16, 19); */
-	background: rgb(16, 16, 90);
-	z-index: 2;
-}
-
+/* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
-	width: 80%;
-/* 	width: 1000px; */
-
-	margin-left: auto;
-	margin-right: auto;
+	margin-bottom: 0;
+	border-radius: 0;
 }
 
-#logo {
-	color: white;
-	line-height: 50px;
-	font-size: 25px;
-	font-weight: bold;
-	margin-right: 30px;
-	padding-left: 15px;
-	cursor: pointer;
-}
-
-.menu li {
-	float: left;
-	text-align: center;
-	height: 50px;
-	list-style-type: none;
-	cursor: pointer;
-	display: inline-block;
-}
-
-.menu li a {
-	line-height: 50px;
-	padding-left: 15px;
-	padding-right: 15px;
-	height: 50px;
-	font-size: 14px;
-	display: block;
-}
-
-.menu li a:link, .menu li a:visited {
-	color: white;
-}
-
-.menu li a:hover {
-	color: black;
-	/* 	background: rgb(255, 255, 255); */
-	background: rgb(238, 238, 238);
-	font-weight: bold;
-}
-
-.userbox li {
-	float: right;
-	text-align: center;
-	height: 25px;
-	margin-top: 12.5px;
-	margin-left: 5px;
-	margin-right: 5px;
-	list-style-type: none;
-	cursor: pointer;
-	display: inline-block;
-	background: white;
-	border-radius: 3px;
-	border: 1px solid rgb(221, 221, 221);
-}
-
-.userbox li {
-	
-}
-
-.userbox li a {
-	padding-left: 10px;
-	padding-right: 10px;
-	line-height: 25px;
-	font-size: 13px;
-	font-weight: bold;
-	display: block;
-	color: black;
-}
-
-.userbox li a:link, .userbox li a:visited {
-	color: black;
-}
-
-.clear {
-	clear: both;
-}
-
-.left {
-	float: left;
-}
-
-.right {
-	float: right;
-}
-
-/* footer */
-.footerWrapper {
-	
-}
-
-/* body */
-#body {
-	padding:10px;
-   padding-bottom:7%;   /* Height of the footer */
-    padding-top:7%;
-}
-#container {
-   min-height:100%;
-   position:relative;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom:-50px;
-}
-
-#header {
-	position: fixed;
-	width: 100%;
-	/* 	background: rgb(16, 16, 19); */
-	background: rgb(16, 16, 90);
-	z-index: 2;
-}
-/* #footer { */
-/* position: absolute; */
-/* 	right: 0; */
-/* 	bottom: 0; */
-/* 	left: 0; */
-/* 	padding: 1rem; */
-/* 	background-color: rgb(69, 69, 69); */
+/* Set black background color, white text and some padding */
+/* footer { */
+/* 	background-color: #555; */
+/* 	color: white; */
+/* 	padding: 3px; */
 /* 	text-align: center; */
-/* 	color:white; */
-/* 	font-size: 75%; */
-/* 	 height: 50px;  */
+/* 	margin-top: 100%; */
 /* } */
-
-
-
-#main {overflow:auto;
-	padding-bottom: 150px;}  /* must be same height as the footer */
-
-#push{
-	height: 4em;
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 5%;
+/*   margin-bottom: 50px; */
 }
-#footer{
-/* 	position: relative; */
-/* 	margin-top: -150px; negative value of footer height */
-/* 	height: 150px; */
-/* 	clear:both;  */
-	height: 4em;
-	background-color: rgb(69, 69, 69);
-	text-align: center;
-	color:white;
-	font-size: 75%;
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 10%;
+/*   height: 50px; */
+  background-color: #555;
+  text-align: center;
+  color: white;
 }
-#wrap {
-	min-height: 100%;
-height: auto !important;
-height: 100%;
-margin: 0 auto -4em;
-	}
+footer h1 {
+	font-size: 13px;
+}
 
+footer p {
+	font-size: 10px;
+}
+
+.navbar-brand {
+	float: left;
+	height: 50px;
+	padding: 15px 15px;
+	font-size: 25px;
+	line-height: 20px;
+	background-color: black;
+}
+/* /////////////////////////////////////////////////// */
 .contentWrapper {
-	width: 100%;
+	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
+	padding-top: 50px;
 /* 	border-radius: 4px; */
 /* 	border: 1px solid rgb(221, 221, 221); */
 }
@@ -247,13 +59,25 @@ margin: 0 auto -4em;
 /* login-register form */
 
 #login-form {
-	width: 30%;
-		border-radius: 4px;
+	width: 40%;	
+	border-radius: 4px;
 	border: 1px solid rgb(221, 221, 221);
 }
+
+	
+#login-form.login-form {
+	width: 40%;
+	border-radius: 4px;
+	border: 1px solid rgb(221, 221, 221);
+	margin-left: auto ;
+	margin-right: auto ;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
 #login-form.registro-form{
 	width: 80%;
-		border-radius: 4px;
+	border-radius: 4px;
 	border: 1px solid rgb(221, 221, 221);
 }
 #login-form h3 {
@@ -445,3 +269,18 @@ label{
 	border-radius: 3px;
 	cursor: pointer;
 }
+#login-form .footer {
+  font-size: 12px;
+  margin-top: 16px;
+}
+.errormsg {
+	border: 1px solid #bd081c;
+	background-color: rgb(255, 235, 233);
+	width: 90%;
+	border-radius: 4px;
+	margin-left: auto ;
+	margin-right: auto ;
+	padding:10px;
+}
+
+.marginNavbar {padding-top: 50px;}

@@ -4,29 +4,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
-	href="<%=Config.getInstance().getRoot()%>css/style.css" type="text/css">
+	href="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/css/bootstrap.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/css/custom.css"
+	type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 <title>Index</title>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<jsp:include page="/common/userHeader.jsp" />
+<jsp:include page="/common/header.jsp" />
+	<div class="jumbotron">
+		<div class="container text-center">
+			<h1>Bienvenido</h1>
+			<p>Some text that represents "Me"...</p>	
 		</div>
-		<div id="body">
-			<div class="contentWrapper">
-				
-					<h2>Bienvenido, para acceder al sistema pulse el botón
-						inferior</h2>
-					<h2><%=request.getAttribute("saludo")%></h2>	
-
-			</div>
-			<div id="footer">
-			<jsp:include page="/common/footer.jsp" />
-		</div>
-		</div>
-		
 	</div>
+	
+<jsp:include page="/common/footer.jsp" />
 </body>
 </html>
