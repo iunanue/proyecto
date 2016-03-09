@@ -10,26 +10,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
-	href="<%=Config.getInstance().getRoot()%>css/style.css" type="text/css">
-<title>Insert title here</title>
+	href="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/css/bootstrap.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/css/custom.css"
+	type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+<title>Registrar Movimiento</title>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<jsp:include page="/common/userHeader.jsp" />
-		</div>
-		<div id="body">
+<jsp:include page="/common/userHeader.jsp" />
+			
 			<div class="contentWrapper">
 				<div id="login-form" class="registro-form">
 					<h3>Registrar movimiento (Ingreso/Gasto)</h3>
 					<h2></h2>
 					<fieldset>
-						<form method="POST" id="form"
-							action="<%=Config.getInstance().getRoot()%>/protected_area/addMovimiento"">
-							<label>Fecha:</label> <input type="date" name="fecha"> <label>Tipo
-								de movimiento:</label>
+						<form method="POST" id="form" action="<%=Config.getInstance().getRoot()%>/protected_area/addMovimiento"">
+							<label>Fecha:</label> <input type="date" name="fecha"> <label>Tipo de movimiento:</label>
 							<div id="tipo">
 								<input type="radio" id="ingreso" name="tipo" value="ingreso"
 									checked onclick="check()">Ingreso<br> <input
@@ -142,11 +144,9 @@
 							<input class="button blue" name="update" type="submit"
 								value="Registrar"
 								onClick="return confirm('¿Desea registrar este movimiento?');">
-							<footer class="clearfix"> </footer>
 						</form>
 					</fieldset>
-				</div>
-				<%-- 			<a href="<%=Config.getInstance().getRoot()%>protected_area/updateUsuario.jsp">Acceder</a> --%>
+					<%-- 			<a href="<%=Config.getInstance().getRoot()%>protected_area/updateUsuario.jsp">Acceder</a> --%>
 
 				<%
 					if (request.getSession().getAttribute("mensaje") != null) {
@@ -159,12 +159,9 @@
 					request.getSession().setAttribute("mensaje", null);
 				%>
 				<!-- 	<div class="marginEnd"></div> -->
+				</div>
 			</div>
 
-		</div>
-		<div id="footer">
-			<jsp:include page="/common/footer.jsp" />
-			</div>
-	</div>
+<jsp:include page="/common/footer.jsp" />
 </body>
 </html>

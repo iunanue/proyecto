@@ -12,12 +12,14 @@
 <link rel="stylesheet"
 	href="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/css/custom.css"
 	type="text/css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script src="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -25,35 +27,35 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<%=Config.getInstance().getRoot()%>index.jsp">Proyecto</a>
+			<a class="navbar-brand"
+				href="<%=Config.getInstance().getRoot()%>index.jsp">Proyecto</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">About</a></li>
+				<li><a href="<%=Config.getInstance().getRoot()%>/protected_area/registrarMovimiento">Registrar Movimiento</a></li>
 				<li><a href="#">Gallery</a></li>
-				<li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
-        <span class="caret"></span></a>
+				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Page 1-1</a></li>
+          <li role="separator" class="divider"></li>
           <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li> 
+          <li><a href="#">Page 1-3</a></li>
         </ul>
       </li>
 				<li><a href="#">Contact</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="<%=Config.getInstance().getRoot()%>/protected_area/miCuenta"><span class="glyphicon glyphicon-user"></span>
-						Mi Cuenta</a></li>
-
 				<li><a
-					href="<%=Config.getInstance().getRoot()%>Logout"><span
+					href="<%=Config.getInstance().getRoot()%>/protected_area/miCuenta"><span
+						class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
+
+				<li><a href="<%=Config.getInstance().getRoot()%>Logout"><span
 						class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 
 			</ul>
 		</div>
 	</div>
-	</nav>	
+	</nav>
 </body>
 </html>

@@ -4,6 +4,7 @@
 .navbar {
 	margin-bottom: 0;
 	border-radius: 0;
+	
 }
 
 /* Set black background color, white text and some padding */
@@ -20,7 +21,7 @@ body {
 /*   margin-bottom: 50px; */
 }
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
@@ -52,6 +53,7 @@ footer p {
 	margin-left: auto;
 	margin-right: auto;
 	padding-top: 50px;
+	padding-bottom: 10px;
 /* 	border-radius: 4px; */
 /* 	border: 1px solid rgb(221, 221, 221); */
 }
@@ -77,6 +79,13 @@ footer p {
 
 #login-form.registro-form{
 	width: 80%;
+	border-radius: 4px;
+	border: 1px solid rgb(221, 221, 221);
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#login-form.miCuenta-form{
+	width: 50%;
 	border-radius: 4px;
 	border: 1px solid rgb(221, 221, 221);
 }
@@ -283,4 +292,7 @@ label{
 	padding:10px;
 }
 
-.marginNavbar {padding-top: 50px;}
+.navbar-nav>li:hover{
+    color: #333;
+    background-color:grey;
+    }

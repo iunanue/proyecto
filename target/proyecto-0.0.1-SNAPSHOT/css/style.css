@@ -13,6 +13,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	vertical-align: baseline;
 	margin: 0;
 	padding: 0;
+	
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup,
@@ -22,6 +23,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 
 body {
 	line-height: 1
+	height: 100%;
 }
 
 ol, ul {
@@ -65,6 +67,7 @@ body {
 	/* 	background: rgb(238, 238, 238); */
 	/* 	background: rgb(258, 258, 258); */
 	background: white;
+	height: 100%;
 }
 
 /* header */
@@ -73,11 +76,13 @@ body {
 	width: 100%;
 	/* 	background: rgb(16, 16, 19); */
 	background: rgb(16, 16, 90);
-	/* z-index: 2; */
+	z-index: 2;
 }
 
 .navbar {
-	width: 1000px;
+	width: 80%;
+/* 	width: 1000px; */
+
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -168,35 +173,77 @@ body {
 
 /* footer */
 .footerWrapper {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	padding: 1.5rem;
-	background-color: rgb(69, 69, 69);
-	text-align: center;
+	
 }
 
 /* body */
 #body {
-	margin-bottom: 15px;
-	margin-right: 15px;
-	margin-top: 15px;
-	margin-left: 15px;
+	padding:10px;
+   padding-bottom:7%;   /* Height of the footer */
+    padding-top:7%;
+}
+#container {
+   min-height:100%;
+   position:relative;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom:-50px;
 }
 
-.marginNavbar {
-	padding-top: 75px;
+#header {
+	position: fixed;
+	width: 100%;
+	/* 	background: rgb(16, 16, 19); */
+	background: rgb(16, 16, 90);
+	z-index: 2;
 }
+/* #footer { */
+/* position: absolute; */
+/* 	right: 0; */
+/* 	bottom: 0; */
+/* 	left: 0; */
+/* 	padding: 1rem; */
+/* 	background-color: rgb(69, 69, 69); */
+/* 	text-align: center; */
+/* 	color:white; */
+/* 	font-size: 75%; */
+/* 	 height: 50px;  */
+/* } */
+
+
+
+#main {overflow:auto;
+	padding-bottom: 150px;}  /* must be same height as the footer */
+
+#push{
+	height: 4em;
+}
+#footer{
+/* 	position: relative; */
+/* 	margin-top: -150px; negative value of footer height */
+/* 	height: 150px; */
+/* 	clear:both;  */
+	height: 4em;
+	background-color: rgb(69, 69, 69);
+	text-align: center;
+	color:white;
+	font-size: 75%;
+}
+#wrap {
+	min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -4em;
+	}
 
 .contentWrapper {
-	width: 80%;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 /* 	border-radius: 4px; */
 /* 	border: 1px solid rgb(221, 221, 221); */
 }
-
+/* ///////////////////////////////////////////////////////////////////////////////////// */
 /* login-register form */
 
 #login-form {

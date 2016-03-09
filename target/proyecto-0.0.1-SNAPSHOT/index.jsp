@@ -4,29 +4,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
-	href="<%=Config.getInstance().getRoot()%>css/style.css" type="text/css">
+	href="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/css/bootstrap.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/css/custom.css"
+	type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 <title>Index</title>
 </head>
 <body>
-	<jsp:include page="/common/header.jsp" />
-
-	<div class="marginNavbar"></div>
-	<div class="contentWrapper">
-		<div id="body">
-			<h2>Bienvenido, para acceder al sistema pulse el botón inferior</h2>
-			<h2><%=request.getAttribute("saludo")%></h2>
-			<p>
-				<a class="button"
-					href="<%=Config.getInstance().getRoot()%>protected_area/index.jsp">Acceder</a>
-				<a class="button"
-					href="<%=Config.getInstance().getRoot()%>register.jsp">Registrarse</a>
-			</p>
+<jsp:include page="/common/header.jsp" />
+	<div class="jumbotron">
+		<div class="container text-center">
+			<h1>Bienvenido</h1>
+			<p>Some text that represents "Me"...</p>	
 		</div>
 	</div>
-	<div>
-		<jsp:include page="/common/footer.jsp" />
-	</div>
+	
+<jsp:include page="/common/footer.jsp" />
 </body>
 </html>

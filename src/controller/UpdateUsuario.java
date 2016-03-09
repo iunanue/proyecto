@@ -84,9 +84,17 @@ Connect c = new Connect();
 	}
 	private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		System.out.println(Config.getInstance().getUsername());
-		c.getDao().deleteUsuario(username);
-		request.getRequestDispatcher("/Logout").forward(request, response);
+		if (checkForm(request, response))
+		{
+			System.out.println(Config.getInstance().getUsername());
+			c.getDao().deleteUsuario(username);
+			request.getRequestDispatcher("/Logout").forward(request, response);
+		}
+		else
+		{
+			request.getSession().setAttribute("mensaje", mensaje);
+			request.getRequestDispatcher("/protected_area/miCuenta").forward(request, response);
+		}
 	}
 	private boolean checkForm(HttpServletRequest request, HttpServletResponse response) {
 		if ((username.equals("")) || (mail.equals("")) || (password.equals("")) || (password2.equals(""))) {
