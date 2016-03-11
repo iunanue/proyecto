@@ -153,6 +153,12 @@ public class Dao {
 		getSession().save(entity);
 		endTransaction();
 	}
+	public List<Movimiento> getMovimientos(){
+		Criteria criteria = getSession().createCriteria(Movimiento.class);
+		@SuppressWarnings("unchecked")
+		List<Movimiento> listaMovimientos = criteria.list();
+		return listaMovimientos;
+	}
 	
 
 }

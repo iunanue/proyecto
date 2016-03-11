@@ -2,6 +2,7 @@ controller\MiCuenta.class
 classes\Cuenta.class
 classes\Movimiento.class
 controller\Logout.class
+controller\verMovimientos.class
 classes\ClaseGasto.class
 model\Connect.class
 controller\UpdateDeleteUsuario.class

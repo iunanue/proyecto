@@ -53,6 +53,10 @@ public class Movimiento {
 		this.importe = importe;
 		this.descripcion = descripcion;
 	}
+	public Movimiento()
+	{
+		
+	}
 	
 	public int getId_movimiento() {
 		return id_movimiento;
