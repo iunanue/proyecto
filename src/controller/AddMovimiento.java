@@ -99,7 +99,7 @@ public class AddMovimiento extends HttpServlet {
 		System.out.println(descripcion);
 
 		
-		c.getDao().addMovimiento(tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
+//		c.getDao().addMovimiento(tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 

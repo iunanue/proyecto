@@ -19,7 +19,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -33,7 +33,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">About</a></li>
+				<li><a href="<%=Config.getInstance().getRoot()%>/protected_area/registrarMovimiento">Registrar Movimiento</a></li>
 				<li><a href="#">Gallery</a></li>
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">

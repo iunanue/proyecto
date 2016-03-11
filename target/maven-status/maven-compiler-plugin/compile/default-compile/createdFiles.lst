@@ -4,6 +4,7 @@ classes\Movimiento.class
 controller\Logout.class
 classes\ClaseGasto.class
 model\Connect.class
+controller\UpdateDeleteUsuario.class
 controller\Prueba.class
 controller\RegistrarMovimiento.class
 controller\ForgotPassword.class
@@ -13,5 +14,5 @@ classes\Usuario.class
 controller\Config.class
 model\Dao.class
 classes\ClaseIngreso.class
-controller\UpdateUsuario.class
 controller\Register.class
+classes\UsuarioRol.class

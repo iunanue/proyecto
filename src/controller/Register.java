@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+import classes.Usuario;
+
 /**
  * Servlet implementation class Register
  */
@@ -61,20 +63,19 @@ public class Register extends HttpServlet {
 		System.out.println(request.getParameter("mail"));
 		System.out.println(request.getParameter("password"));
 		
-//		dao.getRegister().addUser(request.getParameter("username"), request.getParameter("mail"),request.getParameter("password"));
-//		request.getRequestDispatcher("index.jsp").forward(request, response);
-//		dao.getRegister().addUser(request.getParameter("username"), request.getParameter("mail"),request.getParameter("password"));
-//		request.getRequestDispatcher("register.jsp").forward(request, response);
 		
 		if (checkForm(request, response))
 		{
-			boolean ok = c.getDao().addUser(username, mail, password);
-			if(ok)
+			if(c.getDao().existsUsuario(username) == false)
 			{
+				System.out.println("no existe");
+				Usuario usuario = new Usuario(username,mail,password);
+				c.getDao().addUsuario(usuario);
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 			else
 			{
+				System.out.println("existe");
 				mensaje = "El usuario ya existe en la Base de Datos";
 				request.getSession().setAttribute("mensaje", mensaje);
 				request.getRequestDispatcher("register.jsp").forward(request, response);
@@ -86,26 +87,6 @@ public class Register extends HttpServlet {
 			request.getRequestDispatcher("register.jsp").forward(request, response);
 		}
 		
-		
-		
-//		request.getRequestDispatcher("index.jsp").forward(request, response);
-//		request.getRequestDispatcher("register.jsp").forward(request, response);
-		
-//		if (checkForm(request, response)) {
-//			System.out.println("llega check true");
-//			dao.getRegister().addUser(request.getParameter("username"), request.getParameter("mail"),request.getParameter("password"));
-//			mensaje = null;
-//			request.getSession().setAttribute("mensaje", mensaje);
-//			request.getRequestDispatcher("index.jsp").forward(request, response);
-//		} else {
-//			System.out.println("llega check false");
-//			// request.getSession().setAttribute("mensaje", null);
-//			request.getSession().setAttribute("username", null);
-//			request.getSession().setAttribute("mail", null);
-//			request.getSession().setAttribute("password", null);
-//			request.getSession().setAttribute("password2", null);
-//			request.getRequestDispatcher("register.jsp").forward(request, response);
-//		}
 
 	}
 

@@ -1,9 +1,17 @@
 package classes;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "usuario")
 public class Usuario {
 
+	@Id
 	private String username;
+	
+	@Column(name = "mail")
 	private String mail;
+	
+	@Column(name = "password")
 	private String password;
 
 	public Usuario() {

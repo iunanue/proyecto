@@ -67,7 +67,7 @@ public class ForgotPassword extends HttpServlet {
 		
 		if (checkForm(request, response)) 
 		{
-			usuario = c.getDao().getUser(username);
+			usuario = c.getDao().getUsuario(username);
 			if(usuario != null)
 			{
 				if(usuario.getMail().equals(mail))
@@ -75,7 +75,7 @@ public class ForgotPassword extends HttpServlet {
 					System.out.println("CAMBIO CORRECTO");
 					String newPassword = UUID.randomUUID().toString();
 					Usuario updatedUser = new Usuario(username,mail,newPassword);
-					c.getDao().updateUsuario(updatedUser);
+//					c.getDao().updateUsuario(updatedUser);
 					sendEmail(newPassword);
 					request.getRequestDispatcher("index.jsp").forward(request, response);
 					

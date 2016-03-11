@@ -24,7 +24,6 @@
 			<p>Some text that represents "Me"...</p>	
 		</div>
 	</div>
-	
 <jsp:include page="/common/footer.jsp" />
 </body>
 </html>
