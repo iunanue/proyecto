@@ -3,7 +3,7 @@
 <%@page import="classes.ClaseIngreso"%>
 <%@page import="classes.ClaseGasto"%>
 <%@page import="classes.Cuenta"%>
-<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -53,7 +53,7 @@
 								<div class="dropdown">
 									<select name="claseIngreso" class="dropdown-select">
 										<%
-											ArrayList<ClaseIngreso> listaClaseIngreso = (ArrayList) request.getAttribute("listaClaseIngreso");
+										List<ClaseIngreso> listaClaseIngreso = (List) request.getAttribute("listaClaseIngreso");
 											for (ClaseIngreso claseingreso : listaClaseIngreso) {
 										%><option value=<%=claseingreso.getId_claseIngreso()%>><%=claseingreso.getDescripcion()%></option>
 										<%
@@ -68,7 +68,7 @@
 								<div class="dropdown">
 									<select name="claseGasto" class="dropdown-select">
 										<%
-											ArrayList<ClaseGasto> listaClaseGasto = (ArrayList) request.getAttribute("listaClaseGasto");
+										List<ClaseGasto> listaClaseGasto = (List) request.getAttribute("listaClaseGasto");
 											for (ClaseGasto clasegasto : listaClaseGasto) {
 										%><option value=<%=clasegasto.getId_claseGasto()%>><%=clasegasto.getDescripcion()%></option>
 										<%
@@ -117,8 +117,8 @@
 							<div class="dropdown">
 								<select name="username" class="dropdown-select">
 									<%
-										ArrayList<Usuario> listaUsers = (ArrayList) request.getAttribute("listaUsers");
-										for (Usuario usuario : listaUsers) {
+									List<Usuario> listaUsuarios = (List) request.getAttribute("listaUsuarios");
+										for (Usuario usuario : listaUsuarios) {
 									%><option value=<%=usuario.getUsername()%>><%=usuario.getUsername()%></option>
 									<%
 										}
@@ -129,7 +129,7 @@
 							<div class="dropdown">
 								<select name="cuenta" class="dropdown-select">
 									<%
-										ArrayList<Cuenta> listaCuentas = (ArrayList) request.getAttribute("listaCuentas");
+									List<Cuenta> listaCuentas = (List) request.getAttribute("listaCuentas");
 										for (Cuenta cuenta : listaCuentas) {
 									%><option value=<%=cuenta.getId_cuenta()%>><%=cuenta.getDescripcion()%></option>
 									<%

@@ -1,16 +1,35 @@
 package classes;
+import javax.persistence.*;
 
 import java.sql.Timestamp;
 
+@Entity
+@Table(name = "movimiento")
 public class Movimiento {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_movimiento;
+	
+	@Column(name = "tipo")
 	private String tipo;//ingreso/gasto
+	
+	@Column(name = "fecha")
 	private Timestamp fecha;
+	
+	@Column(name = "id_clase")
 	private int id_clase;//dependiendo de si es ingreso/gasto, las clases de ingreso/gasto
+	
+	@Column(name = "username")
 	private String username;
+	
+	@Column(name = "id_cuenta")
 	private int id_cuenta;
+	
+	@Column(name = "importe")
 	private float importe;
+	
+	@Column(name = "descripcion")
 	private String descripcion;
 
 	public Movimiento(int id_movimiento,String tipo,Timestamp fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion)
@@ -24,7 +43,17 @@ public class Movimiento {
 		this.importe = importe;
 		this.descripcion = descripcion;
 	}
-
+	public Movimiento(String tipo,Timestamp fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion)
+	{
+		this.tipo = tipo;
+		this.fecha = fecha;
+		this.id_clase = id_clase;
+		this.username = username;
+		this.id_cuenta = id_cuenta;
+		this.importe = importe;
+		this.descripcion = descripcion;
+	}
+	
 	public int getId_movimiento() {
 		return id_movimiento;
 	}

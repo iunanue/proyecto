@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import classes.Movimiento;
 import model.Connect;
 
 /**
@@ -98,8 +99,8 @@ public class AddMovimiento extends HttpServlet {
 		System.out.println(importe);
 		System.out.println(descripcion);
 
-		
-//		c.getDao().addMovimiento(tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
+		Movimiento movimiento = new Movimiento(tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
+		c.getDao().addMovimiento(movimiento);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 

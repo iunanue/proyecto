@@ -73,7 +73,7 @@ Connect c = new Connect();
 					
 		if (checkForm(request, response))
 		{
-//			c.getDao().updateUsuario(usuario);
+			c.getDao().updateUsuario(usuario);
 			request.getRequestDispatcher("index.jsp").forward(request, response);	
 		}
 		else
