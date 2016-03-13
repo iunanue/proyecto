@@ -46,7 +46,7 @@
 							<div id="claseIngreso" style="display: none">
 								<label>Clase de Ingreso:</label>
 								<div class="dropdown">
-									<select name="claseIngreso" class="dropdown-select">
+									<select id="dropdownIngreso" name="claseIngreso" class="dropdown-select">
 										<%
 										List<ClaseIngreso> listaClaseIngreso = (List) request.getAttribute("listaClaseIngreso");
 											for (ClaseIngreso claseingreso : listaClaseIngreso) {
@@ -61,7 +61,7 @@
 							<div id="claseGasto" style="display: none">
 								<label>Clase de Gasto:</label>
 								<div class="dropdown">
-									<select name="claseGasto" class="dropdown-select">
+									<select id="dropdownIngreso" name="claseGasto" class="dropdown-select">
 										<%
 										List<ClaseGasto> listaClaseGasto = (List) request.getAttribute("listaClaseGasto");
 											for (ClaseGasto clasegasto : listaClaseGasto) {
@@ -76,34 +76,47 @@
 
 							<script
 								src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+					
 							<script>
-								$(document).ready(function() {
-									var tipo="<%=movimiento.getTipo()%>";
-									<%
-									SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-									String dateMovimiento  = dateFormat.format(movimiento.getFecha());
-									Date date = dateFormat.parse(dateMovimiento);
-											
-											
+							$(document).ready(function() {
+								var tipo="<%=movimiento.getTipo()%>";
+								<%
+									SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+									String date  = dateFormat.format(movimiento.getFecha());
+								%>
+								document.getElementById("date").value = "<%=date %>";
 							
-									%>
-									var date="<%=movimiento.getFecha()%>";
-									var date="<%=date%>";
-									$('#date').val(date);
-									if(tipo == "Ingreso"){
-										$("#claseIngreso").show();
-										$("#claseGasto").hide();
-										$("#ingreso").prop("checked", true);
-										$("#gasto").prop("checked", false);
-									}
-									if(tipo == "Gasto"){
-										$("#claseIngreso").hide();
-										$("#claseGasto").show();
-										$("#ingreso").prop("checked", false);
-										$("#gasto").prop("checked", true);
-									}
+								if(tipo == "Ingreso"){
+									$("#claseIngreso").show();
+									$("#claseGasto").hide();
+									$("#ingreso").prop("checked", true);
+									$("#gasto").prop("checked", false);
 									
-								});
+									var element = document.getElementById('dropdownIngreso');
+								    element.value = valueToSelect;
+							
+							
+								}
+								if(tipo == "Gasto"){
+									$("#claseIngreso").hide();
+									$("#claseGasto").show();
+									$("#ingreso").prop("checked", false);
+									$("#gasto").prop("checked", true);
+									
+									var element = document.getElementById('dropdownGasto');
+									<% int i= movimiento.getId_clase()-1;//no funciona
+									
+									%>  
+									
+									element.value = <%=i%>;
+										
+								
+								
+								
+								}
+							});
+																
+															
 								function check() {
 									if ((document.getElementById("ingreso").checked) == true) {
 										$("#claseIngreso").show();
@@ -113,8 +126,7 @@
 										$("#claseGasto").show();
 									}
 								}
-							</script>
-
+								</script>
 							<!-- 						<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> -->
 							<!-- 						<script> -->
 							<!-- // 							$(document).ready(function() { -->
