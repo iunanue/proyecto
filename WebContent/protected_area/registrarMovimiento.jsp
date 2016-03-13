@@ -30,12 +30,12 @@
 					<h3>Registrar movimiento (Ingreso/Gasto)</h3>
 					<h2></h2>
 					<fieldset>
-						<form method="POST" id="form" action="<%=Config.getInstance().getRoot()%>/protected_area/addMovimiento"">
+						<form method="POST" id="form" action="<%=Config.getInstance().getRoot()%>/protected_area/addMovimiento">
 							<label>Fecha:</label> <input type="date" name="fecha"> <label>Tipo de movimiento:</label>
 							<div id="tipo">
-								<input type="radio" id="ingreso" name="tipo" value="ingreso"
+								<input type="radio" id="ingreso" name="tipo" value="Ingreso"
 									checked onclick="check()">Ingreso<br> <input
-									type="radio" id="gasto" name="tipo" value="gasto"
+									type="radio" id="gasto" name="tipo" value="Gasto"
 									onclick="check()">Gasto<br>
 							</div>
 
@@ -137,8 +137,10 @@
 									%>
 								</select>
 							</div>
-							<label>Importe:</label> <input type="number" name="importe"
-								min="0" step="0.01"> <label>Descripción:</label>
+							<label>Importe:</label> 
+							<input type="number" name="importe"
+								min="0" step="0.01"> 
+								<label>Descripción:</label>
 							<textarea class="descripcion" name="descripcion"></textarea>
 
 							<input class="button blue" name="update" type="submit"

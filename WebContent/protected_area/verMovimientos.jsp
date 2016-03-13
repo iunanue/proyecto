@@ -4,6 +4,7 @@
 <%@page import="classes.ClaseGasto"%>
 <%@page import="classes.Cuenta"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -28,17 +29,19 @@
 
 	<div class="contentWrapper">
 	<div class="tableContainer">
+<%-- 	<form method="POST" id="form" action="<%=Config.getInstance().getRoot()%>/protected_area/verUpdateMovimiento"> --%>
 		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>id</th>
-					<th>tipo</th>
-					<th>fecha</th>
-					<th>id_clase</th>
-					<th>username</th>
+					<th>Tipo</th>
+					<th>Fecha</th>
+					<th>Clase</th>
+					<th>Usuario</th>
 					<th>id_cuenta</th>
 					<th>importe</th>
 					<th>descripcion</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -48,31 +51,48 @@
 					List <ClaseGasto> listaClaseGasto = (List) request.getAttribute("listaClaseGasto");
 					List <Cuenta> listaCuentas = (List) request.getAttribute("listaCuentas");
     				Movimiento movimiento;
-    				String clase;
+    				String clase = null;
     				for(int i=0;i<listaMovimientos.size();i++){
     				movimiento = listaMovimientos.get(i); 
-    				if(movimiento.getTipo().equals("ingreso")){
+    				if(movimiento.getTipo().equals("Ingreso")){
     					clase = listaClaseIngreso.get(movimiento.getId_clase()-1).getDescripcion();
     				}
-    				else
-    				{
+    				if(movimiento.getTipo().equals("Gasto")){
     					clase = listaClaseGasto.get(movimiento.getId_clase()-1).getDescripcion();
     				}
     				%>
 				<tr>
 					<td><%=movimiento.getId_movimiento()%></td>
 					<td><%=movimiento.getTipo()%></td>
-					<td><%=movimiento.getFecha()%></td>
+					<%
+					SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+					String string  = dateFormat.format(movimiento.getFecha());
+					%>
+					<td><%=string%></td>
+<%-- 					<td><%=movimiento.getFecha()%></td> --%>
 					<td><%=clase%></td>
 					<td><%=movimiento.getUsername()%></td>
 					<td><%=listaCuentas.get(movimiento.getId_cuenta()-1).getDescripcion()%></td>
 					<td><%=movimiento.getImporte()%></td>
-					<td><%=movimiento.getDescripcion()%></td>
+					<td class ="tdDescripcion"><%=movimiento.getDescripcion()%></td>
+					<td>
+						<form method="POST" id="form" action="<%=Config.getInstance().getRoot()%>/protected_area/selectUpdateDeleteMovimiento">
+							<input type="hidden" name="id_movimiento" value="<%=movimiento.getId_movimiento()%>">
+							<button type="submit" class="btn btn-default" name="update">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+							</button>			
+							<button type="submit" class="btn btn-default" name="delete" onClick="return confirm('¿Desea eliminar este movimiento?');">
+								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+							</button>		
+						</form>
+					</td>
 				</tr>
 				<%}%>
 			</tbody>
 		</table>
+<!-- 		</form> -->
 	</div>
+	
 </div>
 	<jsp:include page="/common/footer.jsp" />
 

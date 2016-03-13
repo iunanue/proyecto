@@ -2,12 +2,12 @@ controller\MiCuenta.class
 classes\Cuenta.class
 classes\Movimiento.class
 controller\Logout.class
-controller\verMovimientos.class
 classes\ClaseGasto.class
 model\Connect.class
 controller\UpdateDeleteUsuario.class
 controller\Prueba.class
 controller\RegistrarMovimiento.class
+controller\VerMovimientos.class
 controller\ForgotPassword.class
 controller\ForgotPassword$1.class
 controller\AddMovimiento.class
@@ -15,5 +15,8 @@ classes\Usuario.class
 controller\Config.class
 model\Dao.class
 classes\ClaseIngreso.class
+model\IDao.class
 controller\Register.class
 classes\UsuarioRol.class
+controller\LoadUpdateMovimiento.class
+controller\SelectUpdateDeleteMovimiento.class

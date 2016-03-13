@@ -66,11 +66,11 @@ public class Register extends HttpServlet {
 		
 		if (checkForm(request, response))
 		{
-			if(c.getDao().existsUsuario(username) == false)
+			if(c.getIDao().existsUsuario(username) == false)
 			{
 				System.out.println("no existe");
 				Usuario usuario = new Usuario(username,mail,password);
-				c.getDao().addUsuario(usuario);
+				c.getIDao().addUsuario(usuario);
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 			else

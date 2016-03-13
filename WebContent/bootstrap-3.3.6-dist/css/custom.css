@@ -4,13 +4,13 @@
 .navbar {
 	margin-bottom: 0;
 	border-radius: 0;
-	
 }
-.jumbotron h1{
+
+.jumbotron h1 {
 	color: #11548F;
 }
 
-.tableContainer{
+.tableContainer {
 	padding-top: 1%;
 }
 /* Set black background color, white text and some padding */
@@ -22,21 +22,23 @@
 /* 	margin-top: 100%; */
 /* } */
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 5%;
-/*   margin-bottom: 50px; */
+	/* Margin bottom by footer height */
+	margin-bottom: 5%;
+	/*   margin-bottom: 50px; */
 }
+
 footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 10%;
-/*   height: 50px; */
-  background-color: #555;
-  text-align: center;
-  color: white;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 10%;
+	/*   height: 50px; */
+	background-color: #555;
+	text-align: center;
+	color: white;
 }
+
 footer h1 {
 	font-size: 13px;
 }
@@ -53,48 +55,55 @@ footer p {
 	line-height: 20px;
 	background-color: black;
 }
+
+.tdDescripcion {
+	overflow: hidden;
+	max-width: 200px;
+	word-wrap: break-word;
+}
+
 /* /////////////////////////////////////////////////// */
 .contentWrapper {
 	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
-	padding-top: 50px;
+	padding-top: 75px;
 	padding-bottom: 10px;
-/* 	border-radius: 4px; */
-/* 	border: 1px solid rgb(221, 221, 221); */
+	/* 	border-radius: 4px; */
+	/* 	border: 1px solid rgb(221, 221, 221); */
 }
 /* ///////////////////////////////////////////////////////////////////////////////////// */
 /* login-register form */
-
 #login-form {
-	width: 40%;	
+	width: 40%;
 	border-radius: 4px;
 	border: 1px solid rgb(221, 221, 221);
 }
 
-	
 #login-form.login-form {
 	width: 40%;
 	border-radius: 4px;
 	border: 1px solid rgb(221, 221, 221);
-	margin-left: auto ;
-	margin-right: auto ;
+	margin-left: auto;
+	margin-right: auto;
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
 
-#login-form.registro-form{
+#login-form.registro-form {
 	width: 80%;
 	border-radius: 4px;
 	border: 1px solid rgb(221, 221, 221);
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-#login-form.miCuenta-form{
+
+#login-form.miCuenta-form {
 	width: 50%;
 	border-radius: 4px;
 	border: 1px solid rgb(221, 221, 221);
 }
+
 #login-form h3 {
 	background-color: #282830;
 	border-radius: 5px 5px 0 0;
@@ -128,40 +137,47 @@ footer p {
 #login-form input {
 	font-size: 14px;
 }
+
 #login-form input {
 	font-size: 14px;
 }
-label{
-	display:block;
-	font-size:17px;
-	color:grey;
+
+label {
+	display: block;
+	font-size: 17px;
+	color: grey;
 	padding: 12px 5px;
-	padding-bottom:5px;
+	padding-bottom: 5px;
 	width: 100%;
 }
-#login-form input[type="text"], #login-form input[type="password"]{
+
+#login-form input[type="text"], #login-form input[type="password"] {
 	border: 1px solid #dcdcdc;
 	padding: 12px 10px;
 	width: 90%;
 }
-#login-form input[type="number"]{
+
+#login-form input[type="number"] {
 	border: 1px solid #dcdcdc;
 	padding: 12px 10px;
 	width: 15%;
 }
-#login-form input[type="date"]{
+
+#login-form input[type="date"] {
 	border: 1px solid #dcdcdc;
 	padding: 12px 10px;
 	width: 20%;
 }
-#login-form textarea{
+
+#login-form textarea {
 	font-size: 14px;
-	height:100px;
+	height: 100px;
 	border: 1px solid #dcdcdc;
 	padding: 12px 10px;
 	width: 90%;
 }
-#login-form input[type="date"]{
+
+#login-form input[type="date"] {
 	padding: 12px 10px;
 }
 
@@ -210,7 +226,7 @@ label{
 	position: relative;
 	overflow: hidden;
 	height: 28px;
-	width: 150px;
+	width: 175px;
 	background: #f2f2f2;
 	border: 1px solid;
 	border-color: white #f7f7f7 #f5f5f5;
@@ -284,21 +300,23 @@ label{
 	border-radius: 3px;
 	cursor: pointer;
 }
+
 #login-form .footer {
-  font-size: 12px;
-  margin-top: 16px;
+	font-size: 12px;
+	margin-top: 16px;
 }
+
 .errormsg {
 	border: 1px solid #bd081c;
 	background-color: rgb(255, 235, 233);
 	width: 90%;
 	border-radius: 4px;
-	margin-left: auto ;
-	margin-right: auto ;
-	padding:10px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
 }
 
-.navbar-nav>li:hover{
-    color: #333;
-    background-color:grey;
-    }
+.navbar-nav>li:hover {
+	color: #333;
+	background-color: grey;
+}

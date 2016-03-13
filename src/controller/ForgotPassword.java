@@ -67,7 +67,7 @@ public class ForgotPassword extends HttpServlet {
 		
 		if (checkForm(request, response)) 
 		{
-			usuario = c.getDao().getUsuario(username);
+			usuario = c.getIDao().getUsuario(username);
 			if(usuario != null)
 			{
 				if(usuario.getMail().equals(mail))

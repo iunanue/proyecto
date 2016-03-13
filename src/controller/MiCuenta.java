@@ -48,7 +48,7 @@ public class MiCuenta extends HttpServlet {
 		
 		String username = request.getUserPrincipal().getName();
 //		System.out.println(request.getUserPrincipal().getName());
-		Usuario usuario = c.getDao().getUsuario(username);
+		Usuario usuario = c.getIDao().getUsuario(username);
 		request.setAttribute("usuario", usuario);
 //		System.out.println(usuario.getUsername());
 //		System.out.println(usuario.getMail());

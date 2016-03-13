@@ -17,6 +17,10 @@ public class UsuarioRol implements Serializable {
 		this.username = username;
 		this.rol = rol;
 	}
+	
+	public UsuarioRol(){
+
+	}
 	public String getUsername() {
 		return username;
 	}

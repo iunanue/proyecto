@@ -13,11 +13,11 @@ public class Connect {
 	private String userName = "root";
 	private String pass = "";
 
-	private Dao dao;
+	private IDao iDao;
 
 	public Connect() {
 
-		dao = new Dao(this);
+		iDao = new Dao(this);
 	}
 
 //	public Connection getConnection() throws SQLException {
@@ -35,8 +35,8 @@ public class Connect {
 //		return con;
 //	}
 
-	public Dao getDao() {
-		return this.dao;
+	public IDao getIDao() {
+		return this.iDao;
 	}
 
 //	public String getMessage(Exception e) {

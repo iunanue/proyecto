@@ -72,11 +72,11 @@ public class AddMovimiento extends HttpServlet {
 //		System.out.println(string);
 		
 		
-		if(tipo.equals("ingreso"))
+		if(tipo.equals("Ingreso"))
 		{
 			this.id_clase =  Integer.parseInt(request.getParameter("claseIngreso"));
 		}
-		if(tipo.equals("gasto"))
+		if(tipo.equals("Gasto"))
 		{
 			this.id_clase =  Integer.parseInt(request.getParameter("claseGasto"));
 		}
@@ -100,7 +100,7 @@ public class AddMovimiento extends HttpServlet {
 		System.out.println(descripcion);
 
 		Movimiento movimiento = new Movimiento(tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
-		c.getDao().addMovimiento(movimiento);
+		c.getIDao().addMovimiento(movimiento);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 

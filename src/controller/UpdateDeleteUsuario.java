@@ -73,7 +73,7 @@ Connect c = new Connect();
 					
 		if (checkForm(request, response))
 		{
-			c.getDao().updateUsuario(usuario);
+			c.getIDao().updateUsuario(usuario);
 			request.getRequestDispatcher("index.jsp").forward(request, response);	
 		}
 		else
@@ -87,7 +87,7 @@ Connect c = new Connect();
 		if (checkForm(request, response))
 		{
 			System.out.println(Config.getInstance().getUsername());
-			c.getDao().deleteUsuario(usuario);
+			c.getIDao().deleteUsuario(usuario);
 			request.getRequestDispatcher("/Logout").forward(request, response);
 		}
 		else

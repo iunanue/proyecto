@@ -2,13 +2,16 @@ C:\Users\ALUMNO\workspace_jee\proyecto\src\classes\Movimiento.java
 C:\Users\ALUMNO\workspace_jee\proyecto\src\classes\UsuarioRol.java
 C:\Users\ALUMNO\workspace_jee\proyecto\src\classes\Cuenta.java
 C:\Users\ALUMNO\workspace_jee\proyecto\src\classes\ClaseGasto.java
+C:\Users\ALUMNO\workspace_jee\proyecto\src\controller\LoadUpdateMovimiento.java
 C:\Users\ALUMNO\workspace_jee\proyecto\src\controller\AddMovimiento.java
 C:\Users\ALUMNO\workspace_jee\proyecto\src\controller\RegistrarMovimiento.java
 C:\Users\ALUMNO\workspace_jee\proyecto\src\controller\Register.java
+C:\Users\ALUMNO\workspace_jee\proyecto\src\model\IDao.java
 C:\Users\ALUMNO\workspace_jee\proyecto\src\controller\Prueba.java
 C:\Users\ALUMNO\workspace_jee\proyecto\src\controller\Config.java
-C:\Users\ALUMNO\workspace_jee\proyecto\src\controller\verMovimientos.java
+C:\Users\ALUMNO\workspace_jee\proyecto\src\controller\VerMovimientos.java
 C:\Users\ALUMNO\workspace_jee\proyecto\src\controller\ForgotPassword.java
+C:\Users\ALUMNO\workspace_jee\proyecto\src\controller\SelectUpdateDeleteMovimiento.java
 C:\Users\ALUMNO\workspace_jee\proyecto\src\controller\MiCuenta.java
 C:\Users\ALUMNO\workspace_jee\proyecto\src\model\Connect.java
 C:\Users\ALUMNO\workspace_jee\proyecto\src\controller\Logout.java
