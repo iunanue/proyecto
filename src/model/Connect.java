@@ -17,7 +17,7 @@ public class Connect {
 
 	public Connect() {
 
-		iDao = new Dao(this);
+		iDao = new Dao();
 	}
 
 //	public Connection getConnection() throws SQLException {

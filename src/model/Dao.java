@@ -16,19 +16,12 @@ import classes.Movimiento;
 import classes.Usuario;
 import classes.UsuarioRol;
 
-public class Dao implements IDao{
+public class Dao implements IDao {
 
 	private SessionFactory sessionFactory;
-	private Session session;
-	private Transaction transaction;
 
-	private Connect connect;
-
-	public Dao(Connect connect) {
-		this.connect = connect;
-
+	public Dao() {
 		sessionFactory = createSessionFactory();
-//		session = openSession();
 	}
 
 	private static SessionFactory createSessionFactory() {
@@ -40,58 +33,49 @@ public class Dao implements IDao{
 
 	}
 
-	public Session openSession() {
-
-		session = sessionFactory.openSession();
-		return session;
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
 	}
 
-	public Session getSession() {
-		return session;
+	@Override
+	public void addUsuario(Usuario entity) {
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(entity);
+		tx.commit();
+		session.close();
+		addUsuarioRol(entity.getUsername());
+
 	}
 
-	public void closeSession() {
+	@Override
+	public void addUsuarioRol(String username) {
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		UsuarioRol usuarioRol = new UsuarioRol(username, "usuario");
+		Transaction tx = session.beginTransaction();
+		session.save(usuarioRol);
+		tx.commit();
 		session.close();
 	}
 
-	public void beginTransaction() {
-		transaction = getSession().beginTransaction();
-	}
-
-	public void endTransaction() {
-		transaction.commit();
-	}
-
-	////////////////////////////////////////////////////////////////////////////////
-
-	public void addUsuario(Usuario entity) {
-		openSession();
-		beginTransaction();
-		getSession().save(entity);
-		endTransaction();
-		closeSession();
-		addUsuarioRol(entity.getUsername());
-	}
-
-	public void addUsuarioRol(String username) {
-		openSession();
-		UsuarioRol usuarioRol = new UsuarioRol(username, "usuario");
-		beginTransaction();
-		getSession().save(usuarioRol);
-		closeSession();
-		endTransaction();
-	}
-
+	@Override
 	public Usuario getUsuario(String username) {
-		openSession();
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
 		Usuario usuario = null;
-		beginTransaction();
-		usuario = (Usuario) getSession().get(Usuario.class, username);
-		endTransaction();
-		closeSession();
+		Transaction tx = session.beginTransaction();
+
+		usuario = (Usuario) session.get(Usuario.class, username);
+
+		tx.commit();
+		session.close();
+
 		return usuario;
 	}
 
+	@Override
 	public boolean existsUsuario(String username) {
 		boolean exists = false;
 		if (getUsuario(username) != null) {
@@ -99,72 +83,108 @@ public class Dao implements IDao{
 		}
 		return exists;
 	}
-	
-	public void updateUsuario(Usuario entity){
-		openSession();
-		beginTransaction();
-		getSession().update(entity);
-		endTransaction();
-		closeSession();
+
+	@Override
+	public void updateUsuario(Usuario entity) {
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+
+		Transaction tx = session.beginTransaction();
+
+		session.update(entity);
+
+		tx.commit();
+		session.close();
 	}
 
+	@Override
 	public void deleteUsuario(Usuario entity) {
-		openSession();
 		deleteUsuarioRol(entity.getUsername());
-		beginTransaction();
-		getSession().delete(entity);
-		endTransaction();
-		closeSession();
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(entity);
+		tx.commit();
+		session.close();
 	}
+
+	@Override
 	public void deleteUsuarioRol(String username) {
-		openSession();
 		UsuarioRol usuarioRol = new UsuarioRol(username, "usuario");
-		beginTransaction();
-		getSession().delete(usuarioRol);
-		endTransaction();
-		closeSession();
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(usuarioRol);
+		tx.commit();
+		session.close();
 	}
-	public List<Usuario> getUsers(){
-		openSession();
-		Criteria criteria = getSession().createCriteria(Usuario.class);
+
+	@Override
+	public List<Usuario> getUsers() {
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(Usuario.class);
 		@SuppressWarnings("unchecked")
 		List<Usuario> listaUsuarios = criteria.list();
-		closeSession();
+
+		tx.commit();
+		session.close();
+
 		return listaUsuarios;
 	}
-	
-	public List<ClaseIngreso> getClaseIngreso(){
-		openSession();
-		Criteria criteria = getSession().createCriteria(ClaseIngreso.class);
+
+	@Override
+	public List<ClaseIngreso> getClaseIngreso() {
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(ClaseIngreso.class);
 		@SuppressWarnings("unchecked")
 		List<ClaseIngreso> listaClaseIngreso = criteria.list();
-		closeSession();
+
+		tx.commit();
+		session.close();
+
 		return listaClaseIngreso;
 	}
-	
-	public List<ClaseGasto> getClaseGasto(){
-		openSession();
-		Criteria criteria = getSession().createCriteria(ClaseGasto.class);
+
+	@Override
+	public List<ClaseGasto> getClaseGasto() {
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(ClaseGasto.class);
 		@SuppressWarnings("unchecked")
 		List<ClaseGasto> listaClaseGasto = criteria.list();
-		closeSession();
+
+		tx.commit();
+		session.close();
+
 		return listaClaseGasto;
 	}
-	
+
+	@Override
 	public Cuenta getCuenta(int id_cuenta) {
-		openSession();
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
 		Cuenta cuenta = null;
-		beginTransaction();
-		cuenta = (Cuenta) getSession().get(Cuenta.class, id_cuenta);
-		endTransaction();
-		closeSession();
+		Transaction tx = session.beginTransaction();
+
+		cuenta = (Cuenta) session.get(Cuenta.class, id_cuenta);
+
+		tx.commit();
+		session.close();
+
 		return cuenta;
 	}
-	
-	public void updateCuenta(Movimiento movimiento, String funcion){
-		
+
+	@Override
+	public void updateCuenta(Movimiento movimiento, String funcion) {
 		Cuenta cuenta = getCuenta(movimiento.getId_cuenta());
-		openSession();
 		float saldo = cuenta.getSaldo();
 		if(funcion.equals("add")){
 			if(movimiento.getTipo().equals("Ingreso")){
@@ -182,59 +202,91 @@ public class Dao implements IDao{
 				saldo = saldo + movimiento.getImporte();
 			}
 		}
-		
 		cuenta.setSaldo(saldo);
-		beginTransaction();
-		getSession().update(cuenta);
-		endTransaction();
-		closeSession();
+		
+		
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+
+		Transaction tx = session.beginTransaction();
+
+		session.update(cuenta);
+
+		tx.commit();
+		session.close();
 	}
-	
-	public List<Cuenta> getCuentas(){
-		openSession();
-		Criteria criteria = getSession().createCriteria(Cuenta.class);
+
+	@Override
+	public List<Cuenta> getCuentas() {
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(Cuenta.class);
 		@SuppressWarnings("unchecked")
 		List<Cuenta> listaCuentas = criteria.list();
-		closeSession();
+
+		tx.commit();
+		session.close();
+
 		return listaCuentas;
 	}
-	
+
+	@Override
 	public Movimiento getMovimiento(int id_movimiento) {
-		openSession();
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
 		Movimiento movimiento = null;
-		beginTransaction();
-		movimiento = (Movimiento) getSession().get(Movimiento.class, id_movimiento);
-		endTransaction();
-		closeSession();
+		Transaction tx = session.beginTransaction();
+
+		movimiento = (Movimiento) session.get(Movimiento.class, id_movimiento);
+
+		tx.commit();
+		session.close();
+
 		return movimiento;
 	}
-	
-	public void addMovimiento(Movimiento entity){
-		openSession();
-		beginTransaction();
-		getSession().save(entity);
-		endTransaction();
-		closeSession();
+
+	@Override
+	public void addMovimiento(Movimiento entity) {
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(entity);
+		tx.commit();
+		session.close();
 		updateCuenta(entity,"add");
+
 	}
-	
-	public void deleteMovimiento(Movimiento entity){
-		openSession();
-		beginTransaction();
-		getSession().delete(entity);
-		endTransaction();
-		closeSession();
+
+	@Override
+	public void deleteMovimiento(Movimiento entity) {
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(entity);
+		tx.commit();
+		session.close();
 		updateCuenta(entity,"delete");
+
 	}
-	
-	public List<Movimiento> getMovimientos(){
-		openSession();
-		Criteria criteria = getSession().createCriteria(Movimiento.class);
+
+	@Override
+	public List<Movimiento> getMovimientos() {
+		SessionFactory sesion= getSessionFactory();
+        Session session =sesion.openSession();
+        Transaction tx=session.beginTransaction();
+        
+        Criteria criteria = session.createCriteria(Movimiento.class);
 		@SuppressWarnings("unchecked")
 		List<Movimiento> listaMovimientos = criteria.list();
-		closeSession();
-		return listaMovimientos;
+            
+        tx.commit();
+        session.close();
+       
+        return listaMovimientos;		
 	}
-	
+
+	////////////////////////////////////////////////////////////////////////////////
 
 }
