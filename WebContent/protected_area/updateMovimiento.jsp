@@ -61,7 +61,7 @@
 							<div id="claseGasto" style="display: none">
 								<label>Clase de Gasto:</label>
 								<div class="dropdown">
-									<select id="dropdownIngreso" name="claseGasto" class="dropdown-select">
+									<select id="dropdownGasto" name="claseGasto" class="dropdown-select">
 										<%
 										List<ClaseGasto> listaClaseGasto = (List) request.getAttribute("listaClaseGasto");
 											for (ClaseGasto clasegasto : listaClaseGasto) {
@@ -91,10 +91,7 @@
 									$("#claseGasto").hide();
 									$("#ingreso").prop("checked", true);
 									$("#gasto").prop("checked", false);
-									
-									var element = document.getElementById('dropdownIngreso');
-								    element.value = valueToSelect;
-							
+									$('#dropdownIngreso').prop('selectedIndex', <%=movimiento.getId_clase()-1%>);
 							
 								}
 								if(tipo == "Gasto"){
@@ -102,17 +99,7 @@
 									$("#claseGasto").show();
 									$("#ingreso").prop("checked", false);
 									$("#gasto").prop("checked", true);
-									
-									var element = document.getElementById('dropdownGasto');
-									<% int i= movimiento.getId_clase()-1;//no funciona
-									
-									%>  
-									
-									element.value = <%=i%>;
-										
-								
-								
-								
+									$('#dropdownGasto').prop('selectedIndex', <%=movimiento.getId_clase()-1%>); 
 								}
 							});
 																
