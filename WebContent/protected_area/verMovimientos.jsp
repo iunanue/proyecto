@@ -38,9 +38,9 @@
 					<th>Fecha</th>
 					<th>Clase</th>
 					<th>Usuario</th>
-					<th>id_cuenta</th>
-					<th>importe</th>
-					<th>descripcion</th>
+					<th>Cuenta</th>
+					<th>Importe</th>
+					<th>Descripcion</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -92,6 +92,7 @@
 		</table>
 		<form method="POST" action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 <%-- 							<input type="hidden" name="listaMovimientos" value="<%=listaMovimientos%>"> --%>
+							<%request.getSession().setAttribute("listaMovimientos", listaMovimientos); %>
 							<button type="submit" class="btn btn-default" name="exportar">
 								<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar Excel
 							</button>			
