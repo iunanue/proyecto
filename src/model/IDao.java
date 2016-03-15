@@ -39,6 +39,8 @@ public interface IDao {
 	public Movimiento getMovimiento(int id_movimiento);
 
 	public void addMovimiento(Movimiento entity);
+	
+	public void updateMovimiento(Movimiento movimientoAntiguo, Movimiento movimientoActualizado);
 
 	public void deleteMovimiento(Movimiento entity);
 

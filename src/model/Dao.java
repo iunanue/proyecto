@@ -194,6 +194,9 @@ public class Dao implements IDao {
 				saldo = saldo - movimiento.getImporte();
 			}
 		}
+		if(funcion.equals("update")){
+			saldo = saldo + movimiento.getImporte();
+		}
 		if(funcion.equals("delete")){
 			if(movimiento.getTipo().equals("Ingreso")){
 				saldo = saldo - movimiento.getImporte();
@@ -258,6 +261,43 @@ public class Dao implements IDao {
 		updateCuenta(entity,"add");
 
 	}
+	
+	@Override
+	public void updateMovimiento(Movimiento movimientoAntiguo, Movimiento movimientoActualizado) {
+		
+		Movimiento movimientoActualizarCuenta = movimientoAntiguo;
+		float diferencia = 0;
+		
+		if((movimientoAntiguo.getTipo().equals("Ingreso"))&&(movimientoActualizado.getTipo().equals("Ingreso"))){
+			diferencia = movimientoActualizado.getImporte()-movimientoAntiguo.getImporte();
+			movimientoActualizarCuenta.setImporte(diferencia);
+		}
+		if((movimientoAntiguo.getTipo().equals("Gasto"))&&(movimientoActualizado.getTipo().equals("Gasto"))){
+			diferencia = movimientoActualizado.getImporte()-movimientoAntiguo.getImporte();
+			movimientoActualizarCuenta.setImporte(-diferencia);
+		}
+		if((movimientoAntiguo.getTipo().equals("Ingreso"))&&(movimientoActualizado.getTipo().equals("Gasto"))){
+			diferencia = movimientoActualizado.getImporte()+movimientoAntiguo.getImporte();
+			movimientoActualizarCuenta.setImporte(-diferencia);
+		}
+		if((movimientoAntiguo.getTipo().equals("Gasto"))&&(movimientoActualizado.getTipo().equals("Ingreso"))){
+			diferencia = movimientoActualizado.getImporte()+movimientoAntiguo.getImporte();
+			movimientoActualizarCuenta.setImporte(diferencia);
+		}
+		updateCuenta(movimientoActualizarCuenta, "update");
+		
+		
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+
+		Transaction tx = session.beginTransaction();
+
+		session.update(movimientoActualizado);
+
+		tx.commit();
+		session.close();
+		
+	}
 
 	@Override
 	public void deleteMovimiento(Movimiento entity) {
@@ -286,6 +326,8 @@ public class Dao implements IDao {
        
         return listaMovimientos;		
 	}
+
+	
 
 	////////////////////////////////////////////////////////////////////////////////
 

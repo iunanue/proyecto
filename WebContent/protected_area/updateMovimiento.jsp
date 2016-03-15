@@ -26,15 +26,59 @@
 <title>Modificar Movimiento</title>
 </head>
 <body>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<script>
+	<%
+	Movimiento movimiento = (Movimiento) request.getAttribute("movimiento");
+	%>
+	$(document).ready(function() {
+		var tipo="<%=movimiento.getTipo()%>";
+		<%
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String date  = dateFormat.format(movimiento.getFecha());
+		%>
+		document.getElementById("date").value = "<%=date %>";
+		
+
+		
+		if(tipo == "Ingreso"){
+			$("#claseIngreso").show();
+			$("#claseGasto").hide();
+			$("#ingreso").prop("checked", true);
+			$("#gasto").prop("checked", false);
+			$('#dropdownIngreso').prop('selectedIndex', <%=movimiento.getId_clase()-1%>);
+	
+		}
+		if(tipo == "Gasto"){
+			$("#claseIngreso").hide();
+			$("#claseGasto").show();
+			$("#ingreso").prop("checked", false);
+			$("#gasto").prop("checked", true);
+			$('#dropdownGasto').prop('selectedIndex', <%=movimiento.getId_clase()-1%>); 
+		}
+		$('#username').val("<%=movimiento.getUsername()%>");
+		$('#cuenta').prop('selectedIndex', <%=movimiento.getId_cuenta()-1%>);
+		$('#importe').val("<%=movimiento.getImporte()%>");
+		$('#descripcion').val("<%=movimiento.getDescripcion()%>");
+	});
+										
+									
+		function check() {
+			if ((document.getElementById("ingreso").checked) == true) {
+				$("#claseIngreso").show();
+				$("#claseGasto").hide();
+			} else {
+				$("#claseIngreso").hide();
+				$("#claseGasto").show();
+			}
+		}
+		</script>
 <jsp:include page="/common/userHeader.jsp" />
 						<div class="contentWrapper">
 				<div id="login-form" class="registro-form">
 					<h3>Modificar movimiento (Ingreso/Gasto)</h3>
 					<h2></h2>
 					<fieldset>
-					<%
-						Movimiento movimiento = (Movimiento) request.getAttribute("movimiento");
-					%>
 						<form method="POST" id="form" action="<%=Config.getInstance().getRoot()%>/protected_area/updateMovimiento">
 							<label>Fecha:</label> <input id="date" type="date" name="fecha"> <label>Tipo de movimiento:</label>
 							<div id="tipo">
@@ -74,66 +118,11 @@
 
 							</div>
 
-							<script
-								src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-					
-							<script>
-							$(document).ready(function() {
-								var tipo="<%=movimiento.getTipo()%>";
-								<%
-									SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-									String date  = dateFormat.format(movimiento.getFecha());
-								%>
-								document.getElementById("date").value = "<%=date %>";
 							
-								if(tipo == "Ingreso"){
-									$("#claseIngreso").show();
-									$("#claseGasto").hide();
-									$("#ingreso").prop("checked", true);
-									$("#gasto").prop("checked", false);
-									$('#dropdownIngreso').prop('selectedIndex', <%=movimiento.getId_clase()-1%>);
 							
-								}
-								if(tipo == "Gasto"){
-									$("#claseIngreso").hide();
-									$("#claseGasto").show();
-									$("#ingreso").prop("checked", false);
-									$("#gasto").prop("checked", true);
-									$('#dropdownGasto').prop('selectedIndex', <%=movimiento.getId_clase()-1%>); 
-								}
-							});
-																
-															
-								function check() {
-									if ((document.getElementById("ingreso").checked) == true) {
-										$("#claseIngreso").show();
-										$("#claseGasto").hide();
-									} else {
-										$("#claseIngreso").hide();
-										$("#claseGasto").show();
-									}
-								}
-								</script>
-							<!-- 						<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> -->
-							<!-- 						<script> -->
-							<!-- // 							$(document).ready(function() { -->
-							<!-- // 								$("#claseIngreso").show(); -->
-							<!-- // 								$("#tipoMovimiento").change(function() { -->
-							<!-- // 									if ($(this).val() == "ingreso") { -->
-							<!-- // 										$("#claseIngreso").show(); -->
-							<!-- // 										$("#claseGasto").hide(); -->
-							<!-- // 									} else { -->
-							<!-- // 										$("#claseIngreso").hide(); -->
-							<!-- // 										$("#claseGasto").show(); -->
-							<!-- // 									} -->
-							<!-- // 								}); -->
-							<!-- // 							}); -->
-							<!-- 						</script> -->
-
-
 							<label>Usuario asociado al movimiento:</label>
 							<div class="dropdown">
-								<select name="username" class="dropdown-select">
+								<select id="username" name="username" class="dropdown-select">
 									<%
 									List<Usuario> listaUsuarios = (List) request.getAttribute("listaUsuarios");
 										for (Usuario usuario : listaUsuarios) {
@@ -145,7 +134,7 @@
 							</div>
 							<label>Cuenta asociada al movimiento:</label>
 							<div class="dropdown">
-								<select name="cuenta" class="dropdown-select">
+								<select id="cuenta" name="cuenta" class="dropdown-select">
 									<%
 									List<Cuenta> listaCuentas = (List) request.getAttribute("listaCuentas");
 										for (Cuenta cuenta : listaCuentas) {
@@ -156,11 +145,11 @@
 								</select>
 							</div>
 							<label>Importe:</label> 
-							<input type="number" name="importe"
+							<input id="importe" type="number" name="importe"
 								min="0" step="0.01"> 
 								<label>Descripción:</label>
-							<textarea class="descripcion" name="descripcion"></textarea>
-
+							<textarea id="descripcion" class="descripcion" name="descripcion"></textarea>
+							<input type="hidden" name="id_movimiento" value="<%=movimiento.getId_movimiento()%>" />
 							<input class="button blue" name="update" type="submit"
 								value="Registrar"
 								onClick="return confirm('¿Desea registrar este movimiento?');">
