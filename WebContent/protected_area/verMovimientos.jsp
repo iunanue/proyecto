@@ -90,6 +90,12 @@
 				<%}%>
 			</tbody>
 		</table>
+		<form method="POST" action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
+<%-- 							<input type="hidden" name="listaMovimientos" value="<%=listaMovimientos%>"> --%>
+							<button type="submit" class="btn btn-default" name="exportar">
+								<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar Excel
+							</button>			
+						</form>
 <!-- 		</form> -->
 	</div>
 	
