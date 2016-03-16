@@ -6,16 +6,10 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"
-	href="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/css/bootstrap.min.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/css/custom.css"
-	type="text/css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script
-	src="<%=Config.getInstance().getRoot()%>bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/custom.css" type="text/css">
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -28,13 +22,13 @@
 					class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand"
-				href="<%=Config.getInstance().getRoot()%>index.jsp">Proyecto</a>
+				href="${pageContext.request.contextPath}/index.jsp">Proyecto</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">Home</a></li>
-				<li><a href="<%=Config.getInstance().getRoot()%>/protected_area/registrarMovimiento">Registrar Movimiento</a></li>
-				<li><a href="<%=Config.getInstance().getRoot()%>/protected_area/verMovimientos">Ver Movimientos</a></li>
+				<li><a href="${pageContext.request.contextPath}/protected_area/registrarMovimiento">Registrar Movimiento</a></li>
+				<li><a href="${pageContext.request.contextPath}/protected_area/verMovimientos">Ver Movimientos</a></li>
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Page 1-1</a></li>
@@ -47,10 +41,10 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a
-					href="<%=Config.getInstance().getRoot()%>/protected_area/miCuenta"><span
+					href="${pageContext.request.contextPath}/protected_area/miCuenta"><span
 						class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
 
-				<li><a href="<%=Config.getInstance().getRoot()%>Logout"><span
+				<li><a href="${pageContext.request.contextPath}/Logout"><span
 						class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 
 			</ul>

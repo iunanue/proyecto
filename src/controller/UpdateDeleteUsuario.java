@@ -86,7 +86,6 @@ Connect c = new Connect();
 	{
 		if (checkForm(request, response))
 		{
-			System.out.println(Config.getInstance().getUsername());
 			c.getIDao().deleteUsuario(usuario);
 			request.getRequestDispatcher("/Logout").forward(request, response);
 		}

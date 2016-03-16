@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import javax.servlet.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import controller.Config;
 
 
 /**
@@ -40,7 +37,7 @@ public class Logout extends HttpServlet {
 		if (sesion != null) {
 			sesion.invalidate();
 		}
-		response.sendRedirect(Config.getInstance().getRoot() + "index.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 
 	}
 
