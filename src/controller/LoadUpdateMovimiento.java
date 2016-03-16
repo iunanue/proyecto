@@ -43,54 +43,22 @@ public class LoadUpdateMovimiento extends HttpServlet {
 		request.setAttribute("movimiento", movimiento);
 		
 		List<Usuario> listaUsuarios = c.getIDao().getUsers();
-		 for(Usuario usuario: listaUsuarios){
-	            System.out.println(usuario.getUsername());
-	        }
+		
 		 request.setAttribute("listaUsuarios", listaUsuarios);
 		 
 		 List<ClaseIngreso> listaClaseIngreso = c.getIDao().getClaseIngreso();
-		 for(ClaseIngreso claseingreso: listaClaseIngreso){
-	            System.out.println(claseingreso.getDescripcion());
-	        }
+		
 		 request.setAttribute("listaClaseIngreso", listaClaseIngreso);
 		 
 		 List<ClaseGasto> listaClaseGasto = c.getIDao().getClaseGasto();
-		 for(ClaseGasto clasegasto: listaClaseGasto){
-	            System.out.println(clasegasto.getDescripcion());
-	        }
+		 
 		 request.setAttribute("listaClaseGasto", listaClaseGasto);
 		 
 		 List<Cuenta> listaCuentas = c.getIDao().getCuentas();
-		 for(Cuenta cuenta: listaCuentas){
-	            System.out.println(cuenta.getDescripcion());
-	        }
+		 
 		 request.setAttribute("listaCuentas", listaCuentas);
 		
 		
-//		System.out.println(movimiento.getImporte());
-//		
-//		List<Usuario> listaUsuarios = c.getIDao().getUsers();
-//		 for(Usuario usuario: listaUsuarios){
-//	            System.out.println(usuario.getUsername());
-//	        }
-//		 request.setAttribute("listaUsuarios", listaUsuarios);
-//		 
-//		 List<ClaseIngreso> listaClaseIngreso = c.getIDao().getClaseIngreso();
-//		 for(ClaseIngreso claseingreso: listaClaseIngreso){
-//	            System.out.println(claseingreso.getDescripcion());
-//	        }
-//		 request.setAttribute("listaClaseIngreso", listaClaseIngreso);
-//		 
-//		 List<ClaseGasto> listaClaseGasto = c.getIDao().getClaseGasto();
-//		 for(ClaseGasto clasegasto: listaClaseGasto){
-//	            System.out.println(clasegasto.getDescripcion());
-//	        }
-//		 request.setAttribute("listaClaseGasto", listaClaseGasto);
-//		 
-//		 List<Cuenta> listaCuentas = c.getIDao().getCuentas();
-//		 for(Cuenta cuenta: listaCuentas){
-//	            System.out.println(cuenta.getDescripcion());
-//	        }
 			request.getRequestDispatcher("/protected_area/updateMovimiento.jsp").forward(request, response);
 	}
 

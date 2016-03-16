@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,22 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 import classes.ClaseGasto;
 import classes.ClaseIngreso;
 import classes.Cuenta;
+import classes.Movimiento;
 import classes.Usuario;
 import model.Connect;
 
 /**
- * Servlet implementation class NuevoMovimiento
+ * Servlet implementation class consultaMovimientos
  */
-@WebServlet("/protected_area/registrarMovimiento")
-public class RegistrarMovimiento extends HttpServlet {
+@WebServlet("/protected_area/loadConsultaMovimientos")
+public class LoadConsultaMovimientos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	Connect c = new Connect();
 	
+	Movimiento movimiento;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegistrarMovimiento() {
+    public LoadConsultaMovimientos() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,7 +40,6 @@ public class RegistrarMovimiento extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		List<Usuario> listaUsuarios = c.getIDao().getUsers();
 		request.setAttribute("listaUsuarios", listaUsuarios);
 		 
@@ -51,7 +52,8 @@ public class RegistrarMovimiento extends HttpServlet {
 		List<Cuenta> listaCuentas = c.getIDao().getCuentas();		 
 		request.setAttribute("listaCuentas", listaCuentas);
 		 
-		request.getRequestDispatcher("/protected_area/registrarMovimiento.jsp").forward(request, response);	}
+		request.getRequestDispatcher("/protected_area/consultarMovimientos.jsp").forward(request, response);	
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -75,7 +75,7 @@
 					<h3>Modificar movimiento (Ingreso/Gasto)</h3>
 					<h2></h2>
 					<fieldset>
-						<form method="POST" id="form" action="<%=Config.getInstance().getRoot()%>/protected_area/updateMovimiento">
+						<form method="POST" id="form" action="${pageContext.request.contextPath}/protected_area/updateMovimiento">
 							<label>Fecha:</label> <input id="date" type="date" name="fecha"> <label>Tipo de movimiento:</label>
 							<div id="tipo">
 								<input type="radio" id="ingreso" name="tipo" value="Ingreso"
