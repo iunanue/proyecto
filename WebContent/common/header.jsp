@@ -24,8 +24,8 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-				<li><a href="#">Sobre el Proyecto</a></li>
-				<li><a href="#">Contacto</a></li>
+				<li><a href="${pageContext.request.contextPath}/about.jsp">Sobre el Proyecto</a></li>
+				<li><a href="${pageContext.request.contextPath}/contact.jsp">Contacto</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${pageContext.request.contextPath}/register.jsp"><span class="glyphicon glyphicon-pencil"></span> Registrarse</a></li>
