@@ -22,9 +22,8 @@
 				<h3>Mi Cuenta</h3>
 				<fieldset>
 				<% Usuario usuario = (Usuario) request.getAttribute("usuario");
-				Config.getInstance().setUsername(usuario.getUsername());
 				%>
-					<form method="POST" action="<%=Config.getInstance().getRoot()%>/protected_area/updateDeleteUsuario">
+					<form method="POST" action="${pageContext.request.contextPath}/protected_area/updateDeleteUsuario">
 						<input class="field" type="text" name="username" placeholder="Usuario" value="<%=usuario.getUsername()%>" readonly> 
 						<input class="field" type="text" name="mail" placeholder="E-mail" value="<%=usuario.getMail()%>"> 
 						<input class="field" type="password" name="password" placeholder="Contraseña" value="<%=usuario.getPassword()%>">

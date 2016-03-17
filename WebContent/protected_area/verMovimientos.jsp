@@ -71,7 +71,7 @@
 					<td><%=movimiento.getImporte()%></td>
 					<td class ="tdDescripcion"><%=movimiento.getDescripcion()%></td>
 					<td>
-						<form method="POST" id="form" action="<%=Config.getInstance().getRoot()%>/protected_area/selectUpdateDeleteMovimiento">
+						<form method="POST" id="form" action="${pageContext.request.contextPath}/protected_area/selectUpdateDeleteMovimiento">
 							<input type="hidden" name="id_movimiento" value="<%=movimiento.getId_movimiento()%>">
 							<button type="submit" class="btn btn-default" name="update">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
