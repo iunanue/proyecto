@@ -19,13 +19,6 @@
 <title>Registrar Movimiento</title>
 </head>
 <body>
-	<%
-		boolean filtroFecha = true;
-		boolean filtroTipo = false;
-		boolean filtroClase = false;
-		boolean filtroUsuario = false;
-		boolean filtroCuenta = false;
-	%>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<script>
 	$(document).ready(function() {				
@@ -34,19 +27,13 @@
 	function check() {
 		if ((document.getElementById("fecha_si").checked) == true) {
 			$("#fechas").show();
-			<%filtroFecha = true;
-			%>
-			<%System.out.println("Valor al cambiar: " + filtroFecha); %>
 		} else {
 			$("#fechas").hide();
-<%-- 			<%filtroFecha = false;%> --%>
 		}
 		if ((document.getElementById("tipo_si").checked) == true) {
 			$("#tipo").show();
-			<%filtroTipo = true;%>
 		} else {
 			$("#tipo").hide();
-			<%filtroTipo = false;%>
 		}
 		if ((document.getElementById("clase_si").checked) == true) {
 			if ((document.getElementById("ingreso").checked) == true) {
@@ -56,25 +43,19 @@
 				$("#claseIngreso").hide();
 				$("#claseGasto").show();
 			}
-			<%filtroClase = true;%>
 		} else {
 			$("#claseIngreso").hide();
 			$("#claseGasto").hide();
-			<%filtroClase = false;%>
 		}
 		if ((document.getElementById("usuario_si").checked) == true) {
 			$("#usuario").show();
-			<%filtroUsuario = true;%>
 		} else {
 			$("#usuario").hide();
-			<%filtroClase = false;%>
 		}
 		if ((document.getElementById("cuenta_si").checked) == true) {
 			$("#cuenta").show();
-			<%filtroCuenta = true;%>
 		} else {
 			$("#cuenta").hide();
-			<%filtroCuenta = false;%>
 		}
 	}
 </script>
@@ -186,21 +167,12 @@
 										%>
 									</select>
 								</div>
-							</div>
-								
-							<input type="hidden" name="filtroFecha" value="<%=String.valueOf(filtroFecha)%>"/>
-							<%System.out.println("Valor antes de mandar: " + filtroFecha); %>
-							<input type="hidden" name="filtroTipo" value="<%=filtroTipo%>"/>
-							<input type="hidden" name="filtroClase" value="<%=String.valueOf(filtroClase)%>"/>
-							<input type="hidden" name="filtroUsuario" value="<%=String.valueOf(filtroUsuario)%>"/>
-							<input type="hidden" name="filtroCuenta" value="<%=String.valueOf(filtroCuenta)%>"/>
-							
+							</div>						
 							<input class="button blue" name="generate" type="submit"
 								value="Generar consulta"
 								onClick="return confirm('¿Desea registrar este movimiento?');">
 						</form>
 					</fieldset>
-					<%-- 			<a href="<%=Config.getInstance().getRoot()%>protected_area/updateUsuario.jsp">Acceder</a> --%>
 
 				<%
 					if (request.getSession().getAttribute("mensaje") != null) {

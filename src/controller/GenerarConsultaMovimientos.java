@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.Movimiento;
-import model.Connect;
+
+
 
 /**
  * Servlet implementation class GenerarConsultaMovimientos
@@ -22,7 +22,7 @@ import model.Connect;
 public class GenerarConsultaMovimientos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	Connect c = new Connect();
+//	Connect c = new Connect();
 	
 	boolean filtroFecha;
 	boolean filtroTipo;
@@ -61,12 +61,41 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		filtroFecha = Boolean.parseBoolean(request.getParameter("filtroFecha"));
-		filtroTipo = Boolean.parseBoolean(request.getParameter("filtroTipo"));
-		filtroClase = Boolean.parseBoolean(request.getParameter("filtroClase"));
-		filtroUsuario = Boolean.parseBoolean(request.getParameter("filtroUsuario"));
-		filtroCuenta = Boolean.parseBoolean(request.getParameter("filtroCuenta"));
+		if(request.getParameter("filtroFecha").equals("fecha_si")){
+			filtroFecha = true;
+		}
+		else{
+			filtroFecha = false;
+		}
 		
+		if(request.getParameter("filtroTipo").equals("tipo_si")){
+			filtroTipo = true;
+		}
+		else{
+			filtroTipo = false;
+		}
+		
+		if(request.getParameter("filtroClase").equals("clase_si")){
+			filtroClase = true;
+		}
+		else{
+			filtroClase = false;
+		}
+		
+		if(request.getParameter("filtroUsuario").equals("usuario_si")){
+			filtroUsuario = true;
+		}
+		else{
+			filtroUsuario = false;
+		}
+		
+		if(request.getParameter("filtroCuenta").equals("cuenta_si")){
+			filtroCuenta = true;
+		}
+		else{
+			filtroCuenta = false;
+		}
+
 		System.out.println(filtroFecha);
 		System.out.println(filtroTipo);
 		System.out.println(filtroClase);
