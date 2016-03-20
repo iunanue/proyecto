@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import classes.ClaseGasto;
@@ -45,4 +46,6 @@ public interface IDao {
 	public void deleteMovimiento(Movimiento entity);
 
 	public List<Movimiento> getMovimientos();
+	
+	public List<Movimiento> getGenerarConsultaMovimientos(boolean filtroFecha,boolean filtroTipo,boolean filtroClase,boolean filtroUsuario,boolean filtroCuenta,String tipo,Timestamp fechaInicio,Timestamp fechaFin,int id_clase,String username,int id_cuenta);
 }

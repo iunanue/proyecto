@@ -5,12 +5,16 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import classes.Movimiento;
+import model.Connect;
 
 
 
@@ -22,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GenerarConsultaMovimientos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-//	Connect c = new Connect();
+	Connect c = new Connect();
 	
 	boolean filtroFecha;
 	boolean filtroTipo;
@@ -31,14 +35,11 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 	boolean filtroCuenta;
 	
 	String tipo;
-	Timestamp fecha;
+	Timestamp fechaInicio;
+	Timestamp fechaFin;
 	int id_clase;
 	String username;
 	int id_cuenta;
-	float importe;
-	String descripcion;
-	
-	
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -102,54 +103,55 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 		System.out.println(filtroUsuario);
 		System.out.println(filtroCuenta);
 		
-//		this.tipo = request.getParameter("tipo");
-//		
-//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//		Date aux = null;
-//		try {
-//			aux = format.parse(request.getParameter("fecha"));
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		fecha = new Timestamp(aux.getTime());
-//		
-////		proceso inverso
-////		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-////		String string  = dateFormat.format(new Date());
-////		System.out.println(string);
-//		
-//		
-//		if(tipo.equals("Ingreso"))
-//		{
-//			this.id_clase =  Integer.parseInt(request.getParameter("claseIngreso"));
-//		}
-//		if(tipo.equals("Gasto"))
-//		{
-//			this.id_clase =  Integer.parseInt(request.getParameter("claseGasto"));
-//		}
-//		
-//		this.username = request.getParameter("username");
-//		
-//		this.id_cuenta = Integer.parseInt(request.getParameter("cuenta"));
-//		
-//		this.importe = Float.parseFloat(request.getParameter("importe"));
-//		
-//		this.descripcion = request.getParameter("descripcion");
-//		
-//
-//		System.out.println(tipo);
-//		System.out.println("Fecha " + fecha);
-//		System.out.println("Fecha param " + request.getParameter("fecha"));
-//		System.out.println(id_clase);
-//		System.out.println(username);
-//		System.out.println(id_cuenta);
-//		System.out.println(importe);
-//		System.out.println(descripcion);
-//
-////		Movimiento movimiento = new Movimiento(tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
-////		c.getIDao().addMovimiento(movimiento);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		
+		
+		if(filtroFecha == true){
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Date aux = null;
+			try {
+				aux = format.parse(request.getParameter("fecha_inicio"));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.fechaInicio = new Timestamp(aux.getTime());
+			
+			try {
+				aux = format.parse(request.getParameter("fecha_fin"));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.fechaFin = new Timestamp(aux.getTime());
+		}
+		
+		if(filtroTipo == true){
+			this.tipo = request.getParameter("tipo");
+		}
+		
+		if(filtroClase == true){
+			if(request.getParameter("claseIngreso") != null)
+			{
+				this.id_clase =  Integer.parseInt(request.getParameter("claseIngreso"));
+			}
+			else{
+				this.id_clase =  Integer.parseInt(request.getParameter("claseGasto"));
+			}
+		}
+		
+		if(filtroUsuario == true){
+			this.username = request.getParameter("username");
+		}
+		
+		if(filtroCuenta == true){
+			this.id_cuenta = Integer.parseInt(request.getParameter("cuenta"));
+		}
+		
+		
+		List<Movimiento> listaMovimientos = c.getIDao().getGenerarConsultaMovimientos(filtroFecha,filtroTipo,filtroClase,filtroUsuario,filtroCuenta,tipo,fechaInicio,fechaFin,id_clase,username,id_cuenta);
+
+		request.setAttribute("listaMovimientos", listaMovimientos);
+		request.getRequestDispatcher("/protected_area/verConsultaMovimientos").forward(request, response);
 	}
 
 }

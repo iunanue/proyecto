@@ -24,6 +24,7 @@ public class UpdateMovimiento extends HttpServlet {
     
 	Connect c = new Connect();
 	
+	Movimiento movimiento;
 	int id_movimiento;
 	String tipo;
 	Timestamp fecha;
@@ -32,6 +33,8 @@ public class UpdateMovimiento extends HttpServlet {
 	int id_cuenta;
 	float importe;
 	String descripcion;
+	
+	String mensaje = "";
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -55,55 +58,77 @@ public class UpdateMovimiento extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		this.id_movimiento =  Integer.parseInt(request.getParameter("id_movimiento"));
-		this.tipo = request.getParameter("tipo");
-		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date aux = null;
-		try {
-			aux = format.parse(request.getParameter("fecha"));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		fecha = new Timestamp(aux.getTime());
-		
-//		proceso inverso
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-//		String string  = dateFormat.format(new Date());
-//		System.out.println(string);
-		
-		
-		if(tipo.equals("Ingreso"))
+		if (checkForm(request, response))
 		{
-			this.id_clase =  Integer.parseInt(request.getParameter("claseIngreso"));
+			this.tipo = request.getParameter("tipo");
+			
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Date aux = null;
+			try {
+				aux = format.parse(request.getParameter("fecha"));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			fecha = new Timestamp(aux.getTime());
+			
+//			proceso inverso
+//			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+//			String string  = dateFormat.format(new Date());
+//			System.out.println(string);
+			
+			
+			if(tipo.equals("Ingreso"))
+			{
+				this.id_clase =  Integer.parseInt(request.getParameter("claseIngreso"));
+			}
+			if(tipo.equals("Gasto"))
+			{
+				this.id_clase =  Integer.parseInt(request.getParameter("claseGasto"));
+			}
+			
+			this.username = request.getParameter("username");
+			
+			this.id_cuenta = Integer.parseInt(request.getParameter("cuenta"));
+			
+			this.importe = Float.parseFloat(request.getParameter("importe"));
+			
+			this.descripcion = request.getParameter("descripcion");
+			
+
+			System.out.println(tipo);
+			System.out.println("Fecha " + fecha);
+			System.out.println("Fecha param " + request.getParameter("fecha"));
+			System.out.println(id_clase);
+			System.out.println(username);
+			System.out.println(id_cuenta);
+			System.out.println(importe);
+			System.out.println(descripcion);
+
+			Movimiento movimientoAntiguo = c.getIDao().getMovimiento(id_movimiento);
+			Movimiento movimientoActualizado = new Movimiento(id_movimiento,tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
+			c.getIDao().updateMovimiento(movimientoAntiguo,movimientoActualizado);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
-		if(tipo.equals("Gasto"))
+		else
 		{
-			this.id_clase =  Integer.parseInt(request.getParameter("claseGasto"));
+			movimiento = c.getIDao().getMovimiento(id_movimiento);
+			request.setAttribute("movimiento", movimiento);
+			request.getSession().setAttribute("mensaje", mensaje);
+			request.getRequestDispatcher("/protected_area/loadUpdateMovimiento").forward(request, response);
 		}
-		
-		this.username = request.getParameter("username");
-		
-		this.id_cuenta = Integer.parseInt(request.getParameter("cuenta"));
-		
-		this.importe = Float.parseFloat(request.getParameter("importe"));
-		
-		this.descripcion = request.getParameter("descripcion");
-		
 
-		System.out.println(tipo);
-		System.out.println("Fecha " + fecha);
-		System.out.println("Fecha param " + request.getParameter("fecha"));
-		System.out.println(id_clase);
-		System.out.println(username);
-		System.out.println(id_cuenta);
-		System.out.println(importe);
-		System.out.println(descripcion);
+	}
+	private boolean checkForm(HttpServletRequest request, HttpServletResponse response) {
+		if ((request.getParameter("fecha").equals(""))||(request.getParameter("importe").equals(""))) {
+			mensaje = "Rellene todos los campos por favor.";
+			System.out.println(mensaje);
+			return false;
+		}
+		else{
+			return true;
+		}
 
-		Movimiento movimientoAntiguo = c.getIDao().getMovimiento(id_movimiento);
-		Movimiento movimientoActualizado = new Movimiento(id_movimiento,tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
-		c.getIDao().updateMovimiento(movimientoAntiguo,movimientoActualizado);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 }

@@ -17,12 +17,12 @@
 			<div id="login-form" class="login-form">
 			<h3>Login</h3>
 				<fieldset>
-					<form method="POST"
-						action="${pageContext.request.contextPath}/j_security_check">
-						<input class="field" type="text" name="j_username"
-							placeholder="User"> <input class="field" type="password"
-							name="j_password" placeholder="Password"> <input
-							class="button blue" type="submit" value="Login">
+					<form method="POST" action="${pageContext.request.contextPath}/j_security_check">
+					<label>Username:<span class="required"> *</span></label> 
+						<input class="field" type="text" name="j_username" placeholder="Username"> 
+						<label>Contraseña:<span class="required"> *</span></label> 
+						<input class="field" type="password" name="j_password" placeholder="Contraseña"> 
+						<input class="button blue" type="submit" value="Login">
 						<div class="footer">
 
 						<p>

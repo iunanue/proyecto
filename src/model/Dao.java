@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -7,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.SessionFactory;
 
 import classes.ClaseGasto;
@@ -318,6 +320,40 @@ public class Dao implements IDao {
         Transaction tx=session.beginTransaction();
         
         Criteria criteria = session.createCriteria(Movimiento.class);
+		@SuppressWarnings("unchecked")
+		List<Movimiento> listaMovimientos = criteria.list();
+            
+        tx.commit();
+        session.close();
+       
+        return listaMovimientos;		
+	}
+
+	@Override
+	public List<Movimiento> getGenerarConsultaMovimientos(boolean filtroFecha, boolean filtroTipo, boolean filtroClase,
+			boolean filtroUsuario, boolean filtroCuenta, String tipo, Timestamp fechaInicio, Timestamp fechaFin,
+			int id_clase, String username, int id_cuenta) {
+		SessionFactory sesion= getSessionFactory();
+        Session session =sesion.openSession();
+        Transaction tx=session.beginTransaction();
+        
+        Criteria criteria = session.createCriteria(Movimiento.class);
+        if(filtroFecha == true){
+        	criteria.add(Restrictions.ge("fecha", fechaInicio));
+        	criteria.add(Restrictions.lt("fecha", fechaFin));
+        }
+        if(filtroTipo == true){
+        	criteria.add(Restrictions.eq("tipo", tipo));
+        }
+        if(filtroClase == true){
+        	criteria.add(Restrictions.eq("id_clase", id_clase));
+        }
+        if(filtroUsuario == true){
+        	criteria.add(Restrictions.eq("username", username));
+        }
+        if(filtroCuenta == true){
+        	criteria.add(Restrictions.eq("id_cuenta", id_cuenta));
+        }
 		@SuppressWarnings("unchecked")
 		List<Movimiento> listaMovimientos = criteria.list();
             

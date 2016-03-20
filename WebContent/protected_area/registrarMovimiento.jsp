@@ -26,7 +26,8 @@
 					<h2></h2>
 					<fieldset>
 						<form method="POST" id="form" action="${pageContext.request.contextPath}/protected_area/addMovimiento">
-							<label>Fecha:</label> <input type="date" name="fecha"> <label>Tipo de movimiento:</label>
+							<label>Fecha:<span class="required"> *</span></label> <input id="datePicker" type="date" name="fecha"> 
+							<label>Tipo de movimiento:<span class="required"> *</span></label>
 							<div id="tipo">
 								<input type="radio" id="ingreso" name="tipo" value="Ingreso"
 									checked onclick="check()">Ingreso<br> <input
@@ -44,7 +45,7 @@
 							<!-- 						</div> -->
 
 							<div id="claseIngreso" style="display: none">
-								<label>Clase de Ingreso:</label>
+								<label>Clase de Ingreso:<span class="required"> *</span></label>
 								<div class="dropdown">
 									<select name="claseIngreso" class="dropdown-select">
 										<%
@@ -59,7 +60,7 @@
 							</div>
 
 							<div id="claseGasto" style="display: none">
-								<label>Clase de Gasto:</label>
+								<label>Clase de Gasto:<span class="required"> *</span></label>
 								<div class="dropdown">
 									<select name="claseGasto" class="dropdown-select">
 										<%
@@ -78,6 +79,7 @@
 								src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 							<script>
 								$(document).ready(function() {
+									document.getElementById('datePicker').valueAsDate = new Date();
 									$("#claseIngreso").show();
 								});
 								function check() {
@@ -108,7 +110,7 @@
 							<!-- 						</script> -->
 
 
-							<label>Usuario asociado al movimiento:</label>
+							<label>Usuario asociado al movimiento:<span class="required"> *</span></label>
 							<div class="dropdown">
 								<select name="username" class="dropdown-select">
 									<%
@@ -120,7 +122,7 @@
 									%>
 								</select>
 							</div>
-							<label>Cuenta asociada al movimiento:</label>
+							<label>Cuenta asociada al movimiento:<span class="required"> *</span></label>
 							<div class="dropdown">
 								<select name="cuenta" class="dropdown-select">
 									<%
@@ -132,7 +134,7 @@
 									%>
 								</select>
 							</div>
-							<label>Importe:</label> 
+							<label>Importe:<span class="required"> *</span></label> 
 							<input type="number" name="importe"
 								min="0" step="0.01"> 
 								<label>Descripción:</label>

@@ -18,15 +18,16 @@
 		<div id="login-form" class="login-form">
 			<h3>Registro</h3>
 			<fieldset>
-				<form method="POST"
-					action="${pageContext.request.contextPath}/Register">
-					<input class="field" type="text" name="username"
-						placeholder="Usuario"> <input class="field" type="text"
-						name="mail" placeholder="E-mail"> <input class="field"
-						type="password" name="password" placeholder="Contraseña">
-					<input class="field" type="password" name="password2"
-						placeholder="Repetir contraseña"> <input
-						class="button blue" type="submit" value="Registrarse">
+				<form method="POST" action="${pageContext.request.contextPath}/Register">
+					<label>Username:<span class="required"> *</span></label> 
+					<input class="field" type="text" name="username" placeholder="Username"> 
+					<label>E-mail:<span class="required"> *</span></label> 
+					<input class="field" type="text" name="mail" placeholder="E-mail">
+					<label>Contraseña:<span class="required"> *</span></label>  
+					<input class="field" type="password" name="password" placeholder="Contraseña">
+					<label>Repetir contraseña:<span class="required"> *</span></label> 
+					<input class="field" type="password" name="password2" placeholder="Repetir contraseña"> 
+					<input class="button blue" type="submit" value="Registrarse">
 				</form>
 			</fieldset>
 			<%

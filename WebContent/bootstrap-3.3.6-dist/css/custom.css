@@ -62,6 +62,12 @@ footer p {
 	word-wrap: break-word;
 }
 
+
+.required {
+    color: red;
+    font-weight: bold;
+}
+
 /* /////////////////////////////////////////////////// */
 .contentWrapper {
 	width: 80%;
@@ -81,7 +87,7 @@ footer p {
 }
 
 #login-form.login-form {
-	width: 40%;
+	width: 50%;
 	border-radius: 4px;
 	border: 1px solid rgb(221, 221, 221);
 	margin-left: auto;
@@ -186,7 +192,7 @@ label {
 }
 
 #login-form input[type="password"] {
-	border-top: none;
+/* 	border-top: none; */
 	border-radius: 0px 0px 3px 3px;
 }
 
