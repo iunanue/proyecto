@@ -75,6 +75,29 @@ footer p {
 	color:red;
 	font-weight: bold;
 }
+.total{
+/* 	background-color:#dbdbdb; */
+	font-weight: bold;
+	font-size: 20px;
+	padding-top:5%;
+	border-top: 5px solid #c0c0c0;
+	
+}
+.cero{
+	color:yellow;
+	font-weight: bold;
+}
+.list-group{
+	width:30%;
+}
+.list-group-item{
+/* 	font-weight: bold; */
+/* 	color:#004080; */
+}
+.filterLabel{
+	font-weight: bold; 
+	color:#000080;
+}
 /* /////////////////////////////////////////////////// */
 .contentWrapper {
 	width: 80%;

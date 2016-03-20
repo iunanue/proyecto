@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +29,8 @@ public class GenerarConsultaMovimientos extends HttpServlet {
        
 	Connect c = new Connect();
 	
+//	String consulta = "";
+	List <String> consulta;
 	String mensaje = "";
 	
 	boolean filtroFecha;
@@ -129,31 +132,45 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 				this.fechaFin = new Timestamp(aux.getTime());
 			}
 			if(checkFechas(request, response)){
+				
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+				String fechaI  = dateFormat.format(fechaInicio);
+				String fechaF  = dateFormat.format(fechaFin);
+				
+				consulta = new ArrayList<String>();
+				consulta.add(fechaI + " a " + fechaF);
+				
 				if(filtroTipo == true){
 					this.tipo = request.getParameter("tipo");
+					consulta.add(tipo);
 				}
 				
 				if(filtroClase == true){
 					if(request.getParameter("claseIngreso") != null)
 					{
 						this.id_clase =  Integer.parseInt(request.getParameter("claseIngreso"));
+						consulta.add(c.getIDao().getClaseIngreso().get(id_clase-1).getDescripcion());
 					}
 					else{
 						this.id_clase =  Integer.parseInt(request.getParameter("claseGasto"));
-					}
+						consulta.add(c.getIDao().getClaseGasto().get(id_clase-1).getDescripcion());					}
 				}
 				
 				if(filtroUsuario == true){
 					this.username = request.getParameter("username");
+					consulta.add(username);
 				}
 				
 				if(filtroCuenta == true){
 					this.id_cuenta = Integer.parseInt(request.getParameter("cuenta"));
+					consulta.add(c.getIDao().getCuenta(id_cuenta).getDescripcion());
 				}
 				
 				
+				request.getSession().setAttribute("consulta", consulta);
+				
 				List<Movimiento> listaMovimientos = c.getIDao().getGenerarConsultaMovimientos(filtroFecha,filtroTipo,filtroClase,filtroUsuario,filtroCuenta,tipo,fechaInicio,fechaFin,id_clase,username,id_cuenta);
-
+				
 				request.setAttribute("listaMovimientos", listaMovimientos);
 				request.getRequestDispatcher("/protected_area/verConsultaMovimientos").forward(request, response);
 			}

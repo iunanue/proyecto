@@ -17,10 +17,27 @@
 <body>
 	<jsp:include page="/common/userHeader.jsp" />
 	<div class="contentWrapper">
+					<%
+					if (request.getSession().getAttribute("consulta") != null) {
+						String[] consultaLabel = {"Fechas: ", "Tipo: ","Clase: ","Usuario: ", "Cuenta: "};
+						List <String> consulta =(List)request.getSession().getAttribute("consulta");
+						%>
+						<h2><span class="glyphicon glyphicon-filter"></span>Filtros</h2>
+						<div class="list-group">
+						<%	
+						for(int i=0;i<consulta.size();i++){%>
+						
+						<li class="list-group-item"><span class="filterLabel"><%=consultaLabel[i]%></span><%=consulta.get(i)%></li>
+					<%	} %>
+						</div>
+				<%
+					}
+					request.getSession().setAttribute("consulta", null);
+				%>
 	<div class="tableContainer">
 		<table class="table table-hover">
 			<thead>
-				<tr>
+				<tr class="total">
 					<th>id</th>
 					<th>Tipo</th>
 					<th>Fecha</th>
@@ -34,6 +51,8 @@
 			</thead>
 			<tbody>
 				<% 
+					float total = 0;
+				
     				List <Movimiento> listaMovimientos = (List) request.getAttribute("listaMovimientos");
 					List <ClaseIngreso> listaClaseIngreso = (List) request.getAttribute("listaClaseIngreso");
 					List <ClaseGasto> listaClaseGasto = (List) request.getAttribute("listaClaseGasto");
@@ -50,6 +69,14 @@
     				}
     				%>
 				<tr>
+				<%
+					if(movimiento.getTipo().equals("Ingreso")){
+						total = total + movimiento.getImporte();
+					}
+					else{
+						total = total - movimiento.getImporte();
+					}
+				%>
 					<td><%=movimiento.getId_movimiento()%></td>
 					<td><%=movimiento.getTipo()%></td>
 					<%
@@ -57,7 +84,6 @@
 					String string  = dateFormat.format(movimiento.getFecha());
 					%>
 					<td><%=string%></td>
-<%-- 					<td><%=movimiento.getFecha()%></td> --%>
 					<td><%=clase%></td>
 					<td><%=movimiento.getUsername()%></td>
 					<td><%=listaCuentas.get(movimiento.getId_cuenta()-1).getDescripcion()%></td>
@@ -86,8 +112,31 @@
 					</td>
 				</tr>
 				<%}%>
+				
+				<tr class="total">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class=total>TOTAL</td>
+					<%
+					if(total > 0){
+						%><td class="total ingreso">+<%=total%></td>
+					<% }
+					if(total < 0){
+						%><td class="total gasto"><%=total%></td>
+					<% }
+					if(total == 0){
+						%><td class="total cero"><%=total%></td>
+					<% }
+					%>
+					<td></td>
+					<td></td>
+				</tr>
 			</tbody>
 		</table>
+
 		<form method="POST" action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 							<%request.getSession().setAttribute("listaMovimientos", listaMovimientos); %>
 							<button type="submit" class="btn btn-default" name="exportar">

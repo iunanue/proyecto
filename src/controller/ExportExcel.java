@@ -127,6 +127,8 @@ public class ExportExcel extends HttpServlet {
 			cabecera_descripcion.setCellValue("Descripcion");
 			cabecera_descripcion.setCellStyle(cellStyle);
 
+			float total = 0;
+			
 			for (int i = 1; i <= listaMovimientos.size(); i++) {
 				Row row = sheet.createRow(i);
 
@@ -146,10 +148,12 @@ public class ExportExcel extends HttpServlet {
 				if (listaMovimientos.get(i - 1).getTipo().equals("Ingreso")) {
 					clase_descripcion = listaClaseIngreso.get(listaMovimientos.get(i - 1).getId_clase() - 1)
 							.getDescripcion();
+					total = total + listaMovimientos.get(i-1).getImporte();
 				}
 				if (listaMovimientos.get(i - 1).getTipo().equals("Gasto")) {
 					clase_descripcion = listaClaseGasto.get(listaMovimientos.get(i - 1).getId_clase() - 1)
 							.getDescripcion();
+					total = total - listaMovimientos.get(i-1).getImporte();
 				}
 				clase.setCellValue(clase_descripcion);
 
@@ -165,7 +169,62 @@ public class ExportExcel extends HttpServlet {
 
 				Cell descripcion = row.createCell(7);
 				descripcion.setCellValue(listaMovimientos.get(i - 1).getDescripcion());
+				
 			}
+			
+			Row row = sheet.createRow(listaMovimientos.size()+1);
+	
+			Cell a = row.createCell(0);
+			a.setCellValue("");		
+
+			Cell b = row.createCell(1);
+			b.setCellValue("");
+			
+			Cell c = row.createCell(2);
+			c.setCellValue("");
+			
+			Cell d = row.createCell(3);
+			d.setCellValue("");
+			
+			Cell e = row.createCell(4);
+			e.setCellValue("");
+			
+			Cell f = row.createCell(5);
+			f.setCellValue("TOTAL");
+			f.setCellStyle(cellStyle);
+
+			HSSFCellStyle cellStyleTotal = workbook.createCellStyle();
+			
+			HSSFFont fontTotal = workbook.createFont();
+			fontTotal.setFontHeightInPoints((short) 10);
+			fontTotal.setColor(IndexedColors.BLACK.getIndex());
+			fontTotal.setBold(true);
+			fontTotal.setItalic(false);
+
+			cellStyleTotal.setFont(fontTotal);
+			
+			Cell g = row.createCell(6);
+			if(total>0){
+				cellStyleTotal.setFillForegroundColor(HSSFColor.GREEN.index);
+				cellStyleTotal.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+				g.setCellValue("+" + total);
+			}
+			if(total<0){
+				cellStyleTotal.setFillForegroundColor(HSSFColor.RED.index);
+				cellStyleTotal.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+				g.setCellValue(total);
+			}
+			if(total == 0){
+				cellStyleTotal.setFillForegroundColor(HSSFColor.YELLOW.index);
+				cellStyleTotal.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+				g.setCellValue(total);
+			}
+			g.setCellStyle(cellStyleTotal);
+
+
+			Cell h = row.createCell(7);
+			h.setCellValue("");
+			
 
 			sheet.autoSizeColumn(0);
 			sheet.autoSizeColumn(1);
@@ -175,7 +234,6 @@ public class ExportExcel extends HttpServlet {
 			sheet.autoSizeColumn(5);
 			sheet.autoSizeColumn(6);
 			sheet.autoSizeColumn(7);
-
 			try {
 				FileOutputStream out = new FileOutputStream(new File("C:\\Users\\ALUMNO\\Downloads\\movimientos.xls"));
 
@@ -183,10 +241,10 @@ public class ExportExcel extends HttpServlet {
 				out.close();
 				System.out.println("Excel written successfully..");
 
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
 
 			request.getRequestDispatcher("index.jsp").forward(request, response);

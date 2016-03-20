@@ -340,7 +340,7 @@ public class Dao implements IDao {
         Criteria criteria = session.createCriteria(Movimiento.class);
         if(filtroFecha == true){
         	criteria.add(Restrictions.ge("fecha", fechaInicio));
-        	criteria.add(Restrictions.lt("fecha", fechaFin));
+        	criteria.add(Restrictions.le("fecha", fechaFin));
         }
         if(filtroTipo == true){
         	criteria.add(Restrictions.eq("tipo", tipo));
