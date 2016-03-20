@@ -5,13 +5,14 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/custom.css" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
 <script src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/custom.css" type="text/css">
 <title>Insert title here</title>
 </head>
 <body>
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -20,24 +21,21 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand"
-				href="${pageContext.request.contextPath}/index.jsp">Proyecto</a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/protected_area/index.jsp">Proyecto</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="${pageContext.request.contextPath}/protected_area/registrarMovimiento">Registrar Movimiento</a></li>
-				<li><a href="${pageContext.request.contextPath}/protected_area/verMovimientos">Ver Movimientos</a></li>
-				<li><a href="${pageContext.request.contextPath}/protected_area/loadConsultaMovimientos">Generar consulta sobre Movimientos</a></li>
-				
-<!-- 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a> -->
-<!--         			<ul class="dropdown-menu"> -->
-<!--           				<li><a href="#">Page 1-1</a></li> -->
-<!-- 			        	<li role="separator" class="divider"></li> -->
-<!-- 			         	<li><a href="#">Page 1-2</a></li> -->
-<!-- 			         	<li><a href="#">Page 1-3</a></li> -->
-<!--         			</ul> -->
-<!--       			</li> -->
+				<li><a href="${pageContext.request.contextPath}/protected_area/index.jsp">Home</a></li>
+					
+				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Movimientos<span class="caret"></span></a>
+        			<ul class="dropdown-menu">
+          				<li><a href="${pageContext.request.contextPath}/protected_area/registrarMovimiento">Registrar</a></li>
+			        	<li role="separator" class="divider"></li>
+			         	<li><a href="${pageContext.request.contextPath}/protected_area/verMovimientos">Ver Movimientos</a></li>
+			         	<li role="separator" class="divider"></li>
+			         	<li><a href="${pageContext.request.contextPath}/protected_area/loadConsultaMovimientos">Generar consulta</a></li>
+        			</ul>
+      			</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a

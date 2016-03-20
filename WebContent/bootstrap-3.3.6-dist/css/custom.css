@@ -67,7 +67,14 @@ footer p {
     color: red;
     font-weight: bold;
 }
-
+.ingreso{
+	color:green;
+	font-weight: bold;
+}
+.gasto{
+	color:red;
+	font-weight: bold;
+}
 /* /////////////////////////////////////////////////// */
 .contentWrapper {
 	width: 80%;

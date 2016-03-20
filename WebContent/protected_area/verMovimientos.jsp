@@ -12,19 +12,12 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/custom.css" type="text/css">
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 <title>Ver Movimientos</title>
 </head>
 <body>
-
 	<jsp:include page="/common/userHeader.jsp" />
-
 	<div class="contentWrapper">
 	<div class="tableContainer">
-<%-- 	<form method="POST" id="form" action="<%=Config.getInstance().getRoot()%>/protected_area/verUpdateMovimiento"> --%>
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -68,7 +61,17 @@
 					<td><%=clase%></td>
 					<td><%=movimiento.getUsername()%></td>
 					<td><%=listaCuentas.get(movimiento.getId_cuenta()-1).getDescripcion()%></td>
-					<td><%=movimiento.getImporte()%></td>
+					<%
+					if(movimiento.getTipo().equals("Ingreso")){
+						
+						%><td class="ingreso">+<%=movimiento.getImporte()%></td>
+					<% }
+					else
+					{%>
+						<td class="gasto">-<%=movimiento.getImporte()%></td>
+					<% 	
+					}
+					%>				
 					<td class ="tdDescripcion"><%=movimiento.getDescripcion()%></td>
 					<td>
 						<form method="POST" id="form" action="${pageContext.request.contextPath}/protected_area/selectUpdateDeleteMovimiento">
@@ -86,13 +89,12 @@
 			</tbody>
 		</table>
 		<form method="POST" action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-<%-- 							<input type="hidden" name="listaMovimientos" value="<%=listaMovimientos%>"> --%>
 							<%request.getSession().setAttribute("listaMovimientos", listaMovimientos); %>
 							<button type="submit" class="btn btn-default" name="exportar">
 								<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar Excel
 							</button>			
 						</form>
-<!-- 		</form> -->
+
 	</div>
 	
 </div>

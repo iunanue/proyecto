@@ -15,50 +15,44 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/custom.css" type="text/css">
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 <title>Modificar Movimiento</title>
 </head>
 <body>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<script>
-	<%
-	Movimiento movimiento = (Movimiento) request.getAttribute("movimiento");
-	%>
-	$(document).ready(function() {
-		var tipo="<%=movimiento.getTipo()%>";
 		<%
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			String date  = dateFormat.format(movimiento.getFecha());
+		Movimiento movimiento = (Movimiento) request.getAttribute("movimiento");
 		%>
-		document.getElementById("date").value = "<%=date %>";
-		
-
-		
-		if(tipo == "Ingreso"){
-			$("#claseIngreso").show();
-			$("#claseGasto").hide();
-			$("#ingreso").prop("checked", true);
-			$("#gasto").prop("checked", false);
-			$('#dropdownIngreso').prop('selectedIndex', <%=movimiento.getId_clase()-1%>);
+		$(document).ready(function() {
+			var tipo="<%=movimiento.getTipo()%>";
+			<%
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				String date  = dateFormat.format(movimiento.getFecha());
+			%>
+			document.getElementById("date").value = "<%=date %>";
+			
 	
-		}
-		if(tipo == "Gasto"){
-			$("#claseIngreso").hide();
-			$("#claseGasto").show();
-			$("#ingreso").prop("checked", false);
-			$("#gasto").prop("checked", true);
-			$('#dropdownGasto').prop('selectedIndex', <%=movimiento.getId_clase()-1%>); 
-		}
-		$('#username').val("<%=movimiento.getUsername()%>");
-		$('#cuenta').prop('selectedIndex', <%=movimiento.getId_cuenta()-1%>);
-		$('#importe').val("<%=movimiento.getImporte()%>");
-		$('#descripcion').val("<%=movimiento.getDescripcion()%>");
-	});
-										
-									
+			
+			if(tipo == "Ingreso"){
+				$("#claseIngreso").show();
+				$("#claseGasto").hide();
+				$("#ingreso").prop("checked", true);
+				$("#gasto").prop("checked", false);
+				$('#dropdownIngreso').prop('selectedIndex', <%=movimiento.getId_clase()-1%>);
+		
+			}
+			if(tipo == "Gasto"){
+				$("#claseIngreso").hide();
+				$("#claseGasto").show();
+				$("#ingreso").prop("checked", false);
+				$("#gasto").prop("checked", true);
+				$('#dropdownGasto').prop('selectedIndex', <%=movimiento.getId_clase()-1%>); 
+			}
+			$('#username').val("<%=movimiento.getUsername()%>");
+			$('#cuenta').prop('selectedIndex', <%=movimiento.getId_cuenta()-1%>);
+			$('#importe').val("<%=movimiento.getImporte()%>");
+			$('#descripcion').val("<%=movimiento.getDescripcion()%>");
+		});
+																			
 		function check() {
 			if ((document.getElementById("ingreso").checked) == true) {
 				$("#claseIngreso").show();
@@ -68,9 +62,10 @@
 				$("#claseGasto").show();
 			}
 		}
-		</script>
-<jsp:include page="/common/userHeader.jsp" />
-						<div class="contentWrapper">
+	</script>
+		
+	<jsp:include page="/common/userHeader.jsp" />
+	<div class="contentWrapper">
 				<div id="login-form" class="registro-form">
 					<h3>Modificar movimiento (Ingreso/Gasto)</h3>
 					<h2></h2>
@@ -165,6 +160,6 @@
 				%>
 				<!-- 	<div class="marginEnd"></div> -->
 				</div>
-			</div>
+	</div>
 </body>
 </html>

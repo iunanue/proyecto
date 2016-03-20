@@ -6,10 +6,6 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/custom.css" type="text/css">
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 <title>Recuperación de Contraseña</title>
 </head>
 <body>
@@ -21,12 +17,13 @@
 			<h3>Recuperación de Contraseña</h3>
 			<fieldset>
 				<form method="POST" action="${pageContext.request.contextPath}/ForgotPassword">
-				<p>Se enviará una nueva contraseña a su e-mail.</p>
-				<p>Posteriormente podrá cambiarla accediendo a su cuenta.</p>
-						<input class="field" type="text" name="username"
-							placeholder="User"> <input class="field" type="text"
-							name="mail" placeholder="Mail"> <input
-							class="button blue" type="submit" value="Recuperar">
+					<p>Se enviará una nueva contraseña a su e-mail.</p>
+					<p>Posteriormente podrá cambiarla accediendo a su cuenta.</p>
+					<label>Username:<span class="required"> *</span></label> 
+					<input class="field" type="text" name="username" placeholder="Username"> 
+					<label>E-mail:<span class="required"> *</span></label> 
+					<input class="field" type="text" name="mail" placeholder="E-mail"> 
+					<input class="button blue" type="submit" value="Recuperar">
 					</form>
 			</fieldset>
 			<%

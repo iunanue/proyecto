@@ -117,17 +117,6 @@ public class AddMovimiento extends HttpServlet {
 		}
 		else
 		{
-//			List<Usuario> listaUsuarios = c.getIDao().getUsers();
-//			request.setAttribute("listaUsuarios", listaUsuarios);
-//			 
-//			List<ClaseIngreso> listaClaseIngreso = c.getIDao().getClaseIngreso();
-//			request.setAttribute("listaClaseIngreso", listaClaseIngreso);
-//			 
-//			List<ClaseGasto> listaClaseGasto = c.getIDao().getClaseGasto();
-//			request.setAttribute("listaClaseGasto", listaClaseGasto);
-//			 
-//			List<Cuenta> listaCuentas = c.getIDao().getCuentas();		 
-//			request.setAttribute("listaCuentas", listaCuentas);
 			request.getSession().setAttribute("mensaje", mensaje);
 			request.getRequestDispatcher("/protected_area/registrarMovimiento").forward(request, response);
 		}

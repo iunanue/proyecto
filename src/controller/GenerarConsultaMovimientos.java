@@ -28,6 +28,8 @@ public class GenerarConsultaMovimientos extends HttpServlet {
        
 	Connect c = new Connect();
 	
+	String mensaje = "";
+	
 	boolean filtroFecha;
 	boolean filtroTipo;
 	boolean filtroClase;
@@ -62,6 +64,7 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+			
 		if(request.getParameter("filtroFecha").equals("fecha_si")){
 			filtroFecha = true;
 		}
@@ -104,54 +107,101 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 		System.out.println(filtroCuenta);
 		
 		
-		
-		if(filtroFecha == true){
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			Date aux = null;
-			try {
-				aux = format.parse(request.getParameter("fecha_inicio"));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		if (checkForm(request, response))
+		{
+			if(filtroFecha == true){
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				Date aux = null;
+				try {
+					aux = format.parse(request.getParameter("fecha_inicio"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				this.fechaInicio = new Timestamp(aux.getTime());
+				
+				try {
+					aux = format.parse(request.getParameter("fecha_fin"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				this.fechaFin = new Timestamp(aux.getTime());
 			}
-			this.fechaInicio = new Timestamp(aux.getTime());
-			
-			try {
-				aux = format.parse(request.getParameter("fecha_fin"));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(checkFechas(request, response)){
+				if(filtroTipo == true){
+					this.tipo = request.getParameter("tipo");
+				}
+				
+				if(filtroClase == true){
+					if(request.getParameter("claseIngreso") != null)
+					{
+						this.id_clase =  Integer.parseInt(request.getParameter("claseIngreso"));
+					}
+					else{
+						this.id_clase =  Integer.parseInt(request.getParameter("claseGasto"));
+					}
+				}
+				
+				if(filtroUsuario == true){
+					this.username = request.getParameter("username");
+				}
+				
+				if(filtroCuenta == true){
+					this.id_cuenta = Integer.parseInt(request.getParameter("cuenta"));
+				}
+				
+				
+				List<Movimiento> listaMovimientos = c.getIDao().getGenerarConsultaMovimientos(filtroFecha,filtroTipo,filtroClase,filtroUsuario,filtroCuenta,tipo,fechaInicio,fechaFin,id_clase,username,id_cuenta);
+
+				request.setAttribute("listaMovimientos", listaMovimientos);
+				request.getRequestDispatcher("/protected_area/verConsultaMovimientos").forward(request, response);
 			}
-			this.fechaFin = new Timestamp(aux.getTime());
-		}
-		
-		if(filtroTipo == true){
-			this.tipo = request.getParameter("tipo");
-		}
-		
-		if(filtroClase == true){
-			if(request.getParameter("claseIngreso") != null)
+			else
 			{
-				this.id_clase =  Integer.parseInt(request.getParameter("claseIngreso"));
+				request.getSession().setAttribute("mensaje", mensaje);
+				request.getRequestDispatcher("/protected_area/loadConsultaMovimientos").forward(request, response);
+			}
+		}
+		else
+		{
+			request.getSession().setAttribute("mensaje", mensaje);
+			request.getRequestDispatcher("/protected_area/loadConsultaMovimientos").forward(request, response);
+		}
+			
+	}
+	private boolean checkForm(HttpServletRequest request, HttpServletResponse response) {
+		if(filtroFecha == true){
+			if ((request.getParameter("fecha_inicio").equals(""))||(request.getParameter("fecha_fin").equals(""))) {
+				mensaje = "Escoja las fechas que correspondan.";
+				System.out.println(mensaje);
+				return false;
 			}
 			else{
-				this.id_clase =  Integer.parseInt(request.getParameter("claseGasto"));
+				return true;
 			}
 		}
-		
-		if(filtroUsuario == true){
-			this.username = request.getParameter("username");
+		else{
+			return true;
 		}
 		
-		if(filtroCuenta == true){
-			this.id_cuenta = Integer.parseInt(request.getParameter("cuenta"));
-		}
-		
-		
-		List<Movimiento> listaMovimientos = c.getIDao().getGenerarConsultaMovimientos(filtroFecha,filtroTipo,filtroClase,filtroUsuario,filtroCuenta,tipo,fechaInicio,fechaFin,id_clase,username,id_cuenta);
 
-		request.setAttribute("listaMovimientos", listaMovimientos);
-		request.getRequestDispatcher("/protected_area/verConsultaMovimientos").forward(request, response);
+	}
+	private boolean checkFechas(HttpServletRequest request, HttpServletResponse response) {
+		if(filtroFecha == true){
+			if (fechaInicio.after(fechaFin)) {
+				mensaje = "La Fecha Inicio no puede ser mayor que la Fecha Fin.";
+				System.out.println(mensaje);
+				return false;
+			}
+			else{
+				return true;
+			}
+		}
+		else{
+			return true;
+		}
+
 	}
 
 }

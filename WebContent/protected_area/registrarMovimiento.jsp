@@ -12,14 +12,26 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/custom.css" type="text/css">
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 <title>Registrar Movimiento</title>
 </head>
 <body>
-<jsp:include page="/common/userHeader.jsp" />
+	<script>
+		$(document).ready(function() {
+			document.getElementById('datePicker').valueAsDate = new Date();
+			$("#claseIngreso").show();
+		});
+		function check() {
+			if ((document.getElementById("ingreso").checked) == true) {
+				$("#claseIngreso").show();
+				$("#claseGasto").hide();
+			} else {
+				$("#claseIngreso").hide();
+				$("#claseGasto").show();
+			}
+		}
+	</script>
+
+	<jsp:include page="/common/userHeader.jsp" />
 			<div class="contentWrapper">
 				<div id="login-form" class="registro-form">
 					<h3>Registrar movimiento (Ingreso/Gasto)</h3>
@@ -74,40 +86,6 @@
 								</div>
 
 							</div>
-
-							<script
-								src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-							<script>
-								$(document).ready(function() {
-									document.getElementById('datePicker').valueAsDate = new Date();
-									$("#claseIngreso").show();
-								});
-								function check() {
-									if ((document.getElementById("ingreso").checked) == true) {
-										$("#claseIngreso").show();
-										$("#claseGasto").hide();
-									} else {
-										$("#claseIngreso").hide();
-										$("#claseGasto").show();
-									}
-								}
-							</script>
-
-							<!-- 						<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> -->
-							<!-- 						<script> -->
-							<!-- // 							$(document).ready(function() { -->
-							<!-- // 								$("#claseIngreso").show(); -->
-							<!-- // 								$("#tipoMovimiento").change(function() { -->
-							<!-- // 									if ($(this).val() == "ingreso") { -->
-							<!-- // 										$("#claseIngreso").show(); -->
-							<!-- // 										$("#claseGasto").hide(); -->
-							<!-- // 									} else { -->
-							<!-- // 										$("#claseIngreso").hide(); -->
-							<!-- // 										$("#claseGasto").show(); -->
-							<!-- // 									} -->
-							<!-- // 								}); -->
-							<!-- // 							}); -->
-							<!-- 						</script> -->
 
 
 							<label>Usuario asociado al movimiento:<span class="required"> *</span></label>
