@@ -21,6 +21,12 @@ public class Cuenta {
 		this.descripcion = descripcion;
 	}
 	
+	public Cuenta(float saldo,String descripcion)
+	{
+		this.saldo = saldo;
+		this.descripcion = descripcion;
+	}
+	
 	public Cuenta()
 	{
 		

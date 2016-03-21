@@ -80,7 +80,7 @@
 							</div>
 							<div id="tipo" style="display: none">
 							<label>Tipo de movimiento:</label>
-								<input type="radio" id="ingreso" name="tipo" value="Ingreso" onclick="check()">Ingreso<br> 
+								<input type="radio" id="ingreso" name="tipo" value="Ingreso" checked onclick="check()">Ingreso<br> 
 								<input type="radio" id="gasto" name="tipo" value="Gasto" onclick="check()">Gasto<br>
 							</div>
 							

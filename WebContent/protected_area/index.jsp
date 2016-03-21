@@ -8,7 +8,6 @@
 <title>Index</title>
 </head>
 <body>
-
 	<jsp:include page="/common/userHeader.jsp" />
 	<div class="jumbotron">
 		<div class="container text-center">
@@ -19,6 +18,5 @@
 		</div>
 	</div>
 	<jsp:include page="/common/footer.jsp" />
-
 </body>
 </html>

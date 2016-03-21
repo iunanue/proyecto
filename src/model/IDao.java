@@ -30,6 +30,8 @@ public interface IDao {
 	public List<ClaseIngreso> getClaseIngreso();
 
 	public List<ClaseGasto> getClaseGasto();
+	
+	public void addCuenta(Cuenta entity);
 
 	public Cuenta getCuenta(int id_cuenta);
 

@@ -363,6 +363,16 @@ public class Dao implements IDao {
         return listaMovimientos;		
 	}
 
+	@Override
+	public void addCuenta(Cuenta entity) {
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(entity);
+		tx.commit();
+		session.close();	
+	}
+
 	
 
 	////////////////////////////////////////////////////////////////////////////////

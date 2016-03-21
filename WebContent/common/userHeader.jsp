@@ -36,11 +36,22 @@
 			         	<li><a href="${pageContext.request.contextPath}/protected_area/loadConsultaMovimientos">Generar consulta</a></li>
         			</ul>
       			</li>
+      			
+      			<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Cuentas<span class="caret"></span></a>
+        			<ul class="dropdown-menu">
+          				<li><a href="${pageContext.request.contextPath}/protected_area/nuevaCuenta.jsp">Nueva Cuenta</a></li>
+			        	<li role="separator" class="divider"></li>
+			         	<li><a href="${pageContext.request.contextPath}/protected_area/verCuentas">Ver Cuentas</a></li>
+			         	<li role="separator" class="divider"></li>
+			         	<li><a href="${pageContext.request.contextPath}/protected_area/loadConsultaMovimientos">Generar consulta</a></li>
+        			</ul>
+      			</li>
+      			
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a
 					href="${pageContext.request.contextPath}/protected_area/miCuenta"><span
-						class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
+						class="glyphicon glyphicon-user"></span> <%=request.getUserPrincipal().getName()%></a></li>
 
 				<li><a href="${pageContext.request.contextPath}/Logout"><span
 						class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -49,5 +60,6 @@
 		</div>
 	</div>
 	</nav>
+	<%System.out.println(request.getSession().getAttribute("username")); %>
 </body>
 </html>
