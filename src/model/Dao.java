@@ -185,7 +185,7 @@ public class Dao implements IDao {
 	}
 
 	@Override
-	public void updateCuenta(Movimiento movimiento, String funcion) {
+	public void refreshCuenta(Movimiento movimiento, String funcion) {
 		Cuenta cuenta = getCuenta(movimiento.getId_cuenta());
 		float saldo = cuenta.getSaldo();
 		if(funcion.equals("add")){
@@ -260,7 +260,7 @@ public class Dao implements IDao {
 		session.save(entity);
 		tx.commit();
 		session.close();
-		updateCuenta(entity,"add");
+		refreshCuenta(entity,"add");
 
 	}
 	
@@ -286,7 +286,7 @@ public class Dao implements IDao {
 			diferencia = movimientoActualizado.getImporte()+movimientoAntiguo.getImporte();
 			movimientoActualizarCuenta.setImporte(diferencia);
 		}
-		updateCuenta(movimientoActualizarCuenta, "update");
+		refreshCuenta(movimientoActualizarCuenta, "update");
 		
 		
 		SessionFactory sesion = getSessionFactory();
@@ -309,7 +309,7 @@ public class Dao implements IDao {
 		session.delete(entity);
 		tx.commit();
 		session.close();
-		updateCuenta(entity,"delete");
+		refreshCuenta(entity,"delete");
 
 	}
 
@@ -373,8 +373,35 @@ public class Dao implements IDao {
 		session.close();	
 	}
 
-	
+	@Override
+	public void updateCuenta(Cuenta entity) {
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
 
-	////////////////////////////////////////////////////////////////////////////////
+		Transaction tx = session.beginTransaction();
+
+		session.update(entity);
+
+		tx.commit();
+		session.close();
+		
+	}
+
+	@Override
+	public void deleteCuenta(Cuenta entity) {
+		List <Movimiento> listaMovimientos = getMovimientos();
+		for(Movimiento movimiento : listaMovimientos){
+			if(movimiento.getId_cuenta()==entity.getId_cuenta()){
+				deleteMovimiento(movimiento);
+			}
+		}
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(entity);
+		tx.commit();
+		session.close();
+	}
+
 
 }

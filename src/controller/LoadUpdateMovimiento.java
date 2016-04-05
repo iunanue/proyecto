@@ -58,6 +58,8 @@ public class LoadUpdateMovimiento extends HttpServlet {
 		 
 		 request.setAttribute("listaCuentas", listaCuentas);
 		
+		 System.out.println("ID:" + movimiento.getId_movimiento());
+		 System.out.println("fecha:" + movimiento.getFecha());
 		
 			request.getRequestDispatcher("/protected_area/updateMovimiento.jsp").forward(request, response);
 	}

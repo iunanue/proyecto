@@ -12,6 +12,10 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
+<script src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/custom.css" type="text/css">
 <title>Registrar Movimiento</title>
 </head>
 <body>
@@ -52,6 +56,9 @@
 		} else {
 			$("#cuenta").hide();
 		}
+	}
+	function submitForm(){
+		 $("#form").resetForm();
 	}
 </script>
 <jsp:include page="/common/userHeader.jsp" />
@@ -165,7 +172,7 @@
 							</div>						
 							<input class="button blue" name="generate" type="submit"
 								value="Generar consulta"
-								onClick="return confirm('¿Desea registrar este movimiento?');">
+								onClick="submitForm()">
 						</form>
 					</fieldset>
 

@@ -34,8 +34,12 @@ public interface IDao {
 	public void addCuenta(Cuenta entity);
 
 	public Cuenta getCuenta(int id_cuenta);
+	
+	public void refreshCuenta(Movimiento movimiento, String funcion);
 
-	public void updateCuenta(Movimiento movimiento, String funcion);
+	public void updateCuenta(Cuenta entity);
+	
+	public void deleteCuenta(Cuenta entity);
 
 	public List<Cuenta> getCuentas();
 

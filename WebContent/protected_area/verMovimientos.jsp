@@ -12,11 +12,16 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
+<script src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/custom.css" type="text/css">
 <title>Ver Movimientos</title>
 </head>
 <body>
 	<jsp:include page="/common/userHeader.jsp" />
 	<div class="contentWrapper">
+	<h2 class="titulo2">Movimientos</h2>
 					<%
 					if (request.getSession().getAttribute("consulta") != null) {
 						String[] consultaLabel = {"Fechas: ", "Tipo: ","Clase: ","Usuario: ", "Cuenta: "};
