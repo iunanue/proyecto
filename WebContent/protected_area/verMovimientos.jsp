@@ -30,10 +30,13 @@
 						<h2><span class="glyphicon glyphicon-filter"></span>Filtros</h2>
 						<div class="list-group">
 						<%	
-						for(int i=0;i<consulta.size();i++){%>
-						
-						<li class="list-group-item"><span class="filterLabel"><%=consultaLabel[i]%></span><%=consulta.get(i)%></li>
-					<%	} %>
+						for(int i=0;i<consulta.size();i++){
+							if(consulta.get(i)!=null){
+								%>
+								<li class="list-group-item"><span class="filterLabel"><%=consultaLabel[i]%></span><%=consulta.get(i)%></li>
+							<% }
+
+						} %>
 						</div>
 				<%
 					}

@@ -20,7 +20,7 @@
 			<fieldset>
 				<form method="POST" action="${pageContext.request.contextPath}/protected_area/addCuenta">
 					<label>Saldo:<span class="required"> *</span></label> 
-					<input type="number" name="saldo" min="0" step="0.01"> 
+					<input type="number" name="saldo" step="0.01"> 
 					<label>Descripción<span class="required"> *</span></label> 
 					<input class="field" type="text" name="descripcion" placeholder="Descripción">
 					<input class="button blue" type="submit" value="Añadir">

@@ -143,36 +143,51 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 					request.getRequestDispatcher("/protected_area/loadConsultaMovimientos").forward(request, response);
 				}
 			} else {
+				consulta.add(null);
 				System.out.println("\nFuera");
 			}
 			if (filtroTipo == true) {
 				this.tipo = request.getParameter("tipo");
 				consulta.add(tipo);
-			}
-
-			if (filtroClase == true) {
-				this.tipo = request.getParameter("tipo");
-				if (tipo.equals("Ingreso")) {
-					System.out.println("claseingreso");
-					this.id_clase = Integer.parseInt(request.getParameter("claseIngreso"));
-					consulta.add(c.getIDao().getClaseIngreso().get(id_clase - 1).getDescripcion());
-					System.out.println(" \n" +c.getIDao().getClaseIngreso().get(id_clase - 1).getDescripcion());
-				} else {
-					System.out.println("clasegasto");
-					this.id_clase = Integer.parseInt(request.getParameter("claseGasto"));
-					consulta.add(c.getIDao().getClaseGasto().get(id_clase - 1).getDescripcion());
-					System.out.println(" \n" +c.getIDao().getClaseGasto().get(id_clase - 1).getDescripcion());
+				if (filtroClase == true) {
+					this.tipo = request.getParameter("tipo");
+					if (tipo.equals("Ingreso")) {
+						System.out.println("claseingreso");
+						this.id_clase = Integer.parseInt(request.getParameter("claseIngreso"));
+						consulta.add(c.getIDao().getClaseIngreso().get(id_clase - 1).getDescripcion());
+						System.out.println(" \n" +c.getIDao().getClaseIngreso().get(id_clase - 1).getDescripcion());
+					} else {
+						System.out.println("clasegasto");
+						this.id_clase = Integer.parseInt(request.getParameter("claseGasto"));
+						consulta.add(c.getIDao().getClaseGasto().get(id_clase - 1).getDescripcion());
+						System.out.println(" \n" +c.getIDao().getClaseGasto().get(id_clase - 1).getDescripcion());
+					}
 				}
+				else
+				{
+					consulta.add(null);
+				}
+			}
+			else
+			{
+				consulta.add(null);
+				consulta.add(null);
 			}
 
 			if (filtroUsuario == true) {
 				this.username = request.getParameter("username");
 				consulta.add(username);
 			}
+			else{
+				consulta.add(null);
+			}
 
 			if (filtroCuenta == true) {
 				this.id_cuenta = Integer.parseInt(request.getParameter("cuenta"));
 				consulta.add(c.getIDao().getCuenta(id_cuenta).getDescripcion());
+			}
+			else{
+				consulta.add(null);
 			}
 			
 			request.getSession().setAttribute("consulta", consulta);

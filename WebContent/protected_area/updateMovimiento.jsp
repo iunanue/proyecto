@@ -147,8 +147,8 @@
 							<textarea id="descripcion" class="descripcion" name="descripcion"></textarea>
 							<input type="hidden" name="id_movimiento" value="<%=movimiento.getId_movimiento()%>" />
 							<input class="button blue" name="update" type="submit"
-								value="Registrar"
-								onClick="return confirm('¿Desea registrar este movimiento?');">
+								value="Modificar"
+								onClick="return confirm('¿Desea modificar este movimiento?');">
 						</form>
 					</fieldset>
 					<%-- 			<a href="<%=Config.getInstance().getRoot()%>protected_area/updateUsuario.jsp">Acceder</a> --%>

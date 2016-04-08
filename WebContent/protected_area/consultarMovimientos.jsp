@@ -89,10 +89,8 @@
 							<label>Tipo de movimiento:</label>
 								<input type="radio" id="ingreso" name="tipo" value="Ingreso" checked onclick="check()">Ingreso<br> 
 								<input type="radio" id="gasto" name="tipo" value="Gasto" onclick="check()">Gasto<br>
-							</div>
 							
-
-							<h3>Filtro de clase de movimiento:</h3>
+								<h3>Filtro de clase de movimiento:</h3>
 							<div id="filtroClase">
 								<input type="radio" id="clase_si"  name="filtroClase" value="clase_si" onclick="check()">Sí<br> 
 								<input type="radio" id="clase_no"  name="filtroClase" value="clase_no" checked onclick="check()">No<br>
@@ -128,8 +126,8 @@
 								</div>
 
 							</div>
-
 							
+							</div>
 
 							<h3>Filtro de usuario asociado al Movimiento:</h3>
 							<div id="filtroUsuario">

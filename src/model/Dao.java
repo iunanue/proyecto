@@ -207,6 +207,7 @@ public class Dao implements IDao {
 				saldo = saldo + movimiento.getImporte();
 			}
 		}
+		System.out.println("Saldo:"+saldo);
 		cuenta.setSaldo(saldo);
 		
 		
@@ -267,26 +268,60 @@ public class Dao implements IDao {
 	@Override
 	public void updateMovimiento(Movimiento movimientoAntiguo, Movimiento movimientoActualizado) {
 		
-		Movimiento movimientoActualizarCuenta = movimientoAntiguo;
-		float diferencia = 0;
+		System.out.println("Valor real: " + movimientoActualizado.getImporte());
+		Movimiento movimientoAntiguoCopia = new Movimiento();
+		movimientoAntiguoCopia.setId_cuenta(movimientoAntiguo.getId_cuenta());
+		movimientoAntiguoCopia.setImporte(movimientoAntiguo.getImporte());
 		
-		if((movimientoAntiguo.getTipo().equals("Ingreso"))&&(movimientoActualizado.getTipo().equals("Ingreso"))){
-			diferencia = movimientoActualizado.getImporte()-movimientoAntiguo.getImporte();
-			movimientoActualizarCuenta.setImporte(diferencia);
+		Movimiento movimientoActualizadoCopia = new Movimiento();
+		movimientoActualizadoCopia.setId_cuenta(movimientoActualizado.getId_cuenta());
+		movimientoActualizadoCopia.setImporte(movimientoActualizado.getImporte());
+		
+		float diferencia = 0;
+		if(movimientoAntiguo.getId_cuenta()==movimientoActualizado.getId_cuenta()){
+			if((movimientoAntiguo.getTipo().equals("Ingreso"))&&(movimientoActualizado.getTipo().equals("Ingreso"))){
+				diferencia = movimientoActualizado.getImporte()-movimientoAntiguo.getImporte();
+				movimientoAntiguoCopia.setImporte(diferencia);
+			}
+			if((movimientoAntiguo.getTipo().equals("Gasto"))&&(movimientoActualizado.getTipo().equals("Gasto"))){
+				diferencia = movimientoActualizado.getImporte()-movimientoAntiguo.getImporte();
+				movimientoAntiguoCopia.setImporte(-diferencia);
+			}
+			if((movimientoAntiguo.getTipo().equals("Ingreso"))&&(movimientoActualizado.getTipo().equals("Gasto"))){
+				diferencia = movimientoActualizado.getImporte()+movimientoAntiguo.getImporte();
+				movimientoAntiguoCopia.setImporte(-diferencia);
+			}
+			if((movimientoAntiguo.getTipo().equals("Gasto"))&&(movimientoActualizado.getTipo().equals("Ingreso"))){
+				diferencia = movimientoActualizado.getImporte()+movimientoAntiguo.getImporte();
+				movimientoAntiguoCopia.setImporte(diferencia);
+			}
+			refreshCuenta(movimientoAntiguoCopia, "update");
 		}
-		if((movimientoAntiguo.getTipo().equals("Gasto"))&&(movimientoActualizado.getTipo().equals("Gasto"))){
-			diferencia = movimientoActualizado.getImporte()-movimientoAntiguo.getImporte();
-			movimientoActualizarCuenta.setImporte(-diferencia);
+		else
+		{
+			if((movimientoAntiguo.getTipo().equals("Ingreso"))&&(movimientoActualizado.getTipo().equals("Ingreso"))){
+				movimientoAntiguoCopia.setImporte(-movimientoAntiguo.getImporte());
+				refreshCuenta(movimientoAntiguoCopia, "update");
+				refreshCuenta(movimientoActualizadoCopia, "update");			
+			}
+			if((movimientoAntiguo.getTipo().equals("Gasto"))&&(movimientoActualizado.getTipo().equals("Gasto"))){
+				movimientoAntiguoCopia.setImporte(movimientoAntiguo.getImporte());
+				refreshCuenta(movimientoAntiguoCopia, "update");
+				movimientoActualizadoCopia.setImporte(-movimientoActualizado.getImporte());
+				refreshCuenta(movimientoActualizadoCopia, "update");
+			}
+			if((movimientoAntiguo.getTipo().equals("Ingreso"))&&(movimientoActualizado.getTipo().equals("Gasto"))){
+				movimientoAntiguoCopia.setImporte(-movimientoAntiguo.getImporte());
+				refreshCuenta(movimientoAntiguoCopia, "update");
+				movimientoActualizadoCopia.setImporte(-movimientoActualizado.getImporte());
+				refreshCuenta(movimientoActualizadoCopia, "update");
+			}
+			if((movimientoAntiguo.getTipo().equals("Gasto"))&&(movimientoActualizado.getTipo().equals("Ingreso"))){
+				refreshCuenta(movimientoAntiguoCopia, "update");
+				refreshCuenta(movimientoActualizadoCopia, "update");
+			}
 		}
-		if((movimientoAntiguo.getTipo().equals("Ingreso"))&&(movimientoActualizado.getTipo().equals("Gasto"))){
-			diferencia = movimientoActualizado.getImporte()+movimientoAntiguo.getImporte();
-			movimientoActualizarCuenta.setImporte(-diferencia);
-		}
-		if((movimientoAntiguo.getTipo().equals("Gasto"))&&(movimientoActualizado.getTipo().equals("Ingreso"))){
-			diferencia = movimientoActualizado.getImporte()+movimientoAntiguo.getImporte();
-			movimientoActualizarCuenta.setImporte(diferencia);
-		}
-		refreshCuenta(movimientoActualizarCuenta, "update");
+		
 		
 		
 		SessionFactory sesion = getSessionFactory();
@@ -294,6 +329,7 @@ public class Dao implements IDao {
 
 		Transaction tx = session.beginTransaction();
 
+		System.out.println("Valor real2: " + movimientoActualizado.getImporte());
 		session.update(movimientoActualizado);
 
 		tx.commit();

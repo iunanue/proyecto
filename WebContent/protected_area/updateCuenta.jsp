@@ -45,7 +45,7 @@
 								
 <%-- 							<input type="hidden" name="id_movimiento" value="<%=movimiento.getId_movimiento()%>" /> --%>
 							<input class="button blue" name="update" type="submit"
-								value="Update"
+								value="Actualizar"
 								onClick="return confirm('¿Desea actualizar esta cuenta?');">
 						</form>
 					</fieldset>
