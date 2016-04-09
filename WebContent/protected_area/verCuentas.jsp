@@ -49,23 +49,59 @@
 	      // Instantiate and draw the chart.
 	      
 	      var options = {
-		    		  title:"", 
-		    		  width:600,
-		    		  height:500,
-		    		  chartArea:{left:50,
-		    			    top: 20,
-		    			    width: '50%',
-		    			    height: '60%',},
+// 		    		  title:"", 
+// 		    		  width:300,
+// 		    		  height:100,
+// 		    		  chartArea:{left:50,
+// 		    			    top: 20,
+// 		    			    width: '50%',
+// 		    			    height: '60%',},
 			            
-			            isstacked:"true",
+// 			            isstacked:"true",
 			            legend:"none"
 					    };
 	      
+	      
 	      var chart = new google.visualization.ColumnChart(document.getElementById('visualization'));
 	      chart.draw(data,options);
-	    }
-	  
+	      
+	      
+	      
+	      
+	     
+	      var data2 = new google.visualization.DataTable();
+	  		data2.addColumn('string', 'cuenta');
+	  		data2.addColumn('number');
+	  		data2.addRows(<%=listaCuentas.size()%>);
+	  		
+	  		<%
+		      for(int i=0;i<listaCuentas.size();i++){
+		      
+			      if(listaCuentas.get(i).getSaldo()>=0){
+			      %>
+			  		data2.setCell(<%=i%>, 0, '<%=listaCuentas.get(i).getDescripcion()%>');
+			      data2.setCell(<%=i%>, 1, <%=listaCuentas.get(i).getSaldo()%>);
+			      <%
+			      }
+		      }
+	  		%>
+	  		
+		      
+
+			var options2 = {
+				title : 'Composición del total de cuentas en positivo',
+					is3D: true,
+// 					width:'50%'
+			};
+
+			var chart2 = new google.visualization.PieChart(document
+					.getElementById('piechart'));
+
+		      chart2.draw(data2,options2);
+
+		}
 	</script>
+	
 	
 	
 	<jsp:include page="/common/userHeader.jsp" />
@@ -119,13 +155,19 @@
 			</tbody>
 			</table>
 			</div>
+
+
+		<div class="row">
+			<div class="col-sm-6">
+				<h4 class="titulo4">Saldo de las cuentas</h4>
+				<div id="visualization"></div>
+			</div>
+			<div class="col-sm-6">
+				<h4 class="titulo4">Composición</h4>
+				<div id="piechart" ></div>
+			</div>
+
+		</div>
 		
-		<h4 class="titulo4">Saldo de las cuentas</h4>
-		<div id="visualization"></div>
-	</div>
-	
-
-	
-
 </body>
 </html>

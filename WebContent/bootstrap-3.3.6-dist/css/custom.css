@@ -23,6 +23,21 @@ width:40%;
 	padding-top: 1%;
 	padding-bottom: 1%;
 }
+
+#divA
+{
+  border:1px solid blue;
+  width:50%;
+}
+
+#divB
+{
+  float:right;
+  border:1px solid red;
+  width:50%;
+}
+
+
 /* Set black background color, white text and some padding */
 /* footer { */
 /* 	background-color: #555; */
