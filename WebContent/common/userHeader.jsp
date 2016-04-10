@@ -42,6 +42,14 @@
         			</ul>
       			</li>
       			
+      			<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Finanzas<span class="caret"></span></a>
+        			<ul class="dropdown-menu">
+          				<li><a href="${pageContext.request.contextPath}/protected_area/analisisEstandar">Análisis Estándar</a></li>
+			        	<li role="separator" class="divider"></li>
+			         	<li><a href="${pageContext.request.contextPath}/protected_area/verCuentas">Análisis Personalizado</a></li>
+        			</ul>
+      			</li>
+      			
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a

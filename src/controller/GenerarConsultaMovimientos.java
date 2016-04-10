@@ -191,6 +191,8 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 			}
 			
 			request.getSession().setAttribute("consulta", consulta);
+			
+			System.out.println(fechaInicio);
 
 			List<Movimiento> listaMovimientos = c.getIDao().getGenerarConsultaMovimientos(filtroFecha,
 					filtroTipo, filtroClase, filtroUsuario, filtroCuenta, tipo, fechaInicio, fechaFin, id_clase,
