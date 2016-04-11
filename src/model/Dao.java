@@ -439,5 +439,25 @@ public class Dao implements IDao {
 		session.close();
 	}
 
+	@Override
+	public List<Movimiento> getGenerarAnalisisEstandar(Timestamp fechaInicio, Timestamp fechaFin) {
+		SessionFactory sesion= getSessionFactory();
+        Session session =sesion.openSession();
+        Transaction tx=session.beginTransaction();
+        
+        Criteria criteria = session.createCriteria(Movimiento.class);
+        
+        	criteria.add(Restrictions.ge("fecha", fechaInicio));
+        	criteria.add(Restrictions.le("fecha", fechaFin));
+       
+		@SuppressWarnings("unchecked")
+		List<Movimiento> listaMovimientos = criteria.list();
+            
+        tx.commit();
+        session.close();
+       
+        return listaMovimientos;	
+	}
+
 
 }
