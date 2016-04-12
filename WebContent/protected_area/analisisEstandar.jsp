@@ -25,15 +25,15 @@
 		
 		List <Movimiento> listaIngresosYear = (List) request.getAttribute("listaIngresosYear");
 		List <Movimiento> listaGastosYear = (List) request.getAttribute("listaGastosYear");
-		float totalIngresosYear = (float)request.getAttribute("totalIngresosYear");
-		float totalGastosYear = (float)request.getAttribute("totalGastosYear");
-		float beneficioYear = (float)request.getAttribute("beneficioYear");
+		float totalIngresosYear = (Float)request.getAttribute("totalIngresosYear");
+		float totalGastosYear = (Float)request.getAttribute("totalGastosYear");
+		float beneficioYear = (Float)request.getAttribute("beneficioYear");
 		
 		List <Movimiento> listaIngresosMonth = (List) request.getAttribute("listaIngresosMonth");
 		List <Movimiento> listaGastosMonth = (List) request.getAttribute("listaGastosMonth");
-		float totalIngresosMonth = (float)request.getAttribute("totalIngresosMonth");
-		float totalGastosMonth = (float)request.getAttribute("totalGastosMonth");
-		float beneficioMonth = (float)request.getAttribute("beneficioMonth");
+		float totalIngresosMonth = (Float)request.getAttribute("totalIngresosMonth");
+		float totalGastosMonth = (Float)request.getAttribute("totalGastosMonth");
+		float beneficioMonth = (Float)request.getAttribute("beneficioMonth");
 		
 		
 		List <ClaseIngreso> listaClaseIngreso = (List) request.getAttribute("listaClaseIngreso");
@@ -57,38 +57,122 @@
 	      // Define the chart to be drawn.
 	        
 	          
-	      
+	     //Ingresos Year
 	     
-	      var ingresosMonth = new google.visualization.DataTable();
-	      ingresosMonth.addColumn('string', 'ingresosMonth');
-	      ingresosMonth.addColumn('number');
-	      ingresosMonth.addRows(<%=listaCuentas.size()%>);
+	      var dataIngresosYear = new google.visualization.DataTable();
+	      dataIngresosYear.addColumn('string', 'ingresosYear');
+	      dataIngresosYear.addColumn('number');
+	      dataIngresosYear.addRows(<%=listaClaseIngreso.size()%>);
 	  		
 	  		<%
-		      for(int i=0;i<listaCuentas.size();i++){
+		      for(int i=0;i<listaClaseIngreso.size();i++){ 
+			%>
+				dataIngresosYear.setCell(<%=i%>, 0, '<%=listaClaseIngreso.get(i).getDescripcion()%>');
+				dataIngresosYear.setCell(<%=i%>, 1, <%=listaClaseIngresoYear.get(i)%>);
+			<%
+			  }
 		      
-			      if(listaCuentas.get(i).getSaldo()>=0){
-			      %>
-			  		data2.setCell(<%=i%>, 0, '<%=listaCuentas.get(i).getDescripcion()%>');
-			      data2.setCell(<%=i%>, 1, <%=listaCuentas.get(i).getSaldo()%>);
-			      <%
-			      }
-		      }
 	  		%>
 	  		
-		      
-
-			var options2 = {
-				title : 'Composición del total de cuentas en positivo',
+			var optionsIngresosYear = {
+				title : 'Ingresos del año',
 					is3D: true,
 // 					width:'50%'
 			};
 
-			var chart2 = new google.visualization.PieChart(document
-					.getElementById('piechart'));
+			var chartIngresosYear = new google.visualization.PieChart(document
+					.getElementById('chartIngresosYear'));
 
-		      chart2.draw(data2,options2);
+			chartIngresosYear.draw(dataIngresosYear,optionsIngresosYear);
+			
+			
+			
+			//Gastos Year
 
+			var dataGastosYear = new google.visualization.DataTable();
+			dataGastosYear.addColumn('string', 'gastosYear');
+			dataGastosYear.addColumn('number');
+			dataGastosYear.addRows(<%=listaClaseGasto.size()%>);
+		  		
+		  		<%
+			      for(int i=0;i<listaClaseGasto.size();i++){ 
+				%>
+				dataGastosYear.setCell(<%=i%>, 0, '<%=listaClaseGasto.get(i).getDescripcion()%>');
+				dataGastosYear.setCell(<%=i%>, 1, <%=listaClaseGastoYear.get(i)%>);
+				<%
+				  }
+			      
+		  		%>
+		  		
+				var optionsGastosYear = {
+					title : 'Gastos del año',
+						is3D: true,
+//	 					width:'50%'
+				};
+
+				var chartGastosYear = new google.visualization.PieChart(document
+						.getElementById('chartGastosYear'));
+
+				chartGastosYear.draw(dataGastosYear,optionsGastosYear);
+			
+				
+				//Ingresos Month
+			     
+			      var dataIngresosMonth = new google.visualization.DataTable();
+			      dataIngresosMonth.addColumn('string', 'ingresosMonth');
+			      dataIngresosMonth.addColumn('number');
+			      dataIngresosMonth.addRows(<%=listaClaseIngreso.size()%>);
+			  		
+			  		<%
+				      for(int i=0;i<listaClaseIngreso.size();i++){ 
+					%>
+					dataIngresosMonth.setCell(<%=i%>, 0, '<%=listaClaseIngreso.get(i).getDescripcion()%>');
+					dataIngresosMonth.setCell(<%=i%>, 1, <%=listaClaseIngresoMonth.get(i)%>);
+					<%
+					  }
+				      
+			  		%>
+			  		
+					var optionsIngresosMonth = {
+						title : 'Ingresos del mes',
+							is3D: true,
+//		 					width:'50%'
+					};
+
+					var chartIngresosMonth = new google.visualization.PieChart(document
+							.getElementById('chartIngresosMonth'));
+
+					chartIngresosMonth.draw(dataIngresosMonth,optionsIngresosMonth);
+			
+					
+					//Gastos Month
+
+					var dataGastosMonth = new google.visualization.DataTable();
+					dataGastosMonth.addColumn('string', 'gastosMonth');
+					dataGastosMonth.addColumn('number');
+					dataGastosMonth.addRows(<%=listaClaseGasto.size()%>);
+				  		
+				  		<%
+					      for(int i=0;i<listaClaseGasto.size();i++){ 
+						%>
+						dataGastosMonth.setCell(<%=i%>, 0, '<%=listaClaseGasto.get(i).getDescripcion()%>');
+						dataGastosMonth.setCell(<%=i%>, 1, <%=listaClaseGastoMonth.get(i)%>);
+						<%
+						  }
+					      
+				  		%>
+				  		
+						var optionsGastosMonth = {
+							title : 'Gastos del mes',
+								is3D: true,
+//			 					width:'50%'
+						};
+
+						var chartGastosMonth = new google.visualization.PieChart(document
+								.getElementById('chartGastosMonth'));
+
+						chartGastosMonth.draw(dataGastosMonth,optionsGastosMonth);
+			
 		}
 	</script>
 	
@@ -147,16 +231,22 @@
 			</div>
 
 
-		<div class="row">
-			<div class="col-sm-6">
-				<h4 class="titulo4">Saldo de las cuentas</h4>
-				<div id="visualization"></div>
-			</div>
-			<div class="col-sm-6">
-				<h4 class="titulo4">Composición</h4>
-				<div id="piechart" ></div>
-			</div>
-
+	
+		<div id="chartIngresosYear"></div>
+		<div id="chartGastosYear"></div>
+		<div>
+			<span class="label label-pill label-success"><%=totalIngresosYear%></span>
+			<span class="label label-pill label-danger"><%=totalGastosYear%></span>
+			<span class="label label-pill label-info"><%=beneficioYear%></span>
+		</div>
+		
+		
+		<div id="chartIngresosMonth"></div>
+		<div id="chartGastosMonth"></div>
+		<div>
+			<span class="label label-pill label-success"><%=totalIngresosMonth%></span>
+			<span class="label label-pill label-danger"><%=totalGastosMonth%></span>
+			<span class="label label-pill label-info"><%=beneficioMonth%></span>
 		</div>
 		
 </body>

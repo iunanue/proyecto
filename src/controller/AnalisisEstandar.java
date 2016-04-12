@@ -149,21 +149,33 @@ public class AnalisisEstandar extends HttpServlet {
 		request.setAttribute("listaIngresosYear", listaIngresosYear);
 		request.setAttribute("listaGastosYear", listaGastosYear);
 		
+		System.out.println("listaIngresosYear:" +listaIngresosYear);
+		for(int i=0;i<listaIngresosYear.size();i++){
+			System.out.println(listaIngresosYear.get(i).getImporte());
+		}
+		System.out.println("-------------------------------------");
 		//Total Ingresos Year
 		float totalIngresosYear = 0;
 		for(int i=0;i<listaIngresosYear.size();i++){
 			totalIngresosYear = totalIngresosYear + listaIngresosYear.get(i).getImporte();
 		}
+		System.out.println("totalIngresosYear:" +totalIngresosYear);
+		
 		//Total Gastos Year
 		float totalGastosYear = 0;
 		for(int i=0;i<listaGastosYear.size();i++){
 			totalGastosYear = totalGastosYear + listaGastosYear.get(i).getImporte();
 		}
+		System.out.println("totalGastosYear: " +totalGastosYear);
+		
 		//Beneficio Year
 		float beneficioYear = totalIngresosYear-totalGastosYear;
+		System.out.println("beneficioYear: " +beneficioYear);
+		
 	
-		
-		
+		request.setAttribute("totalIngresosYear", totalIngresosYear);
+		request.setAttribute("totalGastosYear", totalGastosYear);
+		request.setAttribute("beneficioYear", beneficioYear);
 		
 		//Movimientos Month (Ingresos y Gastos) 
 		List <Movimiento> listaMovimientosMonth = c.getIDao().getGenerarAnalisisEstandar(fromMonth, toMonth);
@@ -197,47 +209,111 @@ public class AnalisisEstandar extends HttpServlet {
 		//Beneficio Month
 		float beneficioMonth = totalIngresosMonth-totalGastosMonth;
 		
+		request.setAttribute("totalIngresosMonth", totalIngresosMonth);
+		request.setAttribute("totalGastosMonth", totalGastosMonth);
+		request.setAttribute("beneficioMonth", beneficioMonth);
+		
 		
 		//ClaseIngreso y ClaseGasto
 		List <ClaseIngreso> listaClaseIngreso = c.getIDao().getClaseIngreso();
 		request.setAttribute("listaClaseIngreso", listaClaseIngreso);
+		System.out.println("listaClaseIngreso size:" +listaClaseIngreso.size());
 		
 		List <ClaseGasto> listaClaseGasto = c.getIDao().getClaseGasto();
 		request.setAttribute("listaClaseGasto", listaClaseGasto);
 		
 		//ClaseIngreso Year
 		List <Float> listaClaseIngresoYear = new ArrayList<Float>();
+		for(int i=0;i<listaClaseIngreso.size();i++){
+			listaClaseIngresoYear.add((float) 0);
+		}
+		System.out.println("listaClaseIngresoYear size: " +listaIngresosYear.size());
+//		System.out.println("listaClaseIngresoYear:" +listaIngresosYear);
+		for(int i=0;i<listaClaseIngresoYear.size();i++){
+			System.out.println(listaClaseIngresoYear.get(i));
+		}
+		System.out.println("-------------------------------------");
+		System.out.println("-------------------------------------");
+		System.out.println(listaClaseIngresoYear.size());
 		for(int i=0;i<listaIngresosYear.size();i++){
-			int puntero=listaIngresosYear.get(i).getId_clase()-1;
-			
-			listaClaseIngresoYear.add(puntero,listaClaseIngresoYear.get(puntero)+listaIngresosYear.get(i).getImporte());
+			int puntero=(listaIngresosYear.get(i).getId_clase())-1;
+			System.out.println("puntero: "+puntero);
+			float total = 0;
+			System.out.println("anterior: "+listaClaseIngresoYear.get(puntero));
+			System.out.println("importe: "+listaIngresosYear.get(i).getImporte());
+			total = listaClaseIngresoYear.get(puntero) + listaIngresosYear.get(i).getImporte();
+			System.out.println("total: "+total);
+			listaClaseIngresoYear.set(puntero,total);
+			for(int j=0;j<listaClaseIngresoYear.size();j++){
+				System.out.println(listaClaseIngresoYear.get(j));
+			}
 		}
 		request.setAttribute("listaClaseIngresoYear", listaClaseIngresoYear);
+		System.out.println("-------------");
+		for(int i=0;i<listaClaseIngresoYear.size();i++){
+			System.out.println(listaClaseIngresoYear.get(i));
+		}
+		System.out.println("-------------");
+		System.out.println("-------------------------------------");
+		System.out.println("-------------------------------------");
 		
 		//ClaseIngreso Month
 		List <Float> listaClaseIngresoMonth = new ArrayList<Float>();
+		for(int i=0;i<listaClaseIngreso.size();i++){
+			listaClaseIngresoMonth.add((float) 0);
+		}
 		for(int i=0;i<listaIngresosMonth.size();i++){
-			int puntero=listaIngresosMonth.get(i).getId_clase()-1;
-			
-			listaClaseIngresoMonth.add(puntero,listaClaseIngresoMonth.get(puntero)+listaIngresosMonth.get(i).getImporte());
+			int puntero=(listaIngresosMonth.get(i).getId_clase())-1;
+			System.out.println("puntero: "+puntero);
+			float total = 0;
+			System.out.println("anterior: "+listaClaseIngresoMonth.get(puntero));
+			System.out.println("importe: "+listaIngresosMonth.get(i).getImporte());
+			total = listaClaseIngresoMonth.get(puntero) + listaIngresosMonth.get(i).getImporte();
+			System.out.println("total: "+total);
+			listaClaseIngresoMonth.set(puntero,total);
+			for(int j=0;j<listaClaseIngresoMonth.size();j++){
+				System.out.println(listaClaseIngresoMonth.get(j));
+			}
 		}
 		request.setAttribute("listaClaseIngresoMonth", listaClaseIngresoMonth);
 		
 		//ClaseGasto Year
 		List <Float> listaClaseGastoYear = new ArrayList<Float>();
+		for(int i=0;i<listaClaseGasto.size();i++){
+			listaClaseGastoYear.add((float) 0);
+		}
 		for(int i=0;i<listaGastosYear.size();i++){
-			int puntero=listaGastosYear.get(i).getId_clase()-1;
-			
-			listaClaseGastoYear.add(puntero,listaClaseGastoYear.get(puntero)+listaGastosYear.get(i).getImporte());
+			int puntero=(listaGastosYear.get(i).getId_clase())-1;
+			System.out.println("puntero: "+puntero);
+			float total = 0;
+			System.out.println("anterior: "+listaClaseGastoYear.get(puntero));
+			System.out.println("importe: "+listaGastosYear.get(i).getImporte());
+			total = listaClaseGastoYear.get(puntero) + listaGastosYear.get(i).getImporte();
+			System.out.println("total: "+total);
+			listaClaseGastoYear.set(puntero,total);
+			for(int j=0;j<listaClaseGastoYear.size();j++){
+				System.out.println(listaClaseGastoYear.get(j));
+			}
 		}
 		request.setAttribute("listaClaseGastoYear", listaClaseGastoYear);
 		
-		//ClaseGasto Year
+		//ClaseGasto Month
 		List <Float> listaClaseGastoMonth = new ArrayList<Float>();
+		for(int i=0;i<listaClaseGasto.size();i++){
+			listaClaseGastoMonth.add((float) 0);
+		}
 		for(int i=0;i<listaGastosMonth.size();i++){
-			int puntero=listaGastosMonth.get(i).getId_clase()-1;
-			
-			listaClaseGastoMonth.add(puntero,listaClaseGastoMonth.get(puntero)+listaGastosMonth.get(i).getImporte());
+			int puntero=(listaGastosMonth.get(i).getId_clase())-1;
+			System.out.println("puntero: "+puntero);
+			float total = 0;
+			System.out.println("anterior: "+listaClaseGastoMonth.get(puntero));
+			System.out.println("importe: "+listaGastosMonth.get(i).getImporte());
+			total = listaClaseGastoMonth.get(puntero) + listaGastosMonth.get(i).getImporte();
+			System.out.println("total: "+total);
+			listaClaseGastoMonth.set(puntero,total);
+			for(int j=0;j<listaClaseGastoMonth.size();j++){
+				System.out.println(listaClaseGastoMonth.get(j));
+			}
 		}
 		request.setAttribute("listaClaseGastoMonth", listaClaseGastoMonth);
 		
