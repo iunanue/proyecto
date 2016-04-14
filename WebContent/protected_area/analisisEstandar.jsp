@@ -13,41 +13,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
-<script src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/custom.css" type="text/css">
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/bootstrap.min.css"
+	type="text/css">
+<script
+	src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/custom.css"
+	type="text/css">
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
 <title>Análisis Estándar</title>
 </head>
 <body>
 	<%
-		List <Movimiento> listaMovimientosYear = (List) request.getAttribute("listaMovimientosYear");
-		List <Movimiento> listaMovimientosMonth = (List) request.getAttribute("listaMovimientosMonth");
-		
-		List <Movimiento> listaIngresosYear = (List) request.getAttribute("listaIngresosYear");
-		List <Movimiento> listaGastosYear = (List) request.getAttribute("listaGastosYear");
-		float totalIngresosYear = (Float)request.getAttribute("totalIngresosYear");
-		float totalGastosYear = (Float)request.getAttribute("totalGastosYear");
-		float beneficioYear = (Float)request.getAttribute("beneficioYear");
-		
-		List <Movimiento> listaIngresosMonth = (List) request.getAttribute("listaIngresosMonth");
-		List <Movimiento> listaGastosMonth = (List) request.getAttribute("listaGastosMonth");
-		float totalIngresosMonth = (Float)request.getAttribute("totalIngresosMonth");
-		float totalGastosMonth = (Float)request.getAttribute("totalGastosMonth");
-		float beneficioMonth = (Float)request.getAttribute("beneficioMonth");
-		
-		
-		List <ClaseIngreso> listaClaseIngreso = (List) request.getAttribute("listaClaseIngreso");
-		List <ClaseGasto> listaClaseGasto = (List) request.getAttribute("listaClaseGasto");
-		
-		List <Float> listaClaseIngresoYear = (List) request.getAttribute("listaClaseIngresoYear");
-		List <Float> listaClaseGastoYear = (List) request.getAttribute("listaClaseGastoYear");
-		List <Float> listaClaseIngresoMonth = (List) request.getAttribute("listaClaseIngresoMonth");
-		List <Float> listaClaseGastoMonth = (List) request.getAttribute("listaClaseGastoMonth");
-		
-		
-		List <Cuenta> listaCuentas = (List) request.getAttribute("listaCuentas");
-		
+		List<Movimiento> listaMovimientosYear = (List) request.getAttribute("listaMovimientosYear");
+		List<Movimiento> listaMovimientosMonth = (List) request.getAttribute("listaMovimientosMonth");
+
+		List<Movimiento> listaIngresosYear = (List) request.getAttribute("listaIngresosYear");
+		List<Movimiento> listaGastosYear = (List) request.getAttribute("listaGastosYear");
+		float totalIngresosYear = (Float) request.getAttribute("totalIngresosYear");
+		float totalGastosYear = (Float) request.getAttribute("totalGastosYear");
+		float beneficioYear = (Float) request.getAttribute("beneficioYear");
+
+		List<Movimiento> listaIngresosMonth = (List) request.getAttribute("listaIngresosMonth");
+		List<Movimiento> listaGastosMonth = (List) request.getAttribute("listaGastosMonth");
+		float totalIngresosMonth = (Float) request.getAttribute("totalIngresosMonth");
+		float totalGastosMonth = (Float) request.getAttribute("totalGastosMonth");
+		float beneficioMonth = (Float) request.getAttribute("beneficioMonth");
+
+		List<ClaseIngreso> listaClaseIngreso = (List) request.getAttribute("listaClaseIngreso");
+		List<ClaseGasto> listaClaseGasto = (List) request.getAttribute("listaClaseGasto");
+
+		List<Float> listaClaseIngresoYear = (List) request.getAttribute("listaClaseIngresoYear");
+		List<Float> listaClaseGastoYear = (List) request.getAttribute("listaClaseGastoYear");
+		List<Float> listaClaseIngresoMonth = (List) request.getAttribute("listaClaseIngresoMonth");
+		List<Float> listaClaseGastoMonth = (List) request.getAttribute("listaClaseGastoMonth");
+
+		List<Cuenta> listaCuentas = (List) request.getAttribute("listaCuentas");
 	%>
 
 	<script type="text/javascript">
@@ -65,15 +68,10 @@
 	      dataIngresosYear.addColumn('number');
 	      dataIngresosYear.addRows(<%=listaClaseIngreso.size()%>);
 	  		
-	  		<%
-		      for(int i=0;i<listaClaseIngreso.size();i++){ 
-			%>
+	  		<%for (int i = 0; i < listaClaseIngreso.size(); i++) {%>
 				dataIngresosYear.setCell(<%=i%>, 0, '<%=listaClaseIngreso.get(i).getDescripcion()%>');
 				dataIngresosYear.setCell(<%=i%>, 1, <%=listaClaseIngresoYear.get(i)%>);
-			<%
-			  }
-		      
-	  		%>
+			<%}%>
 	  		
 			var optionsIngresosYear = {
 				title : 'Ingresos del año',
@@ -97,15 +95,10 @@
 			dataGastosYear.addColumn('number');
 			dataGastosYear.addRows(<%=listaClaseGasto.size()%>);
 		  		
-		  		<%
-			      for(int i=0;i<listaClaseGasto.size();i++){ 
-				%>
+		  		<%for (int i = 0; i < listaClaseGasto.size(); i++) {%>
 				dataGastosYear.setCell(<%=i%>, 0, '<%=listaClaseGasto.get(i).getDescripcion()%>');
 				dataGastosYear.setCell(<%=i%>, 1, <%=listaClaseGastoYear.get(i)%>);
-				<%
-				  }
-			      
-		  		%>
+				<%}%>
 		  		
 				var optionsGastosYear = {
 					title : 'Gastos del año',
@@ -128,15 +121,10 @@
 			      dataIngresosMonth.addColumn('number');
 			      dataIngresosMonth.addRows(<%=listaClaseIngreso.size()%>);
 			  		
-			  		<%
-				      for(int i=0;i<listaClaseIngreso.size();i++){ 
-					%>
+			  		<%for (int i = 0; i < listaClaseIngreso.size(); i++) {%>
 					dataIngresosMonth.setCell(<%=i%>, 0, '<%=listaClaseIngreso.get(i).getDescripcion()%>');
 					dataIngresosMonth.setCell(<%=i%>, 1, <%=listaClaseIngresoMonth.get(i)%>);
-					<%
-					  }
-				      
-			  		%>
+					<%}%>
 			  		
 					var optionsIngresosMonth = {
 						title : 'Ingresos del mes',
@@ -159,29 +147,34 @@
 					dataGastosMonth.addColumn('number');
 					dataGastosMonth.addRows(<%=listaClaseGasto.size()%>);
 				  		
-				  		<%
-					      for(int i=0;i<listaClaseGasto.size();i++){ 
-						%>
-						dataGastosMonth.setCell(<%=i%>, 0, '<%=listaClaseGasto.get(i).getDescripcion()%>');
-						dataGastosMonth.setCell(<%=i%>, 1, <%=listaClaseGastoMonth.get(i)%>);
-						<%
-						  }
-					      
-				  		%>
-				  		
-						var optionsGastosMonth = {
-							title : 'Gastos del mes',
-							is3D: true,
-							chartArea:{left:0,top:0,width:"100%",height:"100%"},
-							height: 400,
-							width: 450
-						};
+				  		<%for (int i = 0; i < listaClaseGasto.size(); i++) {%>
+						dataGastosMonth.setCell(<%=i%>, 0, '<%=listaClaseGasto.get(i).getDescripcion()%>
+		');
+			dataGastosMonth
+					.setCell(
+	<%=i%>
+		, 1,
+	<%=listaClaseGastoMonth.get(i)%>
+		);
+	<%}%>
+		var optionsGastosMonth = {
+				title : 'Gastos del mes',
+				is3D : true,
+				chartArea : {
+					left : 0,
+					top : 0,
+					width : "100%",
+					height : "100%"
+				},
+				height : 400,
+				width : 450
+			};
 
-						var chartGastosMonth = new google.visualization.PieChart(document
-								.getElementById('chartGastosMonth'));
+			var chartGastosMonth = new google.visualization.PieChart(document
+					.getElementById('chartGastosMonth'));
 
-						chartGastosMonth.draw(dataGastosMonth,optionsGastosMonth);
-			
+			chartGastosMonth.draw(dataGastosMonth, optionsGastosMonth);
+
 		}
 	</script>
 
@@ -229,6 +222,10 @@
 								</div>
 							</div>
 						</div>
+						
+						
+						<!-- Año Ingresos -->
+						
 						<div id="ingresosYear" class="tab-pane fade">
 							<div>
 								<div class="bordeAbajo">
@@ -238,11 +235,8 @@
 												<h3>Ingresos</h3>
 												<div id="chartIngresosYear"></div>
 											</div>
-
 										</div>
 										<div class="col-sm-6">
-
-
 											<div class="paddingAnalisis">
 												<h3>Resultado del Año</h3>
 												<div class="paddingAnalisis">
@@ -283,7 +277,6 @@
 										</div>
 
 									</div>
-
 								</div>
 								<div>
 									<div class="paddingAnalisis">
@@ -304,40 +297,40 @@
 												</thead>
 												<tbody>
 													<%
-													float total = totalIngresosYear;
+														float total = totalIngresosYear;
 
-													Movimiento movimiento;
-													String clase = null;
-													for (int i = 0; i < listaIngresosYear.size(); i++) {
-														movimiento = listaIngresosYear.get(i);
-														if (movimiento.getTipo().equals("Ingreso")) {
-															clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
-														}
-														if (movimiento.getTipo().equals("Gasto")) {
-															clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
-														}
-												%>
+														Movimiento movimiento;
+														String clase = null;
+														for (int i = 0; i < listaIngresosYear.size(); i++) {
+															movimiento = listaIngresosYear.get(i);
+															if (movimiento.getTipo().equals("Ingreso")) {
+																clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
+															}
+															if (movimiento.getTipo().equals("Gasto")) {
+																clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
+															}
+													%>
 													<tr>
 														<td><%=movimiento.getId_movimiento()%></td>
 														<td><%=movimiento.getTipo()%></td>
 														<%
-														SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-															String string = dateFormat.format(movimiento.getFecha());
-													%>
+															SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+																String string = dateFormat.format(movimiento.getFecha());
+														%>
 														<td><%=string%></td>
 														<td><%=clase%></td>
 														<td><%=movimiento.getUsername()%></td>
 														<td><%=listaCuentas.get(movimiento.getId_cuenta() - 1).getDescripcion()%></td>
 														<%
-														if (movimiento.getTipo().equals("Ingreso")) {
-													%><td class="ingreso">+<%=movimiento.getImporte()%></td>
+															if (movimiento.getTipo().equals("Ingreso")) {
+														%><td class="ingreso">+<%=movimiento.getImporte()%></td>
 														<%
-														} else {
-													%>
+															} else {
+														%>
 														<td class="gasto">-<%=movimiento.getImporte()%></td>
 														<%
-														}
-													%>
+															}
+														%>
 														<td class="tdDescripcion"><%=movimiento.getDescripcion()%></td>
 														<td>
 															<form method="POST" id="form"
@@ -359,9 +352,8 @@
 														</td>
 													</tr>
 													<%
-													}
-												%>
-
+														}
+													%>
 													<tr class="total">
 														<td></td>
 														<td></td>
@@ -369,32 +361,33 @@
 														<td></td>
 														<td></td>
 														<td class=total>TOTAL</td>
-														<td class="total ingreso">+<%=total%></td>	
+														<td class="total ingreso">+<%=total%></td>
 														<td></td>
 														<td></td>
 													</tr>
 												</tbody>
 											</table>
-
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
-												request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
-											%>
+													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+												%>
 												<button type="submit" class="btn btn-default"
 													name="exportar">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
 											</form>
-
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div id="gastosYear" class="tab-pane fade">
 
+
+						<!-- Año Gastos -->
+						
+						<div id="gastosYear" class="tab-pane fade">
 							<div>
 								<div class="bordeAbajo">
 									<div class="row">
@@ -425,7 +418,6 @@
 													<div class="desglose">
 														<div class="paddingTop"></div>
 														<p class="labelBalance">Desglose:</p>
-
 														<div class="paddingAnalisis">
 															<ul style="list-style-type: disc">
 																<%
@@ -438,7 +430,6 @@
 																%>
 															</ul>
 														</div>
-
 													</div>
 												</div>
 											</div>
@@ -466,41 +457,39 @@
 												</thead>
 												<tbody>
 													<%
-													
-													total = totalGastosYear;
-
-													 movimiento = null;
-													 clase = null;
-													for (int i = 0; i < listaGastosYear.size(); i++) {
-														movimiento = listaGastosYear.get(i);
-														if (movimiento.getTipo().equals("Ingreso")) {
-															clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
-														}
-														if (movimiento.getTipo().equals("Gasto")) {
-															clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
-														}
-												%>
+														total = totalGastosYear;
+														movimiento = null;
+														clase = null;
+														for (int i = 0; i < listaGastosYear.size(); i++) {
+															movimiento = listaGastosYear.get(i);
+															if (movimiento.getTipo().equals("Ingreso")) {
+																clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
+															}
+															if (movimiento.getTipo().equals("Gasto")) {
+																clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
+															}
+													%>
 													<tr>
 														<td><%=movimiento.getId_movimiento()%></td>
 														<td><%=movimiento.getTipo()%></td>
 														<%
-														SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-															String string = dateFormat.format(movimiento.getFecha());
-													%>
+															SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+																String string = dateFormat.format(movimiento.getFecha());
+														%>
 														<td><%=string%></td>
 														<td><%=clase%></td>
 														<td><%=movimiento.getUsername()%></td>
 														<td><%=listaCuentas.get(movimiento.getId_cuenta() - 1).getDescripcion()%></td>
 														<%
-														if (movimiento.getTipo().equals("Ingreso")) {
-													%><td class="ingreso">+<%=movimiento.getImporte()%></td>
+															if (movimiento.getTipo().equals("Ingreso")) {
+														%><td class="ingreso">+<%=movimiento.getImporte()%></td>
 														<%
-														} else {
-													%>
+															} else {
+														%>
 														<td class="gasto">-<%=movimiento.getImporte()%></td>
 														<%
-														}
-													%>
+															}
+														%>
 														<td class="tdDescripcion"><%=movimiento.getDescripcion()%></td>
 														<td>
 															<form method="POST" id="form"
@@ -522,9 +511,8 @@
 														</td>
 													</tr>
 													<%
-													}
-												%>
-
+														}
+													%>
 													<tr class="total">
 														<td></td>
 														<td></td>
@@ -532,61 +520,24 @@
 														<td></td>
 														<td></td>
 														<td class=total>TOTAL</td>
-														<td class="total gasto">-<%=total%></td>												
+														<td class="total gasto">-<%=total%></td>
 														<td></td>
 														<td></td>
 													</tr>
 												</tbody>
 											</table>
-
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
-												request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
-											%>
+													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+												%>
 												<button type="submit" class="btn btn-default"
 													name="exportar">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
 											</form>
-
 										</div>
-									</div>
-								</div>
-							</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<div class="row">
-								<div class="col-sm-6 bordeDerecha">
-
-									<div id="chartGastosYear" class="grafico bordeAbajo"></div>
-								</div>
-								<div class="col-sm-6">
-									<div>
-										<h3>Resultado del Mes</h3>
-										<span class="label label-pill label-success"><%=totalIngresosMonth%></span>
-										- <span class="label label-pill label-danger"><%=totalGastosMonth%></span>
-										= <span class="label label-pill label-info"><%=beneficioMonth%></span>
 									</div>
 								</div>
 							</div>
