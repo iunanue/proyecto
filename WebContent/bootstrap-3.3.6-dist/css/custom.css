@@ -37,7 +37,51 @@ width:40%;
   width:50%;
 }
 
+.bordeIzquierda{
+	border-left: 1px solid #ddd;
+}
+.bordeDerecha{
+	border-right: 1px solid #ddd;
+}
+.bordeArriba{
+	border-top: 1px solid #ddd;
+}
+.bordeAbajo{
+	border-bottom: 1px solid #ddd;
+}
 
+.paddingAnalisis{
+	padding:5%;
+	padding-top:2%;
+}
+.navTiempo{
+	font-size: x-large;
+	font-weight:bold; 
+	
+}
+.navTipo{
+	padding-top:5%;
+}
+.labelBalance{
+	font-size: large;
+}
+.label-pill{
+	font-size: large;
+}
+#year{
+	border: 1px solid #ddd;
+	border-top-color:transparent;
+}
+.totalBalance{
+	font-weight: bold;
+	font-size: 20px;
+	padding-top:5%;
+	border-top: 2px solid #c0c0c0;
+}
+
+.paddingTop{
+	padding-top:5%;
+}
 /* Set black background color, white text and some padding */
 /* footer { */
 /* 	background-color: #555; */
@@ -106,6 +150,13 @@ footer p {
 	font-size: 20px;
 	padding-top:5%;
 	border-top: 5px solid #c0c0c0;
+	
+}
+.totalCabecerasAnalisis{
+/* 	background-color:#dbdbdb; */
+	font-weight: bold;
+	font-size: 15px;
+	padding-top:5%;
 	
 }
 .cero{
