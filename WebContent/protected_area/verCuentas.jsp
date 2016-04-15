@@ -24,150 +24,167 @@
 	  google.charts.setOnLoadCallback(drawChart);
 	  
 	  function drawChart() {
-	      // Define the chart to be drawn.
-	    	var data = new google.visualization.DataTable();
-	  		data.addColumn('string', 'cuenta');
-	  		data.addColumn('number');
-	  		data.addRows(<%=listaCuentas.size()%>);
+
+		  
+		  //Composicion
+		  
+		  var dataComposicion = new google.visualization.DataTable();
+	      dataComposicion.addColumn('string', 'cuenta');
+	      dataComposicion.addColumn('number');
+	      dataComposicion.addRows(<%=listaCuentas.size()%>);
+  		
+  		<%
+	      for(int i=0;i<listaCuentas.size();i++){
+	      
+		      if(listaCuentas.get(i).getSaldo()>=0){
+		      %>
+		     	 dataComposicion.setCell(<%=i%>, 0, '<%=listaCuentas.get(i).getDescripcion()%>');
+		      	dataComposicion.setCell(<%=i%>, 1, <%=listaCuentas.get(i).getSaldo()%>);
+		      <%
+		      }
+	      }
+  		%>
+  		
+	      
+
+		var optionsComposicion = {
+				title : 'Ingresos del mes',
+				is3D: true,
+				chartArea:{left:0,top:0,width:"100%",height:"100%"},
+				height: 400,
+				width: 450
+		};
+
+		var composicion = new google.visualization.PieChart(document
+				.getElementById('composicion'));
+
+	      composicion.draw(dataComposicion,optionsComposicion);
+
+	
+		  
+		  //Saldo
+		  
+	    	var dataSaldo = new google.visualization.DataTable();
+	    	dataSaldo.addColumn('string', 'cuenta');
+	    	dataSaldo.addColumn('number');
+	    	dataSaldo.addRows(<%=listaCuentas.size()%>);
 	  		
 	  		<%
 		      for(int i=0;i<listaCuentas.size();i++){%>
-		  		data.setCell(<%=i%>, 0, '<%=listaCuentas.get(i).getDescripcion()%>');
+		      dataSaldo.setCell(<%=i%>, 0, '<%=listaCuentas.get(i).getDescripcion()%>');
 		      <%
-				System.out.println(listaCuentas.get(i).getDescripcion());	
-		      System.out.println(listaCuentas.get(i).getSaldo());	
+				
 		      }%>
 	  		
 	  		
 		      
 	  		<%
 		      for(int i=0;i<listaCuentas.size();i++){%>
-		      	data.setCell(<%=i%>, 1, <%=listaCuentas.get(i).getSaldo()%>);
+		     	 dataSaldo.setCell(<%=i%>, 1, <%=listaCuentas.get(i).getSaldo()%>);
 		      <%}%>
 	     
 
-	      // Instantiate and draw the chart.
 	      
-	      var options = {
-// 		    		  title:"", 
-// 		    		  width:300,
-// 		    		  height:100,
-// 		    		  chartArea:{left:50,
-// 		    			    top: 20,
-// 		    			    width: '50%',
-// 		    			    height: '60%',},
-			            
-// 			            isstacked:"true",
+	      var optionsSaldo = {
+					is3D: true,
+					chartArea:{left:50},
+					height: 400,
+					width: 1200,
+					min: 300,
+					max: 1400,
 			            legend:"none"
 					    };
 	      
 	      
-	      var chart = new google.visualization.ColumnChart(document.getElementById('visualization'));
-	      chart.draw(data,options);
+	      var saldo = new google.visualization.ColumnChart(document.getElementById('saldo'));
+	      saldo.draw(dataSaldo,optionsSaldo);
 	      
 	      
-	      
+	  }
 	      
 	     
-	      var data2 = new google.visualization.DataTable();
-	  		data2.addColumn('string', 'cuenta');
-	  		data2.addColumn('number');
-	  		data2.addRows(<%=listaCuentas.size()%>);
-	  		
-	  		<%
-		      for(int i=0;i<listaCuentas.size();i++){
-		      
-			      if(listaCuentas.get(i).getSaldo()>=0){
-			      %>
-			  		data2.setCell(<%=i%>, 0, '<%=listaCuentas.get(i).getDescripcion()%>');
-			      data2.setCell(<%=i%>, 1, <%=listaCuentas.get(i).getSaldo()%>);
-			      <%
-			      }
-		      }
-	  		%>
-	  		
-		      
-
-			var options2 = {
-				title : 'Composición del total de cuentas en positivo',
-					is3D: true,
-// 					width:'50%'
-			};
-
-			var chart2 = new google.visualization.PieChart(document
-					.getElementById('piechart'));
-
-		      chart2.draw(data2,options2);
-
-		}
+	      
 	</script>
-	
-	
-	
+
+
+
 	<jsp:include page="/common/userHeader.jsp" />
-	
+
 	<div class="contentWrapper">
-		<h2 class ="titulo2">Cuentas</h2>
-		<h4 class="titulo4">Listado de Cuentas</h4>
-		
-		<div class="tableContainer">
-		<table class="table table-hover tableCuentas">
-			<thead>
-				<tr>
-					<th>id</th>
-					<th>Descripción</th>
-					<th>Saldo</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-			<%
-			for(int i=0;i<listaCuentas.size();i++){
-				Cuenta cuenta = listaCuentas.get(i);%>
-				<tr> 
-					<td><%=cuenta.getId_cuenta()%></td>
-					<td><%=cuenta.getDescripcion()%></td>
-					<%
-					if(cuenta.getSaldo() > 0){
-						%><td class="ingreso">+<%=cuenta.getSaldo()%></td>
-					<% }
-					if(cuenta.getSaldo() < 0){
-						%><td class="gasto"><%=cuenta.getSaldo()%></td>
-					<% }
-					if(cuenta.getSaldo() == 0){
-						%><td class="cero"><%=cuenta.getSaldo()%></td>
-					<% }
-					%>
-					<td>
-						<form method="POST" id="form" action="${pageContext.request.contextPath}/protected_area/selectUpdateDeleteCuenta">
-							<input type="hidden" name="id_cuenta" value="<%=cuenta.getId_cuenta()%>">
-							<button type="submit" class="btn btn-default" name="update">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-							</button>			
-							<button type="submit" class="btn btn-default" name="delete" onClick="return confirm('¿Desea eliminar esta cuenta y todos los movimientos asociados a ella?');">
-								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-							</button>		
-						</form>
-					</td>
-				</tr>
-			<%}		
-			%>
-			</tbody>
-			</table>
+		<h2 class="titulo2">Cuentas</h2>
+		<div class="row bordeAbajo">
+			<div class="col-sm-6 bordeDerecha">
+				<h4 class="titulo4">Listado de Cuentas</h4>
+				<div class="tableContainer">
+					<table class="table table-hover tableCuentas">
+						<thead>
+							<tr>
+								<th>id</th>
+								<th>Descripción</th>
+								<th>Saldo</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+								for (int i = 0; i < listaCuentas.size(); i++) {
+									Cuenta cuenta = listaCuentas.get(i);
+							%>
+							<tr>
+								<td><%=cuenta.getId_cuenta()%></td>
+								<td><%=cuenta.getDescripcion()%></td>
+								<%
+									if (cuenta.getSaldo() > 0) {
+								%><td class="ingreso">+<%=cuenta.getSaldo()%></td>
+								<%
+									}
+										if (cuenta.getSaldo() < 0) {
+								%><td class="gasto"><%=cuenta.getSaldo()%></td>
+								<%
+									}
+										if (cuenta.getSaldo() == 0) {
+								%><td class="cero"><%=cuenta.getSaldo()%></td>
+								<%
+									}
+								%>
+								<td>
+									<form method="POST" id="form"
+										action="${pageContext.request.contextPath}/protected_area/selectUpdateDeleteCuenta">
+										<input type="hidden" name="id_cuenta"
+											value="<%=cuenta.getId_cuenta()%>">
+										<button type="submit" class="btn btn-default" name="update">
+											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+										</button>
+										<button type="submit" class="btn btn-default" name="delete"
+											onClick="return confirm('¿Desea eliminar esta cuenta y todos los movimientos asociados a ella?');">
+											<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										</button>
+									</form>
+								</td>
+							</tr>
+							<%
+								}
+							%>
+						</tbody>
+					</table>
+				</div>
 			</div>
-
-
-		<div class="row">
 			<div class="col-sm-6">
-				<h4 class="titulo4">Saldo de las cuentas</h4>
-				<div id="visualization"></div>
+				<div class="paddingAnalisis">
+					<h4 class="titulo4">Composición de la cartera de Cuentas</h4>
+					<div id="composicion"></div>
+				</div>
 			</div>
-			<div class="col-sm-6">
-				<h4 class="titulo4">Composición</h4>
-				<div id="piechart" ></div>
-			</div>
-
 		</div>
-		
+		<div>
+			<div class="paddingAnalisis">
+				<h4 class="titulo4">Saldo de las Cuentas</h4>
+				<div id="saldo"></div>
+			</div>
+		</div>
+
+
+
+	</div>
 </body>
 </html>

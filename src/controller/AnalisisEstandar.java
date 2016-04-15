@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -82,6 +83,8 @@ public class AnalisisEstandar extends HttpServlet {
 		toYear = new Timestamp(dateToYear.getTime());
 		
 		
+		//fromMonth toMonth
+		
 		
 		int month = cal.get(Calendar.MONTH) + 1;
 		
@@ -130,6 +133,95 @@ public class AnalisisEstandar extends HttpServlet {
 		System.out.println(toYear);
 		System.out.println(fromMonth);
 		System.out.println(toMonth);
+		
+		
+		//Evolucion year
+		
+		
+		List<String>listaMeses = new ArrayList<String>(Arrays.asList(new String[] {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"}));
+		List<Integer>listaMesesUltimoDia = new ArrayList<Integer>(Arrays.asList(31,29,31,30,31,30,31,31,30,31,30,31));
+		List<Timestamp>listaMesesFechasFrom = new ArrayList <Timestamp>();
+		List<Timestamp>listaMesesFechasTo = new ArrayList <Timestamp>();
+		int contador = 0;
+		for(int i=0;i<listaMeses.size();i++){
+			Date date = null;
+			try {
+				date = format.parse(year+"-"+(i+1)+"-01");
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Timestamp from = new Timestamp(date.getTime());
+			listaMesesFechasFrom.add(from);
+			
+			Date date2 = null;
+			try {
+				date2 = format.parse(year+"-"+(i+1)+"-"+listaMesesUltimoDia.get(i));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			Timestamp to = new Timestamp(date2.getTime());
+			listaMesesFechasTo.add(to);
+		}
+		System.out.println("Meses fechas FROM:----------------");
+		for(int i=0;i<listaMesesFechasFrom.size();i++){
+			System.out.println(listaMesesFechasFrom.get(i));
+		}
+		System.out.println("Meses fechas TO:----------------");
+		for(int i=0;i<listaMesesFechasTo.size();i++){
+			System.out.println(listaMesesFechasTo.get(i));
+		}
+		List<Movimiento>listaMesesMovimientos = new ArrayList<Movimiento>();
+		List <Float> listaMesesIngresos = new ArrayList<Float>();
+		List <Float> listaMesesGastos = new ArrayList<Float>();
+		List <Float> listaMesesBeneficios = new ArrayList<Float>();
+		for(int i=0;i<listaMeses.size();i++){
+			listaMesesIngresos.add((float) 0);
+			listaMesesGastos.add((float) 0);
+			listaMesesBeneficios.add((float) 0);
+		}
+		
+		List <Movimiento> listaMovimientosEvolucionYear;
+		for(int i=0;i<listaMeses.size();i++){
+			listaMovimientosEvolucionYear = c.getIDao().getGenerarAnalisisEstandar(listaMesesFechasFrom.get(i), listaMesesFechasTo.get(i));
+			float totalIngresos = 0;
+			float totalGastos = 0;
+			for(int j=0;j<listaMovimientosEvolucionYear.size();j++){
+				if(listaMovimientosEvolucionYear.get(j).getTipo().equals("Ingreso")){
+					totalIngresos = totalIngresos + listaMovimientosEvolucionYear.get(j).getImporte();
+				}
+				else{
+					totalGastos = totalGastos + listaMovimientosEvolucionYear.get(j).getImporte();
+				}
+			}
+			listaMesesIngresos.set(i, totalIngresos);
+			listaMesesGastos.set(i, totalGastos);
+			listaMesesBeneficios.set(i, totalIngresos-totalGastos);
+		}
+		
+	
+		
+		System.out.println("listaMesesIngresos :----------------");
+		for(int i=0;i<listaMesesIngresos.size();i++){
+			System.out.println(listaMesesIngresos.get(i));
+		}
+		System.out.println("listaMesesGastos :----------------");
+		for(int i=0;i<listaMesesGastos.size();i++){
+			System.out.println(listaMesesGastos.get(i));
+		}
+		System.out.println("listaMesesBeneficios :----------------");
+		for(int i=0;i<listaMesesBeneficios.size();i++){
+			System.out.println(listaMesesBeneficios.get(i));
+		}
+
+		request.setAttribute("listaMeses", listaMeses);
+		request.setAttribute("listaMesesIngresos", listaMesesIngresos);
+		request.setAttribute("listaMesesGastos", listaMesesGastos);
+		request.setAttribute("listaMesesBeneficios", listaMesesBeneficios);
+		
+			
 		
 		//Movimientos
 		List <Movimiento> listaMovimientosYear = c.getIDao().getGenerarAnalisisEstandar(fromYear, toYear);

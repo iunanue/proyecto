@@ -30,6 +30,12 @@
 		List<Movimiento> listaMovimientosYear = (List) request.getAttribute("listaMovimientosYear");
 		List<Movimiento> listaMovimientosMonth = (List) request.getAttribute("listaMovimientosMonth");
 
+		List<String> listaMeses = (List) request.getAttribute("listaMeses");
+		List<Float> listaMesesIngresos = (List) request.getAttribute("listaMesesIngresos");
+		List<Float> listaMesesGastos = (List) request.getAttribute("listaMesesGastos");
+		List<Float> listaMesesBeneficios = (List) request.getAttribute("listaMesesBeneficios");
+		
+		
 		List<Movimiento> listaIngresosYear = (List) request.getAttribute("listaIngresosYear");
 		List<Movimiento> listaGastosYear = (List) request.getAttribute("listaGastosYear");
 		float totalIngresosYear = (Float) request.getAttribute("totalIngresosYear");
@@ -61,6 +67,41 @@
 	      // Define the chart to be drawn.
 	        
 	          
+	      //Evolucion Year
+	      
+	      var dataEvolucionYear = new google.visualization.DataTable();
+	      dataEvolucionYear.addColumn('string', 'Mes');
+	      dataEvolucionYear.addColumn('number', 'Ingresos');
+	      dataEvolucionYear.addColumn('number', 'Gastos');
+	      dataEvolucionYear.addColumn('number', 'Beneficio');
+	      
+
+	      dataEvolucionYear.addRows(<%=listaMeses.size()%>);
+	      
+	  		<%for (int i = 0; i < listaMeses.size(); i++) {%>
+	  		dataEvolucionYear.setCell(<%=i%>, 0, '<%=listaMeses.get(i)%>');
+	  		dataEvolucionYear.setCell(<%=i%>, 1, <%=listaMesesIngresos.get(i)%>);
+	  		dataEvolucionYear.setCell(<%=i%>, 2, <%=listaMesesGastos.get(i)%>);
+	  		dataEvolucionYear.setCell(<%=i%>, 3, <%=listaMesesBeneficios.get(i)%>);
+			<%}%>
+	  		
+			var optionsEvolucionYear = {
+// 				title : 'Evolucion del año',
+					is3D: true,
+					chartArea:{left:50},
+					height: 400,
+					width: 950,
+					min: 300,
+					max: 1400
+			};
+
+			var chartEvolucionYear = new google.visualization.AreaChart(document
+					.getElementById('chartEvolucionYear'));
+
+			chartEvolucionYear.draw(dataEvolucionYear,optionsEvolucionYear);
+       	     
+			
+			
 	     //Ingresos Year
 	     
 	      var dataIngresosYear = new google.visualization.DataTable();
@@ -76,7 +117,7 @@
 			var optionsIngresosYear = {
 				title : 'Ingresos del año',
 					is3D: true,
-					chartArea:{left:0,top:0,width:"100%",height:"100%"},
+					chartArea:{left:25,top:0,width:"100%",height:"100%"},
 					height: 400,
 					width: 450
 			};
@@ -86,6 +127,10 @@
 
 			chartIngresosYear.draw(dataIngresosYear,optionsIngresosYear);
 			
+			var chartIngresosYear2 = new google.visualization.PieChart(document
+					.getElementById('chartIngresosYear2'));
+
+			chartIngresosYear2.draw(dataIngresosYear,optionsIngresosYear);
 			
 			
 			//Gastos Year
@@ -103,7 +148,7 @@
 				var optionsGastosYear = {
 					title : 'Gastos del año',
 					is3D: true,
-					chartArea:{left:0,top:0,width:"100%",height:"100%"},
+					chartArea:{left:25,top:0,width:"100%",height:"100%"},
 					height: 400,
 					width: 450
 				};
@@ -112,6 +157,11 @@
 						.getElementById('chartGastosYear'));
 
 				chartGastosYear.draw(dataGastosYear,optionsGastosYear);
+				
+				var chartGastosYear2 = new google.visualization.PieChart(document
+						.getElementById('chartGastosYear2'));
+
+				chartGastosYear2.draw(dataGastosYear,optionsGastosYear);
 			
 				
 				//Ingresos Month
@@ -138,6 +188,11 @@
 							.getElementById('chartIngresosMonth'));
 
 					chartIngresosMonth.draw(dataIngresosMonth,optionsIngresosMonth);
+					
+					var chartIngresosMonth2 = new google.visualization.PieChart(document
+							.getElementById('chartIngresosMonth2'));
+
+					chartIngresosMonth2.draw(dataIngresosMonth,optionsIngresosMonth);
 			
 					
 					//Gastos Month
@@ -148,8 +203,7 @@
 					dataGastosMonth.addRows(<%=listaClaseGasto.size()%>);
 				  		
 				  		<%for (int i = 0; i < listaClaseGasto.size(); i++) {%>
-						dataGastosMonth.setCell(<%=i%>, 0, '<%=listaClaseGasto.get(i).getDescripcion()%>
-		');
+						dataGastosMonth.setCell(<%=i%>, 0, '<%=listaClaseGasto.get(i).getDescripcion() %>');
 			dataGastosMonth
 					.setCell(
 	<%=i%>
@@ -174,6 +228,11 @@
 					.getElementById('chartGastosMonth'));
 
 			chartGastosMonth.draw(dataGastosMonth, optionsGastosMonth);
+			
+			var chartGastosMonth2 = new google.visualization.PieChart(document
+					.getElementById('chartGastosMonth2'));
+
+			chartGastosMonth2.draw(dataGastosMonth, optionsGastosMonth);
 
 		}
 	</script>
@@ -186,16 +245,14 @@
 
 	<div class="contentWrapper">
 		<h2 class="titulo2">Análisis Estándar</h2>
-		<h4 class="titulo4">Rango temporal</h4>
 
 		<ul class="nav nav-tabs navTiempo">
-			<li class="active"><a data-toggle="tab" href="#year">Año</a></li>
-			<li><a data-toggle="tab" href="#month">Mes</a></li>
+			<li class="active"><a data-toggle="tab" href="#year">Análisis del Año</a></li>
+			<li><a data-toggle="tab" href="#month">Análisis del Mes</a></li>
 		</ul>
 
 		<div>
 			<div class="tab-content">
-
 
 				<div id="year" class="tab-pane fade in active">
 					<ul class="nav nav-tabs navTipo">
@@ -204,23 +261,157 @@
 						<li><a data-toggle="tab" href="#gastosYear">Gastos</a></li>
 					</ul>
 					<div class="tab-content">
+					
+					<!--Evolucion año -->
+					
+					
 						<div id="generalYear" class="tab-pane fade in active">
-							<div class="row">
-								<div class="col-sm-6 bordeDerecha">
-									<!-- 						<h4>Ingresos</h4> -->
-									<!-- 									<div id="chartIngresosYear" class="grafico bordeAbajo"></div> -->
-									<!-- 							<h4>Gastos</h4> -->
-									<!-- 									<div id="chartGastosYear" class="grafico"></div> -->
+						<div class="bordeAbajo">
+									<div class="row">
+											<div class="paddingAnalisis paddingIzquierda">
+												<h3>Evolución</h3>
+												<div id="chartEvolucionYear" ></div>
+											</div>
+									</div>
 								</div>
-								<div class="col-sm-6">
-									<div>
-										<h3>Resultado del Año</h3>
-										<span class="label label-pill label-success"><%=totalIngresosYear%></span>
-										- <span class="label label-pill label-danger"><%=totalGastosYear%></span>
-										= <span class="label label-pill label-info"><%=beneficioYear%></span>
+							<div class="bordeAbajo">
+								<div class="paddingAnalisis">
+									<h3>Resultado del año</h3>
+									<div class="paddingAnalisis">
+										<div class="paddingTop"></div>
+										<p class="labelBalance">
+											Ingresos = <span class="label label-pill label-success"><%=totalIngresosYear%></span>
+										</p>
+										<p class="labelBalance">
+											Gastos = <span class="label label-pill label-danger"><%=totalGastosYear%>
+										</p>
+										<p class="labelBalance totalBalance">
+											TOTAL = <span class="label label-pill label-success"><%=totalIngresosYear%></span>
+											- <span class="label label-pill label-danger"><%=totalGastosYear%></span>
+											= <span class="label label-pill label-info"><%=beneficioYear%></span>
+										</p>
+
 									</div>
 								</div>
 							</div>
+							<div class="row bordeAbajo">
+								<div class="col-sm-6 bordeDerecha">
+									<div class="paddingAnalisis ">
+										<h3>Ingresos</h3>
+										<div id="chartIngresosYear2"></div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="paddingAnalisis ">
+										<h3>Gastos</h3>
+										<div id="chartGastosYear2"></div>
+									</div>
+								</div>
+							</div>
+								<div>
+									<div class="paddingAnalisis">
+									<h3>Listado de Movimientos del Año</h3>
+										<div class="tableContainer">
+											<table class="table table-hover">
+												<thead>
+													<tr class="totalCabecerasAnalisis">
+														<th>id</th>
+														<th>Tipo</th>
+														<th>Fecha</th>
+														<th>Clase</th>
+														<th>Usuario</th>
+														<th>Cuenta</th>
+														<th>Importe</th>
+														<th>Descripcion</th>
+														<th></th>
+													</tr>
+												</thead>
+												<tbody>
+													<%
+														float total = beneficioYear;
+
+														Movimiento movimiento;
+														String clase = null;
+														for (int i = 0; i < listaMovimientosYear.size(); i++) {
+															movimiento = listaMovimientosYear.get(i);
+															if (movimiento.getTipo().equals("Ingreso")) {
+																clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
+															}
+															if (movimiento.getTipo().equals("Gasto")) {
+																clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
+															}
+													%>
+													<tr>
+														<td><%=movimiento.getId_movimiento()%></td>
+														<td><%=movimiento.getTipo()%></td>
+														<%
+															SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+																String string = dateFormat.format(movimiento.getFecha());
+														%>
+														<td><%=string%></td>
+														<td><%=clase%></td>
+														<td><%=movimiento.getUsername()%></td>
+														<td><%=listaCuentas.get(movimiento.getId_cuenta() - 1).getDescripcion()%></td>
+														<%
+															if (movimiento.getTipo().equals("Ingreso")) {
+														%><td class="ingreso">+<%=movimiento.getImporte()%></td>
+														<%
+															} else {
+														%>
+														<td class="gasto">-<%=movimiento.getImporte()%></td>
+														<%
+															}
+														%>
+														<td class="tdDescripcion"><%=movimiento.getDescripcion()%></td>
+														<td>
+															<form method="POST" id="form"
+																action="${pageContext.request.contextPath}/protected_area/selectUpdateDeleteMovimiento">
+																<input type="hidden" name="id_movimiento"
+																	value="<%=movimiento.getId_movimiento()%>">
+																<button type="submit" class="btn btn-default"
+																	name="update">
+																	<span class="glyphicon glyphicon-pencil"
+																		aria-hidden="true"></span>
+																</button>
+																<button type="submit" class="btn btn-default"
+																	name="delete"
+																	onClick="return confirm('¿Desea eliminar este movimiento?');">
+																	<span class="glyphicon glyphicon-trash"
+																		aria-hidden="true"></span>
+																</button>
+															</form>
+														</td>
+													</tr>
+													<%
+														}
+													%>
+													<tr class="total">
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td class=total>TOTAL</td>
+														<td class="total ingreso">+<%=total%></td>
+														<td></td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+											<form method="POST"
+												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
+												<%
+													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+												%>
+												<button type="submit" class="btn btn-default"
+													name="exportar">
+													<span class="glyphicon glyphicon-download-alt"
+														aria-hidden="true"></span> Descargar Excel
+												</button>
+											</form>
+										</div>
+									</div>
+								</div>
 						</div>
 						
 						
@@ -280,6 +471,7 @@
 								</div>
 								<div>
 									<div class="paddingAnalisis">
+									<h3>Listado de Ingresos del Año</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
 												<thead>
@@ -297,10 +489,10 @@
 												</thead>
 												<tbody>
 													<%
-														float total = totalIngresosYear;
+														 total = totalIngresosYear;
 
-														Movimiento movimiento;
-														String clase = null;
+														
+														 clase = null;
 														for (int i = 0; i < listaIngresosYear.size(); i++) {
 															movimiento = listaIngresosYear.get(i);
 															if (movimiento.getTipo().equals("Ingreso")) {
@@ -440,6 +632,7 @@
 								</div>
 								<div>
 									<div class="paddingAnalisis">
+									<h3>Listado de Gastos del Año</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
 												<thead>
@@ -543,55 +736,510 @@
 							</div>
 						</div>
 					</div>
-
-
 				</div>
 
 				<div id="month" class="tab-pane fade">
-					<h3>Mes</h3>
+						<ul class="nav nav-tabs navTipo">
+						<li class="active"><a data-toggle="tab" href="#generalMonth">General</a></li>
+						<li><a data-toggle="tab" href="#ingresosMonth">Ingresos</a></li>
+						<li><a data-toggle="tab" href="#gastosMonth">Gastos</a></li>
+					</ul>
+					<div class="tab-content">
+					
+					<!--Evolucion año -->
+					
+					
+						<div id="generalMonth" class="tab-pane fade in active">
+<!-- 						<div class="bordeAbajo"> -->
+<!-- 									<div class="row"> -->
+<!-- 											<div class="paddingAnalisis paddingIzquierda"> -->
+<!-- 												<h3>Evolución</h3> -->
+<!-- 												<div id="chartEvolucionYear" ></div> -->
+<!-- 											</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+							<div class="bordeAbajo">
+								<div class="paddingAnalisis">
+									<h3>Resultado del Mes</h3>
+									<div class="paddingAnalisis">
+										<div class="paddingTop"></div>
+										<p class="labelBalance">
+											Ingresos = <span class="label label-pill label-success"><%=totalIngresosMonth%></span>
+										</p>
+										<p class="labelBalance">
+											Gastos = <span class="label label-pill label-danger"><%=totalGastosMonth%>
+										</p>
+										<p class="labelBalance totalBalance">
+											TOTAL = <span class="label label-pill label-success"><%=totalIngresosMonth%></span>
+											- <span class="label label-pill label-danger"><%=totalGastosMonth%></span>
+											= <span class="label label-pill label-info"><%=beneficioMonth%></span>
+										</p>
 
-					<div class="row">
-						<div class="col-sm-6 bordeDerecha">
-							<div id="chartIngresosMonth" class="grafico bordeAbajo"></div>
-							<div id="chartGastosMonth" class="grafico"></div>
+									</div>
+								</div>
+							</div>
+							<div class="row bordeAbajo">
+								<div class="col-sm-6 bordeDerecha">
+									<div class="paddingAnalisis ">
+										<h3>Ingresos</h3>
+										<div id="chartIngresosMonth2"></div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="paddingAnalisis ">
+										<h3>Gastos</h3>
+										<div id="chartGastosMonth2"></div>
+									</div>
+								</div>
+							</div>
+								<div>
+									<div class="paddingAnalisis">
+									<h3>Listado de Movimientos del Mes</h3>
+										<div class="tableContainer">
+											<table class="table table-hover">
+												<thead>
+													<tr class="totalCabecerasAnalisis">
+														<th>id</th>
+														<th>Tipo</th>
+														<th>Fecha</th>
+														<th>Clase</th>
+														<th>Usuario</th>
+														<th>Cuenta</th>
+														<th>Importe</th>
+														<th>Descripcion</th>
+														<th></th>
+													</tr>
+												</thead>
+												<tbody>
+													<%
+														total = beneficioMonth;
+														clase = null;
+														for (int i = 0; i < listaMovimientosMonth.size(); i++) {
+															movimiento = listaMovimientosMonth.get(i);
+															if (movimiento.getTipo().equals("Ingreso")) {
+																clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
+															}
+															if (movimiento.getTipo().equals("Gasto")) {
+																clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
+															}
+													%>
+													<tr>
+														<td><%=movimiento.getId_movimiento()%></td>
+														<td><%=movimiento.getTipo()%></td>
+														<%
+															SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+																String string = dateFormat.format(movimiento.getFecha());
+														%>
+														<td><%=string%></td>
+														<td><%=clase%></td>
+														<td><%=movimiento.getUsername()%></td>
+														<td><%=listaCuentas.get(movimiento.getId_cuenta() - 1).getDescripcion()%></td>
+														<%
+															if (movimiento.getTipo().equals("Ingreso")) {
+														%><td class="ingreso">+<%=movimiento.getImporte()%></td>
+														<%
+															} else {
+														%>
+														<td class="gasto">-<%=movimiento.getImporte()%></td>
+														<%
+															}
+														%>
+														<td class="tdDescripcion"><%=movimiento.getDescripcion()%></td>
+														<td>
+															<form method="POST" id="form"
+																action="${pageContext.request.contextPath}/protected_area/selectUpdateDeleteMovimiento">
+																<input type="hidden" name="id_movimiento"
+																	value="<%=movimiento.getId_movimiento()%>">
+																<button type="submit" class="btn btn-default"
+																	name="update">
+																	<span class="glyphicon glyphicon-pencil"
+																		aria-hidden="true"></span>
+																</button>
+																<button type="submit" class="btn btn-default"
+																	name="delete"
+																	onClick="return confirm('¿Desea eliminar este movimiento?');">
+																	<span class="glyphicon glyphicon-trash"
+																		aria-hidden="true"></span>
+																</button>
+															</form>
+														</td>
+													</tr>
+													<%
+														}
+													%>
+													<tr class="total">
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td class=total>TOTAL</td>
+														<td class="total ingreso">+<%=total%></td>
+														<td></td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+											<form method="POST"
+												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
+												<%
+													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+												%>
+												<button type="submit" class="btn btn-default"
+													name="exportar">
+													<span class="glyphicon glyphicon-download-alt"
+														aria-hidden="true"></span> Descargar Excel
+												</button>
+											</form>
+										</div>
+									</div>
+								</div>
 						</div>
-						<div class="col-sm-6">
+						
+						
+						<!-- Mes Ingresos -->
+						
+						<div id="ingresosMonth" class="tab-pane fade">
 							<div>
-								<h3>Resultado del Mes</h3>
-								<span class="label label-pill label-success"><%=totalIngresosMonth%></span>
-								- <span class="label label-pill label-danger"><%=totalGastosMonth%></span>
-								= <span class="label label-pill label-info"><%=beneficioMonth%></span>
+								<div class="bordeAbajo">
+									<div class="row">
+										<div class="col-sm-6 bordeDerecha">
+											<div class="paddingAnalisis">
+												<h3>Ingresos</h3>
+												<div id="chartIngresosMonth"></div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="paddingAnalisis">
+												<h3>Resultado del Mes</h3>
+												<div class="paddingAnalisis">
+													<div class="bordeAbajo">
+														<p class="labelBalance">
+															Ingresos = <span class="label label-pill label-success"><%=totalIngresosMonth%></span>
+														</p>
+														<p class="labelBalance">
+															Gastos = <span class="label label-pill label-danger"><%=totalGastosMonth%>
+														</p>
+														<p class="labelBalance totalBalance">
+															TOTAL = <span class="label label-pill label-success"><%=totalIngresosMonth%></span>
+															- <span class="label label-pill label-danger"><%=totalGastosMonth%></span>
+															= <span class="label label-pill label-info"><%=beneficioMonth%></span>
+														</p>
+														<div class="paddingTop"></div>
+													</div>
+													<div class="desglose">
+														<div class="paddingTop"></div>
+														<p class="labelBalance">Desglose:</p>
+
+														<div class="paddingAnalisis">
+															<ul style="list-style-type: disc">
+																<%
+																	for (int i = 0; i < listaClaseIngreso.size(); i++) {
+																%>
+																<li><p><%=listaClaseIngreso.get(i).getDescripcion()%>:
+																		<%=listaClaseIngresoMonth.get(i)%></p></li>
+																<%
+																	}
+																%>
+															</ul>
+														</div>
+
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<div>
+									<div class="paddingAnalisis">
+										<h3>Listado de Ingresos del Mes</h3>
+										<div class="tableContainer">
+											<table class="table table-hover">
+												<thead>
+													<tr class="totalCabecerasAnalisis">
+														<th>id</th>
+														<th>Tipo</th>
+														<th>Fecha</th>
+														<th>Clase</th>
+														<th>Usuario</th>
+														<th>Cuenta</th>
+														<th>Importe</th>
+														<th>Descripcion</th>
+														<th></th>
+													</tr>
+												</thead>
+												<tbody>
+													<%
+														 total = totalIngresosMonth;
+
+														
+														 clase = null;
+														for (int i = 0; i < listaIngresosMonth.size(); i++) {
+															movimiento = listaIngresosMonth.get(i);
+															if (movimiento.getTipo().equals("Ingreso")) {
+																clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
+															}
+															if (movimiento.getTipo().equals("Gasto")) {
+																clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
+															}
+													%>
+													<tr>
+														<td><%=movimiento.getId_movimiento()%></td>
+														<td><%=movimiento.getTipo()%></td>
+														<%
+															SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+																String string = dateFormat.format(movimiento.getFecha());
+														%>
+														<td><%=string%></td>
+														<td><%=clase%></td>
+														<td><%=movimiento.getUsername()%></td>
+														<td><%=listaCuentas.get(movimiento.getId_cuenta() - 1).getDescripcion()%></td>
+														<%
+															if (movimiento.getTipo().equals("Ingreso")) {
+														%><td class="ingreso">+<%=movimiento.getImporte()%></td>
+														<%
+															} else {
+														%>
+														<td class="gasto">-<%=movimiento.getImporte()%></td>
+														<%
+															}
+														%>
+														<td class="tdDescripcion"><%=movimiento.getDescripcion()%></td>
+														<td>
+															<form method="POST" id="form"
+																action="${pageContext.request.contextPath}/protected_area/selectUpdateDeleteMovimiento">
+																<input type="hidden" name="id_movimiento"
+																	value="<%=movimiento.getId_movimiento()%>">
+																<button type="submit" class="btn btn-default"
+																	name="update">
+																	<span class="glyphicon glyphicon-pencil"
+																		aria-hidden="true"></span>
+																</button>
+																<button type="submit" class="btn btn-default"
+																	name="delete"
+																	onClick="return confirm('¿Desea eliminar este movimiento?');">
+																	<span class="glyphicon glyphicon-trash"
+																		aria-hidden="true"></span>
+																</button>
+															</form>
+														</td>
+													</tr>
+													<%
+														}
+													%>
+													<tr class="total">
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td class=total>TOTAL</td>
+														<td class="total ingreso">+<%=total%></td>
+														<td></td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+											<form method="POST"
+												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
+												<%
+													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+												%>
+												<button type="submit" class="btn btn-default"
+													name="exportar">
+													<span class="glyphicon glyphicon-download-alt"
+														aria-hidden="true"></span> Descargar Excel
+												</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<!-- Month Gastos -->
+						
+						<div id="gastosMonth" class="tab-pane fade">
+							<div>
+								<div class="bordeAbajo">
+									<div class="row">
+										<div class="col-sm-6 bordeDerecha">
+											<div class="paddingAnalisis">
+												<h3>Gastos</h3>
+												<div id="chartGastosMonth"></div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="paddingAnalisis">
+												<h3>Resultado del Mes</h3>
+												<div class="paddingAnalisis">
+													<div class="bordeAbajo">
+														<p class="labelBalance">
+															Ingresos = <span class="label label-pill label-success"><%=totalIngresosMonth%></span>
+														</p>
+														<p class="labelBalance">
+															Gastos = <span class="label label-pill label-danger"><%=totalGastosMonth%>
+														</p>
+														<p class="labelBalance totalBalance">
+															TOTAL = <span class="label label-pill label-success"><%=totalIngresosMonth%></span>
+															- <span class="label label-pill label-danger"><%=totalGastosMonth%></span>
+															= <span class="label label-pill label-info"><%=beneficioMonth%></span>
+														</p>
+														<div class="paddingTop"></div>
+													</div>
+													<div class="desglose">
+														<div class="paddingTop"></div>
+														<p class="labelBalance">Desglose:</p>
+														<div class="paddingAnalisis">
+															<ul style="list-style-type: disc">
+																<%
+																	for (int i = 0; i < listaClaseGasto.size(); i++) {
+																%>
+																<li><p><%=listaClaseGasto.get(i).getDescripcion()%>:
+																		<%=listaClaseGastoMonth.get(i)%></p></li>
+																<%
+																	}
+																%>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+								<div>
+									<div class="paddingAnalisis">
+									<h3>Listado de Gastos del Mes</h3>
+										<div class="tableContainer">
+											<table class="table table-hover">
+												<thead>
+													<tr class="totalCabecerasAnalisis">
+														<th>id</th>
+														<th>Tipo</th>
+														<th>Fecha</th>
+														<th>Clase</th>
+														<th>Usuario</th>
+														<th>Cuenta</th>
+														<th>Importe</th>
+														<th>Descripcion</th>
+														<th></th>
+													</tr>
+												</thead>
+												<tbody>
+													<%
+														total = totalGastosMonth;
+														movimiento = null;
+														clase = null;
+														for (int i = 0; i < listaGastosMonth.size(); i++) {
+															movimiento = listaGastosMonth.get(i);
+															if (movimiento.getTipo().equals("Ingreso")) {
+																clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
+															}
+															if (movimiento.getTipo().equals("Gasto")) {
+																clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
+															}
+													%>
+													<tr>
+														<td><%=movimiento.getId_movimiento()%></td>
+														<td><%=movimiento.getTipo()%></td>
+														<%
+															SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+																String string = dateFormat.format(movimiento.getFecha());
+														%>
+														<td><%=string%></td>
+														<td><%=clase%></td>
+														<td><%=movimiento.getUsername()%></td>
+														<td><%=listaCuentas.get(movimiento.getId_cuenta() - 1).getDescripcion()%></td>
+														<%
+															if (movimiento.getTipo().equals("Ingreso")) {
+														%><td class="ingreso">+<%=movimiento.getImporte()%></td>
+														<%
+															} else {
+														%>
+														<td class="gasto">-<%=movimiento.getImporte()%></td>
+														<%
+															}
+														%>
+														<td class="tdDescripcion"><%=movimiento.getDescripcion()%></td>
+														<td>
+															<form method="POST" id="form"
+																action="${pageContext.request.contextPath}/protected_area/selectUpdateDeleteMovimiento">
+																<input type="hidden" name="id_movimiento"
+																	value="<%=movimiento.getId_movimiento()%>">
+																<button type="submit" class="btn btn-default"
+																	name="update">
+																	<span class="glyphicon glyphicon-pencil"
+																		aria-hidden="true"></span>
+																</button>
+																<button type="submit" class="btn btn-default"
+																	name="delete"
+																	onClick="return confirm('¿Desea eliminar este movimiento?');">
+																	<span class="glyphicon glyphicon-trash"
+																		aria-hidden="true"></span>
+																</button>
+															</form>
+														</td>
+													</tr>
+													<%
+														}
+													%>
+													<tr class="total">
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td class=total>TOTAL</td>
+														<td class="total gasto">-<%=total%></td>
+														<td></td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+											<form method="POST"
+												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
+												<%
+													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+												%>
+												<button type="submit" class="btn btn-default"
+													name="exportar">
+													<span class="glyphicon glyphicon-download-alt"
+														aria-hidden="true"></span> Descargar Excel
+												</button>
+											</form>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
+					
 				</div>
 
 			</div>
 		</div>
 	</div>
+<!-- 					<h3>Mes</h3> -->
 
-
-	<!-- 	<div class="row"> -->
-	<!-- 		<div class="col-sm-6"></div> -->
-	<!-- 		<div class="col-sm-6"></div> -->
-	<!-- 	</div> -->
-
-	<!-- 	<div id="ingresosYear" class="tab-pane fade"> -->
-	<!-- 		<div class="row"> -->
-	<!-- 			<div class="col-sm-6 bordeDerecha"> -->
-	<!-- 										<h4>Ingresos</h4> -->
-	<!-- 				<div id="chartIngresosYear" class="grafico bordeAbajo"></div> -->
-	<!-- 			</div> -->
-	<!-- 			<div class="col-sm-6"> -->
-	<!-- 				<div> -->
-	<!-- 					<h3>Resultado del Año</h3> -->
-	<%-- 					<span class="label label-pill label-success"><%=totalIngresosYear%></span> --%>
-	<%-- 					- <span class="label label-pill label-danger"><%=totalGastosYear%></span> --%>
-	<%-- 					= <span class="label label-pill label-info"><%=beneficioYear%></span> --%>
-	<!-- 				</div> -->
-	<!-- 			</div> -->
-	<!-- 		</div> -->
-	<!-- 	</div> -->
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-sm-6 bordeDerecha"> -->
+<!-- 							<div id="chartIngresosMonth" class="grafico bordeAbajo"></div> -->
+<!-- 							<div id="chartGastosMonth" class="grafico"></div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-6"> -->
+<!-- 							<div> -->
+<!-- 								<h3>Resultado del Mes</h3> -->
+<%-- 								<span class="label label-pill label-success"><%=totalIngresosMonth%></span> --%>
+<%-- 								- <span class="label label-pill label-danger"><%=totalGastosMonth%></span> --%>
+<%-- 								= <span class="label label-pill label-info"><%=beneficioMonth%></span> --%>
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 
 
 </body>
