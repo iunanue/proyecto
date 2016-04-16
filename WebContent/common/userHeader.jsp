@@ -46,7 +46,7 @@
         			<ul class="dropdown-menu">
           				<li><a href="${pageContext.request.contextPath}/protected_area/analisisEstandar">Análisis Estándar</a></li>
 			        	<li role="separator" class="divider"></li>
-			         	<li><a href="${pageContext.request.contextPath}/protected_area/verCuentas">Análisis Personalizado</a></li>
+			         	<li><a href="${pageContext.request.contextPath}/protected_area/loadAnalisisPersonalizado">Análisis Personalizado</a></li>
         			</ul>
       			</li>
       			
