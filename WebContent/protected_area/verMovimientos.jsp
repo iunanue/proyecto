@@ -21,7 +21,7 @@
 <body>
 	<jsp:include page="/common/userHeader.jsp" />
 	<div class="contentWrapper">
-	<h2 class="titulo2">Movimientos</h2>
+	<h2 class="titulo2">Lista de Movimientos</h2>
 					<%
 					if (request.getSession().getAttribute("consulta") != null) {
 						String[] consultaLabel = {"Fechas: ", "Tipo: ","Clase: ","Usuario: ", "Cuenta: "};

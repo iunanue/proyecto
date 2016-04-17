@@ -49,7 +49,7 @@
 
 			<div class="contentWrapper">
 				<div id="login-form" class="registro-form">
-					<h1>ANÁLISIS PERSONALIZADO</h1>
+					<h2 class="paddingIzquierda">Generar Análisis Personalizado</h2>
 					<h2></h2>
 					<fieldset>
 						<form method="POST" id="form" action="${pageContext.request.contextPath}/protected_area/analisisPersonalizado">									

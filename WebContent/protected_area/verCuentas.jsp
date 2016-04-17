@@ -112,7 +112,7 @@
 
 	<div class="contentWrapper">
 		<h2 class="titulo2">Cuentas</h2>
-		<div class="row bordeAbajo">
+		<div class="row">
 			<div class="col-sm-6 bordeDerecha">
 				<h4 class="titulo4">Listado de Cuentas</h4>
 				<div class="tableContainer">
@@ -169,13 +169,14 @@
 					</table>
 				</div>
 			</div>
-			<div class="col-sm-6">
-				<div class="paddingAnalisis">
+			<div class="col-sm-6 bordeIzquierda">
+				<div class="paddingAnalisis paddingIzquierda">
 					<h4 class="titulo4">Composición de la cartera de Cuentas</h4>
 					<div id="composicion"></div>
 				</div>
 			</div>
 		</div>
+		<div class="bordeAbajo paddingTop"></div>
 		<div>
 			<div class="paddingAnalisis">
 				<h4 class="titulo4">Saldo de las Cuentas</h4>

@@ -162,6 +162,11 @@ public class AnalisisPersonalizado extends HttpServlet {
 
 			request.setAttribute("listaMovimientosPersonalizado", listaMovimientosPersonalizado);
 			
+			System.out.println("----------------- Movimientos personalizado --------------");
+			for(int i=0;i<listaMovimientosPersonalizado.size();i++){
+				System.out.println(listaMovimientosPersonalizado.get(i).getId_movimiento());
+			}
+			System.out.println("----------------- End Movimientos personalizado --------------");
 			
 		//continuacion
 			
@@ -550,6 +555,17 @@ public class AnalisisPersonalizado extends HttpServlet {
 			request.setAttribute("listaIngresosPersonalizado", listaIngresosPersonalizado);
 			request.setAttribute("listaGastosPersonalizado", listaGastosPersonalizado);
 			
+			System.out.println("----------------- listaIngresosPersonalizado --------------");
+			for(int i=0;i<listaIngresosPersonalizado.size();i++){
+				System.out.println(listaIngresosPersonalizado.get(i).getId_movimiento());
+			}
+			System.out.println("----------------- End listaIngresosPersonalizado --------------");
+			System.out.println("----------------- listaGastosPersonalizado --------------");
+			for(int i=0;i<listaGastosPersonalizado.size();i++){
+				System.out.println(listaGastosPersonalizado.get(i).getId_movimiento());
+			}
+			System.out.println("----------------- End listaGastosPersonalizado --------------");
+			
 			
 			//Total Ingresos Personalizado 
 			float totalIngresosPersonalizado = 0;
@@ -564,6 +580,9 @@ public class AnalisisPersonalizado extends HttpServlet {
 			//Beneficio Personalizado
 			float beneficioPersonalizado = totalIngresosPersonalizado-totalGastosPersonalizado;
 			
+			System.out.println("Ingresos personalizado "+totalIngresosPersonalizado);
+			System.out.println("Gastos personalizado "+totalGastosPersonalizado);
+			System.out.println("Beneficio personalizado "+beneficioPersonalizado);
 			
 			request.setAttribute("totalIngresosPersonalizado", totalIngresosPersonalizado);
 			request.setAttribute("totalGastosPersonalizado", totalGastosPersonalizado);
@@ -578,14 +597,17 @@ public class AnalisisPersonalizado extends HttpServlet {
 				int puntero=(listaIngresosPersonalizado.get(i).getId_clase())-1;
 				System.out.println("puntero: "+puntero);
 				float total = 0;
-				System.out.println("anterior: "+listaClaseIngresoPersonalizado.get(puntero));
-				System.out.println("importe: "+listaIngresosPersonalizado.get(i).getImporte());
+//				System.out.println("anterior: "+listaClaseIngresoPersonalizado.get(puntero));
+//				System.out.println("importe: "+listaIngresosPersonalizado.get(i).getImporte());
 				total = listaClaseIngresoPersonalizado.get(puntero) + listaIngresosPersonalizado.get(i).getImporte();
-				System.out.println("total: "+total);
+//				System.out.println("total: "+total);
 				listaClaseIngresoPersonalizado.set(puntero,total);
-				for(int j=0;j<listaClaseIngresoPersonalizado.size();j++){
-					System.out.println(listaClaseIngresoPersonalizado.get(j));
-				}
+//				for(int j=0;j<listaClaseIngresoPersonalizado.size();j++){
+//					System.out.println(listaClaseIngresoPersonalizado.get(j));
+//				}
+			}
+			for(int j=0;j<listaClaseIngresoPersonalizado.size();j++){
+				System.out.println(listaClaseIngresoPersonalizado.get(j));
 			}
 			request.setAttribute("listaClaseIngresoPersonalizado", listaClaseIngresoPersonalizado);
 			
@@ -598,16 +620,19 @@ public class AnalisisPersonalizado extends HttpServlet {
 				int puntero=(listaGastosPersonalizado.get(i).getId_clase())-1;
 				System.out.println("puntero: "+puntero);
 				float total = 0;
-				System.out.println("anterior: "+listaClaseGastoPersonalizado.get(puntero));
-				System.out.println("importe: "+listaGastosPersonalizado.get(i).getImporte());
+//				System.out.println("anterior: "+listaClaseGastoPersonalizado.get(puntero));
+//				System.out.println("importe: "+listaGastosPersonalizado.get(i).getImporte());
 				total = listaClaseGastoPersonalizado.get(puntero) + listaGastosPersonalizado.get(i).getImporte();
-				System.out.println("total: "+total);
+//				System.out.println("total: "+total);
 				listaClaseGastoPersonalizado.set(puntero,total);
-				for(int j=0;j<listaClaseGastoPersonalizado.size();j++){
-					System.out.println(listaClaseGastoPersonalizado.get(j));
-				}
+//				for(int j=0;j<listaClaseGastoPersonalizado.size();j++){
+//					System.out.println(listaClaseGastoPersonalizado.get(j));
+//				}
 			}
-			
+			for(int j=0;j<listaClaseGastoPersonalizado.size();j++){
+				System.out.println(listaClaseGastoPersonalizado.get(j));
+			}
+			request.setAttribute("listaClaseGastoPersonalizado", listaClaseGastoPersonalizado);
 			String personalizado = "personalizado";
 			request.setAttribute("personalizado", personalizado);
 			
@@ -617,8 +642,9 @@ public class AnalisisPersonalizado extends HttpServlet {
 			request.getRequestDispatcher("/protected_area/analisisPersonalizado.jsp").forward(request, response);
 
 		} else {
+			System.out.println("llega a mensaje");
 			request.getSession().setAttribute("mensaje", mensaje);
-			request.getRequestDispatcher("/protected_area/consultaAnalisisPersonalizado.jsp").forward(request, response);
+			request.getRequestDispatcher("/protected_area/loadConsultaMovimientos").forward(request, response);
 		}
 
 	}

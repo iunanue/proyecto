@@ -216,25 +216,20 @@
 				  		
 				  		<%for (int i = 0; i < listaClaseGasto.size(); i++) {%>
 						dataGastosMonth.setCell(<%=i%>, 0, '<%=listaClaseGasto.get(i).getDescripcion() %>');
-			dataGastosMonth
-					.setCell(
-	<%=i%>
-		, 1,
-	<%=listaClaseGastoMonth.get(i)%>
-		);
-	<%}%>
-		var optionsGastosMonth = {
-				title : 'Gastos del mes',
-				is3D : true,
-				chartArea : {
-					left : 0,
-					top : 0,
-					width : "100%",
-					height : "100%"
-				},
-				height : 400,
-				width : 450
-			};
+						dataGastosMonth.setCell(<%=i%>, 1,<%=listaClaseGastoMonth.get(i)%>);
+						<%}%>
+					var optionsGastosMonth = {
+							title : 'Gastos del mes',
+							is3D : true,
+							chartArea : {
+								left : 0,
+								top : 0,
+								width : "100%",
+								height : "100%"
+							},
+							height : 400,
+							width : 450
+						};
 
 			var chartGastosMonth = new google.visualization.PieChart(document
 					.getElementById('chartGastosMonth'));
@@ -272,7 +267,10 @@
 
 				chartIngresosPersonalizado.draw(dataIngresosPersonalizado,optionsIngresosPersonalizado);
 				
-				
+				var chartIngresosPersonalizado2 = new google.visualization.PieChart(document
+						.getElementById('chartIngresosPersonalizado2'));
+
+				chartIngresosPersonalizado2.draw(dataIngresosPersonalizado,optionsIngresosPersonalizado);
 				
 				
 				//Gastos Personalizado
@@ -299,6 +297,11 @@
 							.getElementById('chartGastosPersonalizado'));
 
 					chartGastosPersonalizado.draw(dataGastosPersonalizado,optionsGastosPersonalizado);
+					
+					var chartGastosPersonalizado2 = new google.visualization.PieChart(document
+							.getElementById('chartGastosPersonalizado2'));
+
+					chartGastosPersonalizado2.draw(dataGastosPersonalizado,optionsGastosPersonalizado);
 								
 		}
 	</script>
@@ -310,7 +313,7 @@
 	<jsp:include page="/common/userHeader.jsp" />
 
 	<div class="contentWrapper">
-		<h2 class="titulo2">Análisis</h2>
+		<h1 class="titulo1">Análisis</h1>
 
 		<ul class="nav nav-tabs navTiempo">
 			<li class="active"><a data-toggle="tab" href="#personalizado">Análisis Personalizado</a></li>
@@ -321,18 +324,59 @@
 		<div>
 			<div class="tab-content">
 
-				<div id="personalizado" class="tab-pane fade in active">
+				<div id="personalizado" class="tab-pane fade in active recuadro">
 					<ul class="nav nav-tabs navTipo">
 						<li class="active"><a data-toggle="tab" href="#generalPersonalizado">General</a></li>
 						<li><a data-toggle="tab" href="#ingresosPersonalizado">Ingresos</a></li>
 						<li><a data-toggle="tab" href="#gastosPersonalizado">Gastos</a></li>
 					</ul>
 					<div class="tab-content">
-
-						<!--Evolucion año -->
-
-
 						<div id="generalPersonalizado" class="tab-pane fade in active">
+							<div class="row bordeAbajo">
+								<div class="col-sm-6 bordeDerecha">
+									<div class="paddingAnalisis ">
+										<%
+										if (request.getSession().getAttribute("consulta") != null) {
+											String[] consultaLabel = {"Fechas: ", "Tipo: ","Clase: ","Usuario: ", "Cuenta: "};
+											List <String> consulta =(List)request.getSession().getAttribute("consulta");
+											%>
+											<h2><span class="glyphicon glyphicon-filter"></span>Filtros</h2>
+											<div class="list-group-analisis">
+											<%	
+											for(int i=0;i<consulta.size();i++){
+												if(consulta.get(i)!=null){
+													%>
+													<li class="list-group-item itemFiltro"><span class="filterLabel"><%=consultaLabel[i]%></span><%=consulta.get(i)%></li>
+												<% }
+					
+											} %>
+											</div>
+										<%
+											}
+											request.getSession().setAttribute("consulta", null);
+										%>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="paddingAnalisis ">
+										<h3>Resultado</h3>
+										<div class="paddingAnalisis">
+											<div class="paddingTop"></div>
+											<p class="labelBalance">
+												Ingresos = <span class="label label-pill label-success"><%=totalIngresosPersonalizado%></span>
+											</p>
+											<p class="labelBalance">
+												Gastos = <span class="label label-pill label-danger"><%=totalGastosPersonalizado%>
+											</p>
+											<p class="labelBalance totalBalance">
+												TOTAL = <span class="label label-pill label-success"><%=totalIngresosPersonalizado%></span>
+												- <span class="label label-pill label-danger"><%=totalGastosPersonalizado%></span>
+												= <span class="label label-pill label-info"><%=beneficioPersonalizado%></span>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
 							<div class="bordeAbajo">
 								<div class="paddingAnalisis">
 									<h3>Resultado</h3>
@@ -349,7 +393,6 @@
 											- <span class="label label-pill label-danger"><%=totalGastosPersonalizado%></span>
 											= <span class="label label-pill label-info"><%=beneficioPersonalizado%></span>
 										</p>
-
 									</div>
 								</div>
 							</div>
@@ -357,13 +400,13 @@
 								<div class="col-sm-6 bordeDerecha">
 									<div class="paddingAnalisis ">
 										<h3>Ingresos</h3>
-										<div id="chartIngresosPersonalizado"></div>
+										<div id="chartIngresosPersonalizado2"></div>
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="paddingAnalisis ">
 										<h3>Gastos</h3>
-										<div id="chartGastosPersonalizado"></div>
+										<div id="chartGastosPersonalizado2"></div>
 									</div>
 								</div>
 							</div>
@@ -430,8 +473,7 @@
 																value="<%=movimiento.getId_movimiento()%>">
 															<button type="submit" class="btn btn-default"
 																name="update">
-																<span class="glyphicon glyphicon-pencil"
-																	aria-hidden="true"></span>
+																<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 															</button>
 															<button type="submit" class="btn btn-default"
 																name="delete"
@@ -458,14 +500,12 @@
 												</tr>
 											</tbody>
 										</table>
-										<form method="POST"
-											action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
+										<form method="POST" action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 											<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+													request.getSession().setAttribute("listaMovimientosPe", listaIngresosYear);
 												%>
 											<button type="submit" class="btn btn-default" name="exportar">
-												<span class="glyphicon glyphicon-download-alt"
-													aria-hidden="true"></span> Descargar Excel
+												<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar Excel
 											</button>
 										</form>
 									</div>
@@ -797,7 +837,7 @@
 					</div>
 
 				</div>
-				<div id="year" class="tab-pane fade in active">
+				<div id="year" class="tab-pane fade recuadro">
 					<ul class="nav nav-tabs navTipo">
 						<li class="active"><a data-toggle="tab" href="#generalYear">General</a></li>
 						<li><a data-toggle="tab" href="#ingresosYear">Ingresos</a></li>
@@ -1280,7 +1320,7 @@
 					</div>
 				</div>
 
-				<div id="month" class="tab-pane fade">
+				<div id="month" class="tab-pane fade recuadro">
 						<ul class="nav nav-tabs navTipo">
 						<li class="active"><a data-toggle="tab" href="#generalMonth">General</a></li>
 						<li><a data-toggle="tab" href="#ingresosMonth">Ingresos</a></li>

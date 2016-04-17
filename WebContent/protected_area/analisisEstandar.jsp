@@ -244,7 +244,7 @@
 	<jsp:include page="/common/userHeader.jsp" />
 
 	<div class="contentWrapper">
-		<h2 class="titulo2">Análisis Estándar</h2>
+		<h1 class="titulo1">Análisis Estándar</h1>
 
 		<ul class="nav nav-tabs navTiempo">
 			<li class="active"><a data-toggle="tab" href="#year">Análisis del Año</a></li>
@@ -254,7 +254,7 @@
 		<div>
 			<div class="tab-content">
 
-				<div id="year" class="tab-pane fade in active">
+				<div id="year" class="tab-pane fade in active recuadro">
 					<ul class="nav nav-tabs navTipo">
 						<li class="active"><a data-toggle="tab" href="#generalYear">General</a></li>
 						<li><a data-toggle="tab" href="#ingresosYear">Ingresos</a></li>
@@ -738,7 +738,7 @@
 					</div>
 				</div>
 
-				<div id="month" class="tab-pane fade">
+				<div id="month" class="tab-pane fade recuadro">
 						<ul class="nav nav-tabs navTipo">
 						<li class="active"><a data-toggle="tab" href="#generalMonth">General</a></li>
 						<li><a data-toggle="tab" href="#ingresosMonth">Ingresos</a></li>

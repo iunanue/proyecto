@@ -12,7 +12,7 @@
 <title>Añadir Cuenta</title>
 </head>
 <body>
-	<jsp:include page="/common/header.jsp" />
+	<jsp:include page="/common/userHeader.jsp" />
 	
 	<div class="contentWrapper">
 		<div id="login-form" class="registro-form">

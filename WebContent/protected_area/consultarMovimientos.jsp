@@ -65,8 +65,7 @@
 			
 			<div class="contentWrapper">
 				<div id="login-form" class="registro-form">
-					<h1>GENERAR CONSULTA SOBRE MOVIMIENTOS</h1>
-					<h2></h2>
+					<h2 class="paddingIzquierda">Generar consulta sobre Movimientos</h2>
 					<fieldset>
 						<form method="POST" id="form" action="${pageContext.request.contextPath}/protected_area/generarConsultaMovimientos">									
 							<h3>Filtro de fecha:</h3>
