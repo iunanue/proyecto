@@ -90,7 +90,7 @@
 					is3D: true,
 					chartArea:{left:50},
 					height: 400,
-					width: 950,
+					width: 1000,
 					min: 300,
 					max: 1400
 			};
@@ -243,7 +243,7 @@
 
 	<jsp:include page="/common/userHeader.jsp" />
 
-	<div class="contentWrapper">
+	<div class="contentWrapperAnalisis">
 		<h1 class="titulo1">Análisis Estándar</h1>
 
 		<ul class="nav nav-tabs navTiempo">

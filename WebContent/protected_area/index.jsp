@@ -13,7 +13,7 @@
 </head>
 <body>
 	<jsp:include page="/common/userHeader.jsp" />
-	<div class="jumbotron">
+	<div class="jumbotron jumbotronPersonalizado">
 		<div class="container text-center">
 			<h1>
 				Bienvenido/a

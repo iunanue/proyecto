@@ -24,12 +24,12 @@
 				<% Usuario usuario = (Usuario) request.getAttribute("usuario");
 				%>
 					<form method="POST" action="${pageContext.request.contextPath}/protected_area/updateDeleteUsuario">
-						<input class="field" type="text" name="username" placeholder="Usuario" value="<%=usuario.getUsername()%>" readonly> 
-						<input class="field" type="text" name="mail" placeholder="E-mail" value="<%=usuario.getMail()%>"> 
-						<input class="field" type="password" name="password" placeholder="Contraseña" value="<%=usuario.getPassword()%>">
-						<input class="field" type="password" name="password2" placeholder="Repetir contraseña" value="<%=usuario.getPassword()%>">
+						<label>Username:<span class="required"> *</span></label><input class="field" type="text" name="username" placeholder="Usuario" value="<%=usuario.getUsername()%>" readonly> 
+						<label>E-mail:<span class="required"> *</span></label><input class="field" type="text" name="mail" placeholder="E-mail" value="<%=usuario.getMail()%>"> 
+						<label>Contraseña:<span class="required"> *</span></label><input class="field" type="password" name="password" placeholder="Contraseña" value="<%=usuario.getPassword()%>">
+						<label>Repetir contraseña:<span class="required"> *</span></label><input class="field" type="password" name="password2" placeholder="Repetir contraseña" value="<%=usuario.getPassword()%>">
 						<input class="button blue" name="delete" type="submit" value="Darse de baja" onClick="return confirm('¿Desea darse de baja?\nEsta operación NO podra deshacerse');">
-						<input class="button blue" name="update" type="submit" value="Actualizar" onClick="return confirm('¿Desea actualizar su información personal?');">
+						<input class="button blue" name="update" type="submit" value="Actualizar mi cuenta" onClick="return confirm('¿Desea actualizar su información personal?');">
 					</form>
 				</fieldset>
 				<%

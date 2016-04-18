@@ -312,7 +312,7 @@
 
 	<jsp:include page="/common/userHeader.jsp" />
 
-	<div class="contentWrapper">
+	<div class="contentWrapperAnalisis">
 		<h1 class="titulo1">Análisis</h1>
 
 		<ul class="nav nav-tabs navTiempo">
