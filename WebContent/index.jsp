@@ -12,7 +12,7 @@
 	<div class="jumbotron jumbotronPersonalizado">
 		<div class="container text-center">
 			<h1>SaveApp</h1>
-			<p>Registrar, analizar, ahorrar</p>	
+			<p>Registrar, Analizar, Ahorrar</p>	
 		</div>
 	</div>
 	<header class="major container 75%">
@@ -21,7 +21,7 @@
 
 				<div class="box alt container">
 					<section class="feature left">
-						<a href="#" class="image icon fa-signal"><img src="http://www.exteriores.gob.es/Portal/es/ServiciosAlCiudadano/SiViajasAlExtranjero/PublishingImages/3_1_4_REGISTRO_G.jpg" alt="" /></a>
+						<a href="#" class="image icon fa-signal"><img src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/img/registrar.jpg" alt="" /></a>
 						<div class="content">
 							<h3>Registrar</h3>
 							<p>El primer paso en el proceso del ahorro es registrar los movimientos de tu día a día. Para ello haz click en la pestaña 'Movimientos' de la barra superior y escoge la opción 'Registrar Movimiento'.</p>
@@ -29,17 +29,19 @@
 						</div>
 					</section>
 					<section class="feature right">
-						<a href="#" class="image icon fa-code"><img src="http://blog.fromdoppler.com/wp-content/uploads/main_reportes_de_email_marketing.png" alt="" /></a>
+						<a href="#" class="image icon fa-code"><img src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/img/analizar.png" alt="" /></a>
 						<div class="content">
-							<h3>The Second Thing</h3>
-							<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
+							<h3>Analizar</h3>
+							<p>Una vez registrados los movimientos del día a día, es necesario analizarlos. Para ello, puedes hacer click en la pestaña 'Movimientos' de la barra superior y escoger la opción 'Ver Movimientos', o si lo que prefieres es un análisis más profundo, haz click en la pestaña 'Análisis' de la barra superior y escoge la opción que desees.</p>
+							<p>¡Solo queda 1 paso!</p>
 						</div>
 					</section>
 					<section class="feature left">
-						<a href="#" class="image icon fa-mobile"><img src="http://www.huisvangebedtwente.nl/upload/image/investering-in-het-koninkrijk-van-god.png" alt="" /></a>
+						<a href="#" class="image icon fa-mobile"><img src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/img/ahorrar.png" alt="" /></a>
 						<div class="content">
-							<h3>The Third Thing</h3>
-							<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
+							<h3>Ahorrar</h3>
+							<p>Ahora que has obtenido información útil a través de la herramienta de análisis ofrecida, es hora de decidir cuáles son límites de gastos que quieres establecer. Para ello haz click en la pestaña 'Alertas' de la barra superior de herramientas, y escoge la opción 'Personalizar Alertas'.</p>
+							<p>¡Ahora te toca a tí! ¡A ahorrar!</p>
 						</div>
 					</section>
 				</div>

@@ -33,8 +33,11 @@
 						for(int i=0;i<consulta.size();i++){
 							if(consulta.get(i)!=null){
 								%>
-								<li class="list-group-item"><span class="filterLabel"><%=consultaLabel[i]%></span><%=consulta.get(i)%></li>
+								<li class="list-group-item itemFiltro"><span class="filterLabel"><%=consultaLabel[i]%></span><%=consulta.get(i)%></li>
 							<% }
+							else{
+								%><li class="list-group-item itemFiltro"><span class="filterLabel"><%=consultaLabel[i]%></span>No se ha aplicado el filtro</li><%
+							}
 
 						} %>
 						</div>

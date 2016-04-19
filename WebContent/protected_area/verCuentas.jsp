@@ -88,7 +88,7 @@
 	      var optionsSaldo = {
 					is3D: true,
 					chartArea:{left:50},
-					height: 400,
+// 					height: 400,
 					width: 1200,
 					min: 300,
 					max: 1400,

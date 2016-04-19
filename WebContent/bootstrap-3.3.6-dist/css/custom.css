@@ -7,7 +7,8 @@
 }
 
 .jumbotron h1 {
-	color: #11548F;
+/* 	color: #11548F; */
+color: #ffffff;
 }
 
 .tableContainer {
@@ -26,7 +27,9 @@ width:100%;
 	padding-top: 1%;
 	padding-bottom: 1%;
 }
-
+.labelDesglose{
+	font-weight: bold;
+}
 #divA
 {
   border:1px solid blue;
@@ -66,10 +69,15 @@ width:100%;
 	
 }
 .navTipo{
-	padding-top:5%;
+	padding-top:1%;
 }
 .labelBalance{
 	font-size: large;
+	font-weight: bold;
+	font-size: 20px;
+	padding-top:2%;
+/* 	border-top: 2px solid #c0c0c0; */
+	
 }
 .label-pill{
 	font-size: large;
@@ -79,10 +87,8 @@ width:100%;
 	border-top-color:transparent;
 }
 .totalBalance{
-	font-weight: bold;
-	font-size: 20px;
-	padding-top:2%;
 	border-top: 2px solid #c0c0c0;
+	width:50%;
 }
 
 .paddingTop{
@@ -98,7 +104,7 @@ width:100%;
 /* } */
 body {
 	/* Margin bottom by footer height */
-	margin-bottom: 5%;
+/* 	margin-bottom: 5%; */
 	/*   margin-bottom: 50px; */
 }
 
@@ -110,6 +116,7 @@ footer {
 	background-color: #555;
 	text-align: center;
 	color: white;
+	padding:0.5%;
 	
 }
 
@@ -213,9 +220,12 @@ footer p {
 	padding-bottom: 10px;
 }
 .jumbotronPersonalizado{
-	background: url(http://dgenergysaving.com/wp-content/uploads/2014/07/green-energy6.jpg)  center center;
+/* 	background: url(https://pixabay.com/static/uploads/photo/2015/04/15/09/46/sunset-723556_960_720.jpg) no-repeat center center; */
 /* 	background: url(http://www.esquaredelectrical.com/wp-content/uploads/2013/08/green_money.jpg) no-repeat center center; */
+/* 	background-color:#60b807; */
+	background-color:#33d06a;
 	height:30%;
+	width:100%
 }
 /* ///////////////////////////////////////////////////////////////////////////////////// */
 /* login-register form */
@@ -482,15 +492,16 @@ header {
 		}
 
 		header.major {
-			border-bottom-width: 1px;
-			border-color: rgba(224, 224, 224, 0.75);
-			border-style: solid;
-			border-top-width: 1px;
+/* 			border-bottom-width: 1px; */
+/* 			border-color: rgba(224, 224, 224, 0.75); */
+/* 			border-style: solid; */
+/* 			border-top-width: 1px; */
 			margin-bottom: 6em;
 			padding: 4em 0;
 			position: relative;
 			width: 50%;
    			height: 20%;
+   			font-style: italic;
 /*    			height y width mios */
 		}
 

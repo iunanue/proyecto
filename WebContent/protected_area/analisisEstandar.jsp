@@ -89,7 +89,7 @@
 // 				title : 'Evolucion del año',
 					is3D: true,
 					chartArea:{left:50},
-					height: 400,
+// 					height: 400,
 					width: 1000,
 					min: 300,
 					max: 1400
@@ -278,14 +278,14 @@
 								<div class="paddingAnalisis">
 									<h3>Resultado del año</h3>
 									<div class="paddingAnalisis">
-										<div class="paddingTop"></div>
 										<p class="labelBalance">
 											Ingresos = <span class="label label-pill label-success"><%=totalIngresosYear%></span>
 										</p>
 										<p class="labelBalance">
 											Gastos = <span class="label label-pill label-danger"><%=totalGastosYear%>
 										</p>
-										<p class="labelBalance totalBalance">
+										<div class=totalBalance></div>
+										<p class="labelBalance">
 											TOTAL = <span class="label label-pill label-success"><%=totalIngresosYear%></span>
 											- <span class="label label-pill label-danger"><%=totalGastosYear%></span>
 											= <span class="label label-pill label-info"><%=beneficioYear%></span>
@@ -438,7 +438,8 @@
 														<p class="labelBalance">
 															Gastos = <span class="label label-pill label-danger"><%=totalGastosYear%>
 														</p>
-														<p class="labelBalance totalBalance">
+														<div class=totalBalance></div>
+														<p class="labelBalance">
 															TOTAL = <span class="label label-pill label-success"><%=totalIngresosYear%></span>
 															- <span class="label label-pill label-danger"><%=totalGastosYear%></span>
 															= <span class="label label-pill label-info"><%=beneficioYear%></span>
@@ -454,7 +455,7 @@
 																<%
 																	for (int i = 0; i < listaClaseIngreso.size(); i++) {
 																%>
-																<li><p><%=listaClaseIngreso.get(i).getDescripcion()%>:
+																<li><p><span class="labelDesglose"><%=listaClaseIngreso.get(i).getDescripcion()%></span>:
 																		<%=listaClaseIngresoYear.get(i)%></p></li>
 																<%
 																	}
@@ -600,7 +601,8 @@
 														<p class="labelBalance">
 															Gastos = <span class="label label-pill label-danger"><%=totalGastosYear%>
 														</p>
-														<p class="labelBalance totalBalance">
+														<div class=totalBalance></div>
+														<p class="labelBalance">
 															TOTAL = <span class="label label-pill label-success"><%=totalIngresosYear%></span>
 															- <span class="label label-pill label-danger"><%=totalGastosYear%></span>
 															= <span class="label label-pill label-info"><%=beneficioYear%></span>
@@ -615,7 +617,7 @@
 																<%
 																	for (int i = 0; i < listaClaseGasto.size(); i++) {
 																%>
-																<li><p><%=listaClaseGasto.get(i).getDescripcion()%>:
+																<li><p><span class="labelDesglose"><%=listaClaseGasto.get(i).getDescripcion()%></span>:
 																		<%=listaClaseGastoYear.get(i)%></p></li>
 																<%
 																	}
@@ -762,14 +764,14 @@
 								<div class="paddingAnalisis">
 									<h3>Resultado del Mes</h3>
 									<div class="paddingAnalisis">
-										<div class="paddingTop"></div>
 										<p class="labelBalance">
 											Ingresos = <span class="label label-pill label-success"><%=totalIngresosMonth%></span>
 										</p>
 										<p class="labelBalance">
 											Gastos = <span class="label label-pill label-danger"><%=totalGastosMonth%>
 										</p>
-										<p class="labelBalance totalBalance">
+										<div class=totalBalance></div>
+										<p class="labelBalance">
 											TOTAL = <span class="label label-pill label-success"><%=totalIngresosMonth%></span>
 											- <span class="label label-pill label-danger"><%=totalGastosMonth%></span>
 											= <span class="label label-pill label-info"><%=beneficioMonth%></span>
@@ -920,7 +922,8 @@
 														<p class="labelBalance">
 															Gastos = <span class="label label-pill label-danger"><%=totalGastosMonth%>
 														</p>
-														<p class="labelBalance totalBalance">
+														<div class=totalBalance></div>
+														<p class="labelBalance">
 															TOTAL = <span class="label label-pill label-success"><%=totalIngresosMonth%></span>
 															- <span class="label label-pill label-danger"><%=totalGastosMonth%></span>
 															= <span class="label label-pill label-info"><%=beneficioMonth%></span>
@@ -936,8 +939,7 @@
 																<%
 																	for (int i = 0; i < listaClaseIngreso.size(); i++) {
 																%>
-																<li><p><%=listaClaseIngreso.get(i).getDescripcion()%>:
-																		<%=listaClaseIngresoMonth.get(i)%></p></li>
+																<li><p><span class="labelDesglose"><%=listaClaseIngreso.get(i).getDescripcion()%></span>:<%=listaClaseIngresoMonth.get(i)%></p></li>
 																<%
 																	}
 																%>
@@ -1082,7 +1084,8 @@
 														<p class="labelBalance">
 															Gastos = <span class="label label-pill label-danger"><%=totalGastosMonth%>
 														</p>
-														<p class="labelBalance totalBalance">
+														<div class=totalBalance></div>
+														<p class="labelBalance">
 															TOTAL = <span class="label label-pill label-success"><%=totalIngresosMonth%></span>
 															- <span class="label label-pill label-danger"><%=totalGastosMonth%></span>
 															= <span class="label label-pill label-info"><%=beneficioMonth%></span>
@@ -1097,8 +1100,7 @@
 																<%
 																	for (int i = 0; i < listaClaseGasto.size(); i++) {
 																%>
-																<li><p><%=listaClaseGasto.get(i).getDescripcion()%>:
-																		<%=listaClaseGastoMonth.get(i)%></p></li>
+																<li><p><span class="labelDesglose"><%=listaClaseGasto.get(i).getDescripcion()%></span>:<%=listaClaseGastoMonth.get(i)%></p></li>
 																<%
 																	}
 																%>
