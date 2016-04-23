@@ -1,8 +1,8 @@
 <%@page import="controller.Config"%>
-<%@page import="model.clases.Movimiento"%>
-<%@page import="model.clases.ClaseIngreso"%>
-<%@page import="model.clases.ClaseGasto"%>
-<%@page import="classes.Cuenta"%>
+<%@page import="model.classes.Movimiento"%>
+<%@page import="model.classes.ClaseIngreso"%>
+<%@page import="model.classes.ClaseGasto"%>
+<%@page import="model.classes.Cuenta"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -724,7 +724,7 @@
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+													request.getSession().setAttribute("listaMovimientos", listaGastosYear);
 												%>
 												<button type="submit" class="btn btn-default"
 													name="exportar">
@@ -885,7 +885,7 @@
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+													request.getSession().setAttribute("listaMovimientos", listaMovimientosMonth);
 												%>
 												<button type="submit" class="btn btn-default"
 													name="exportar">
@@ -1046,7 +1046,7 @@
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+													request.getSession().setAttribute("listaMovimientos", listaIngresosMonth);
 												%>
 												<button type="submit" class="btn btn-default"
 													name="exportar">
@@ -1206,7 +1206,7 @@
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+													request.getSession().setAttribute("listaMovimientos", listaGastosMonth);
 												%>
 												<button type="submit" class="btn btn-default"
 													name="exportar">

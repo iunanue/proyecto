@@ -1,6 +1,5 @@
-package controller;
+package model.business;
 
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,40 +9,53 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import model.classes.ClaseGasto;
 import model.classes.ClaseIngreso;
 import model.classes.Cuenta;
 import model.classes.Movimiento;
 import model.data.Connect;
 
-/**
- * Servlet implementation class AnalisisEstandar
- */
-@WebServlet("/protected_area/analisisEstandar")
-public class AnalisisEstandar extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class GestorAnalisisService {
 	
-	Connect c = new Connect();
+	private static GestorAnalisisService gestorAnalisisService = null;
 	
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AnalisisEstandar() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+//	List<String>listaMeses;
+	List<String> listaMeses = new ArrayList<String>(Arrays.asList(new String[] {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"}));
+	List<Integer>listaMesesUltimoDia = new ArrayList<Integer>(Arrays.asList(31,29,31,30,31,30,31,31,30,31,30,31));
+	List <Float> listaMesesIngresos;
+	List <Float> listaMesesGastos;
+	List <Float> listaMesesBeneficios;
+	List <Movimiento> listaMovimientosYear;
+	List <Movimiento> listaIngresosYear;
+	List <Movimiento> listaGastosYear;
+	float totalIngresosYear;
+	float totalGastosYear;
+	float beneficioYear;
+	List <Movimiento> listaMovimientosMonth;
+	List <Movimiento> listaIngresosMonth;
+	List <Movimiento> listaGastosMonth;
+	float totalIngresosMonth;
+	float totalGastosMonth;
+	float beneficioMonth;
+	List <ClaseIngreso> listaClaseIngreso;
+	List <ClaseGasto> listaClaseGasto;
+	List <Float> listaClaseIngresoYear;
+	List <Float> listaClaseIngresoMonth;
+	List <Float> listaClaseGastoYear;
+	List <Float> listaClaseGastoMonth;
+	List <Cuenta> listaCuentas;
+	
+	
+	
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public static GestorAnalisisService getInstance() {
+		if (gestorAnalisisService == null) {
+			gestorAnalisisService = new GestorAnalisisService();
+		}
+		return gestorAnalisisService;
+	}
+	public void analisisEstandar(){
+		
 		
 		Timestamp fromYear;	
 		Timestamp toYear;	
@@ -138,8 +150,7 @@ public class AnalisisEstandar extends HttpServlet {
 		//Evolucion year
 		
 		
-		List<String>listaMeses = new ArrayList<String>(Arrays.asList(new String[] {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"}));
-		List<Integer>listaMesesUltimoDia = new ArrayList<Integer>(Arrays.asList(31,29,31,30,31,30,31,31,30,31,30,31));
+		
 		List<Timestamp>listaMesesFechasFrom = new ArrayList <Timestamp>();
 		List<Timestamp>listaMesesFechasTo = new ArrayList <Timestamp>();
 		int contador = 0;
@@ -174,9 +185,9 @@ public class AnalisisEstandar extends HttpServlet {
 			System.out.println(listaMesesFechasTo.get(i));
 		}
 		List<Movimiento>listaMesesMovimientos = new ArrayList<Movimiento>();
-		List <Float> listaMesesIngresos = new ArrayList<Float>();
-		List <Float> listaMesesGastos = new ArrayList<Float>();
-		List <Float> listaMesesBeneficios = new ArrayList<Float>();
+		listaMesesIngresos = new ArrayList<Float>();
+		listaMesesGastos = new ArrayList<Float>();
+		listaMesesBeneficios = new ArrayList<Float>();
 		for(int i=0;i<listaMeses.size();i++){
 			listaMesesIngresos.add((float) 0);
 			listaMesesGastos.add((float) 0);
@@ -185,7 +196,7 @@ public class AnalisisEstandar extends HttpServlet {
 		
 		List <Movimiento> listaMovimientosEvolucionYear;
 		for(int i=0;i<listaMeses.size();i++){
-			listaMovimientosEvolucionYear = c.getIDao().getGenerarAnalisisEstandar(listaMesesFechasFrom.get(i), listaMesesFechasTo.get(i));
+			listaMovimientosEvolucionYear = Connect.getIDao().getGenerarAnalisisEstandar(listaMesesFechasFrom.get(i), listaMesesFechasTo.get(i));
 			float totalIngresos = 0;
 			float totalGastos = 0;
 			for(int j=0;j<listaMovimientosEvolucionYear.size();j++){
@@ -216,20 +227,20 @@ public class AnalisisEstandar extends HttpServlet {
 			System.out.println(listaMesesBeneficios.get(i));
 		}
 
-		request.setAttribute("listaMeses", listaMeses);
-		request.setAttribute("listaMesesIngresos", listaMesesIngresos);
-		request.setAttribute("listaMesesGastos", listaMesesGastos);
-		request.setAttribute("listaMesesBeneficios", listaMesesBeneficios);
+//		request.setAttribute("listaMeses", listaMeses);
+//		request.setAttribute("listaMesesIngresos", listaMesesIngresos);
+//		request.setAttribute("listaMesesGastos", listaMesesGastos);
+//		request.setAttribute("listaMesesBeneficios", listaMesesBeneficios);
 		
 			
 		
 		//Movimientos
-		List <Movimiento> listaMovimientosYear = c.getIDao().getGenerarAnalisisEstandar(fromYear, toYear);
-		request.setAttribute("listaMovimientosYear", listaMovimientosYear);
+		listaMovimientosYear = Connect.getIDao().getGenerarAnalisisEstandar(fromYear, toYear);
+//		request.setAttribute("listaMovimientosYear", listaMovimientosYear);
 		
 		//Movimientos Year (Ingresos y Gastos) 
-		List <Movimiento> listaIngresosYear = new ArrayList<Movimiento>();
-		List <Movimiento> listaGastosYear = new ArrayList<Movimiento>();
+		listaIngresosYear = new ArrayList<Movimiento>();
+		listaGastosYear = new ArrayList<Movimiento>();
 		for(int i=0;i<listaMovimientosYear.size();i++){
 			if(listaMovimientosYear.get(i).getTipo().equals("Ingreso")){
 				listaIngresosYear.add(listaMovimientosYear.get(i));
@@ -238,8 +249,8 @@ public class AnalisisEstandar extends HttpServlet {
 				listaGastosYear.add(listaMovimientosYear.get(i));
 			}
 		}
-		request.setAttribute("listaIngresosYear", listaIngresosYear);
-		request.setAttribute("listaGastosYear", listaGastosYear);
+//		request.setAttribute("listaIngresosYear", listaIngresosYear);
+//		request.setAttribute("listaGastosYear", listaGastosYear);
 		
 		System.out.println("listaIngresosYear:" +listaIngresosYear);
 		for(int i=0;i<listaIngresosYear.size();i++){
@@ -247,34 +258,34 @@ public class AnalisisEstandar extends HttpServlet {
 		}
 		System.out.println("-------------------------------------");
 		//Total Ingresos Year
-		float totalIngresosYear = 0;
+		totalIngresosYear = 0;
 		for(int i=0;i<listaIngresosYear.size();i++){
 			totalIngresosYear = totalIngresosYear + listaIngresosYear.get(i).getImporte();
 		}
 		System.out.println("totalIngresosYear:" +totalIngresosYear);
 		
 		//Total Gastos Year
-		float totalGastosYear = 0;
+		totalGastosYear = 0;
 		for(int i=0;i<listaGastosYear.size();i++){
 			totalGastosYear = totalGastosYear + listaGastosYear.get(i).getImporte();
 		}
 		System.out.println("totalGastosYear: " +totalGastosYear);
 		
 		//Beneficio Year
-		float beneficioYear = totalIngresosYear-totalGastosYear;
+		beneficioYear = totalIngresosYear-totalGastosYear;
 		System.out.println("beneficioYear: " +beneficioYear);
 		
 	
-		request.setAttribute("totalIngresosYear", totalIngresosYear);
-		request.setAttribute("totalGastosYear", totalGastosYear);
-		request.setAttribute("beneficioYear", beneficioYear);
+//		request.setAttribute("totalIngresosYear", totalIngresosYear);
+//		request.setAttribute("totalGastosYear", totalGastosYear);
+//		request.setAttribute("beneficioYear", beneficioYear);
 		
 		//Movimientos Month (Ingresos y Gastos) 
-		List <Movimiento> listaMovimientosMonth = c.getIDao().getGenerarAnalisisEstandar(fromMonth, toMonth);
-		request.setAttribute("listaMovimientosMonth", listaMovimientosMonth);
+		listaMovimientosMonth = Connect.getIDao().getGenerarAnalisisEstandar(fromMonth, toMonth);
+//		request.setAttribute("listaMovimientosMonth", listaMovimientosMonth);
 		
-		List <Movimiento> listaIngresosMonth = new ArrayList<Movimiento>();
-		List <Movimiento> listaGastosMonth = new ArrayList<Movimiento>();
+		listaIngresosMonth = new ArrayList<Movimiento>();
+		listaGastosMonth = new ArrayList<Movimiento>();
 		for(int i=0;i<listaMovimientosMonth.size();i++){
 			if(listaMovimientosMonth.get(i).getTipo().equals("Ingreso")){
 				listaIngresosMonth.add(listaMovimientosMonth.get(i));
@@ -283,39 +294,39 @@ public class AnalisisEstandar extends HttpServlet {
 				listaGastosMonth.add(listaMovimientosMonth.get(i));
 			}
 		}
-		request.setAttribute("listaIngresosMonth", listaIngresosMonth);
-		request.setAttribute("listaGastosMonth", listaGastosMonth);
+//		request.setAttribute("listaIngresosMonth", listaIngresosMonth);
+//		request.setAttribute("listaGastosMonth", listaGastosMonth);
 		
 		
 		
 		//Total Ingresos Month
-		float totalIngresosMonth = 0;
+		totalIngresosMonth = 0;
 		for(int i=0;i<listaIngresosMonth.size();i++){
 			totalIngresosMonth = totalIngresosMonth + listaIngresosMonth.get(i).getImporte();
 		}
 		//Total Gastos Month
-		float totalGastosMonth = 0;
+		totalGastosMonth = 0;
 		for(int i=0;i<listaGastosMonth.size();i++){
 			totalGastosMonth = totalGastosMonth + listaGastosMonth.get(i).getImporte();
 		}
 		//Beneficio Month
-		float beneficioMonth = totalIngresosMonth-totalGastosMonth;
+		beneficioMonth = totalIngresosMonth-totalGastosMonth;
 		
-		request.setAttribute("totalIngresosMonth", totalIngresosMonth);
-		request.setAttribute("totalGastosMonth", totalGastosMonth);
-		request.setAttribute("beneficioMonth", beneficioMonth);
+//		request.setAttribute("totalIngresosMonth", totalIngresosMonth);
+//		request.setAttribute("totalGastosMonth", totalGastosMonth);
+//		request.setAttribute("beneficioMonth", beneficioMonth);
 		
 		
 		//ClaseIngreso y ClaseGasto
-		List <ClaseIngreso> listaClaseIngreso = c.getIDao().getClaseIngreso();
-		request.setAttribute("listaClaseIngreso", listaClaseIngreso);
+		listaClaseIngreso = Connect.getIDao().getClaseIngreso();
+//		request.setAttribute("listaClaseIngreso", listaClaseIngreso);
 		System.out.println("listaClaseIngreso size:" +listaClaseIngreso.size());
 		
-		List <ClaseGasto> listaClaseGasto = c.getIDao().getClaseGasto();
-		request.setAttribute("listaClaseGasto", listaClaseGasto);
+		listaClaseGasto = Connect.getIDao().getClaseGasto();
+//		request.setAttribute("listaClaseGasto", listaClaseGasto);
 		
 		//ClaseIngreso Year
-		List <Float> listaClaseIngresoYear = new ArrayList<Float>();
+		listaClaseIngresoYear = new ArrayList<Float>();
 		for(int i=0;i<listaClaseIngreso.size();i++){
 			listaClaseIngresoYear.add((float) 0);
 		}
@@ -340,7 +351,7 @@ public class AnalisisEstandar extends HttpServlet {
 				System.out.println(listaClaseIngresoYear.get(j));
 			}
 		}
-		request.setAttribute("listaClaseIngresoYear", listaClaseIngresoYear);
+//		request.setAttribute("listaClaseIngresoYear", listaClaseIngresoYear);
 		System.out.println("-------------");
 		for(int i=0;i<listaClaseIngresoYear.size();i++){
 			System.out.println(listaClaseIngresoYear.get(i));
@@ -350,7 +361,7 @@ public class AnalisisEstandar extends HttpServlet {
 		System.out.println("-------------------------------------");
 		
 		//ClaseIngreso Month
-		List <Float> listaClaseIngresoMonth = new ArrayList<Float>();
+		listaClaseIngresoMonth = new ArrayList<Float>();
 		for(int i=0;i<listaClaseIngreso.size();i++){
 			listaClaseIngresoMonth.add((float) 0);
 		}
@@ -367,10 +378,10 @@ public class AnalisisEstandar extends HttpServlet {
 				System.out.println(listaClaseIngresoMonth.get(j));
 			}
 		}
-		request.setAttribute("listaClaseIngresoMonth", listaClaseIngresoMonth);
+//		request.setAttribute("listaClaseIngresoMonth", listaClaseIngresoMonth);
 		
 		//ClaseGasto Year
-		List <Float> listaClaseGastoYear = new ArrayList<Float>();
+		listaClaseGastoYear = new ArrayList<Float>();
 		for(int i=0;i<listaClaseGasto.size();i++){
 			listaClaseGastoYear.add((float) 0);
 		}
@@ -387,10 +398,10 @@ public class AnalisisEstandar extends HttpServlet {
 				System.out.println(listaClaseGastoYear.get(j));
 			}
 		}
-		request.setAttribute("listaClaseGastoYear", listaClaseGastoYear);
+//		request.setAttribute("listaClaseGastoYear", listaClaseGastoYear);
 		
 		//ClaseGasto Month
-		List <Float> listaClaseGastoMonth = new ArrayList<Float>();
+		listaClaseGastoMonth = new ArrayList<Float>();
 		for(int i=0;i<listaClaseGasto.size();i++){
 			listaClaseGastoMonth.add((float) 0);
 		}
@@ -407,21 +418,154 @@ public class AnalisisEstandar extends HttpServlet {
 				System.out.println(listaClaseGastoMonth.get(j));
 			}
 		}
-		request.setAttribute("listaClaseGastoMonth", listaClaseGastoMonth);
+//		request.setAttribute("listaClaseGastoMonth", listaClaseGastoMonth);
 		
 		//Cuentas
-		List <Cuenta> listaCuentas = c.getIDao().getCuentas();
-		request.setAttribute("listaCuentas", listaCuentas);
+		listaCuentas = Connect.getIDao().getCuentas();
+//		request.setAttribute("listaCuentas", listaCuentas);
 		
-		request.getRequestDispatcher("/protected_area/analisisEstandar.jsp").forward(request, response);
+//		request.getRequestDispatcher("/protected_area/analisisEstandar.jsp").forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	public void clear(){
+		
+	}
+	public List<String> getListaMeses() {
+		return listaMeses;
+	}
+	public void setListaMeses(List<String> listaMeses) {
+		this.listaMeses = listaMeses;
+	}
+	public List<Float> getListaMesesIngresos() {
+		return listaMesesIngresos;
+	}
+	public void setListaMesesIngresos(List<Float> listaMesesIngresos) {
+		this.listaMesesIngresos = listaMesesIngresos;
+	}
+	public List<Float> getListaMesesGastos() {
+		return listaMesesGastos;
+	}
+	public void setListaMesesGastos(List<Float> listaMesesGastos) {
+		this.listaMesesGastos = listaMesesGastos;
+	}
+	public List<Float> getListaMesesBeneficios() {
+		return listaMesesBeneficios;
+	}
+	public void setListaMesesBeneficios(List<Float> listaMesesBeneficios) {
+		this.listaMesesBeneficios = listaMesesBeneficios;
+	}
+	public List<Movimiento> getListaMovimientosYear() {
+		return listaMovimientosYear;
+	}
+	public void setListaMovimientosYear(List<Movimiento> listaMovimientosYear) {
+		this.listaMovimientosYear = listaMovimientosYear;
+	}
+	public List<Movimiento> getListaIngresosYear() {
+		return listaIngresosYear;
+	}
+	public void setListaIngresosYear(List<Movimiento> listaIngresosYear) {
+		this.listaIngresosYear = listaIngresosYear;
+	}
+	public List<Movimiento> getListaGastosYear() {
+		return listaGastosYear;
+	}
+	public void setListaGastosYear(List<Movimiento> listaGastosYear) {
+		this.listaGastosYear = listaGastosYear;
+	}
+	public float getTotalIngresosYear() {
+		return totalIngresosYear;
+	}
+	public void setTotalIngresosYear(float totalIngresosYear) {
+		this.totalIngresosYear = totalIngresosYear;
+	}
+	public float getTotalGastosYear() {
+		return totalGastosYear;
+	}
+	public void setTotalGastosYear(float totalGastosYear) {
+		this.totalGastosYear = totalGastosYear;
+	}
+	public float getBeneficioYear() {
+		return beneficioYear;
+	}
+	public void setBeneficioYear(float beneficioYear) {
+		this.beneficioYear = beneficioYear;
+	}
+	public List<Movimiento> getListaMovimientosMonth() {
+		return listaMovimientosMonth;
+	}
+	public void setListaMovimientosMonth(List<Movimiento> listaMovimientosMonth) {
+		this.listaMovimientosMonth = listaMovimientosMonth;
+	}
+	public List<Movimiento> getListaIngresosMonth() {
+		return listaIngresosMonth;
+	}
+	public void setListaIngresosMonth(List<Movimiento> listaIngresosMonth) {
+		this.listaIngresosMonth = listaIngresosMonth;
+	}
+	public List<Movimiento> getListaGastosMonth() {
+		return listaGastosMonth;
+	}
+	public void setListaGastosMonth(List<Movimiento> listaGastosMonth) {
+		this.listaGastosMonth = listaGastosMonth;
+	}
+	public float getTotalIngresosMonth() {
+		return totalIngresosMonth;
+	}
+	public void setTotalIngresosMonth(float totalIngresosMonth) {
+		this.totalIngresosMonth = totalIngresosMonth;
+	}
+	public float getTotalGastosMonth() {
+		return totalGastosMonth;
+	}
+	public void setTotalGastosMonth(float totalGastosMonth) {
+		this.totalGastosMonth = totalGastosMonth;
+	}
+	public float getBeneficioMonth() {
+		return beneficioMonth;
+	}
+	public void setBeneficioMonth(float beneficioMonth) {
+		this.beneficioMonth = beneficioMonth;
+	}
+	public List<ClaseIngreso> getListaClaseIngreso() {
+		return listaClaseIngreso;
+	}
+	public void setListaClaseIngreso(List<ClaseIngreso> listaClaseIngreso) {
+		this.listaClaseIngreso = listaClaseIngreso;
+	}
+	public List<ClaseGasto> getListaClaseGasto() {
+		return listaClaseGasto;
+	}
+	public void setListaClaseGasto(List<ClaseGasto> listaClaseGasto) {
+		this.listaClaseGasto = listaClaseGasto;
+	}
+	public List<Float> getListaClaseIngresoYear() {
+		return listaClaseIngresoYear;
+	}
+	public void setListaClaseIngresoYear(List<Float> listaClaseIngresoYear) {
+		this.listaClaseIngresoYear = listaClaseIngresoYear;
+	}
+	public List<Float> getListaClaseIngresoMonth() {
+		return listaClaseIngresoMonth;
+	}
+	public void setListaClaseIngresoMonth(List<Float> listaClaseIngresoMonth) {
+		this.listaClaseIngresoMonth = listaClaseIngresoMonth;
+	}
+	public List<Float> getListaClaseGastoYear() {
+		return listaClaseGastoYear;
+	}
+	public void setListaClaseGastoYear(List<Float> listaClaseGastoYear) {
+		this.listaClaseGastoYear = listaClaseGastoYear;
+	}
+	public List<Float> getListaClaseGastoMonth() {
+		return listaClaseGastoMonth;
+	}
+	public void setListaClaseGastoMonth(List<Float> listaClaseGastoMonth) {
+		this.listaClaseGastoMonth = listaClaseGastoMonth;
+	}
+	public List<Cuenta> getListaCuentas() {
+		return listaCuentas;
+	}
+	public void setListaCuentas(List<Cuenta> listaCuentas) {
+		this.listaCuentas = listaCuentas;
 	}
 
 }

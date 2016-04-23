@@ -1,4 +1,4 @@
-package controller;
+package controller.analisis;
 
 import java.io.IOException;
 import java.util.List;
