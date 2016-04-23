@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.business.GestorCuentasService;
+import model.business.GestorUsuariosService;
 import model.classes.Cuenta;
 import model.classes.Usuario;
 import model.data.Connect;
@@ -36,9 +38,9 @@ public class LoadAnalisisPersonalizado extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<Usuario> listaUsuarios = c.getIDao().getUsers();
+		List<Usuario> listaUsuarios = GestorUsuariosService.getInstance().getUsers();
 		request.setAttribute("listaUsuarios", listaUsuarios);
-		List<Cuenta> listaCuentas = c.getIDao().getCuentas();		 
+		List<Cuenta> listaCuentas = GestorCuentasService.getInstance().getCuentas();		 
 		request.setAttribute("listaCuentas", listaCuentas);
 		
 		request.getRequestDispatcher("/protected_area/consultaAnalisisPersonalizado.jsp").forward(request, response);	

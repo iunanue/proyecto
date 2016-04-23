@@ -1,8 +1,8 @@
 <%@page import="controller.Config"%>
-<%@page import="classes.Usuario"%>
-<%@page import="classes.ClaseIngreso"%>
-<%@page import="classes.ClaseGasto"%>
-<%@page import="classes.Cuenta"%>
+<%@page import="model.classes.Usuario"%>
+<%@page import="model.classes.ClaseIngreso"%>
+<%@page import="model.classes.ClaseGasto"%>
+<%@page import="model.classes.Cuenta"%>
 <%@ page import="java.util.List"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"

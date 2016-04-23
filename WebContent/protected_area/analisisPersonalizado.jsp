@@ -1,8 +1,8 @@
 <%@page import="controller.Config"%>
-<%@page import="classes.Movimiento"%>
-<%@page import="classes.ClaseIngreso"%>
-<%@page import="classes.ClaseGasto"%>
-<%@page import="classes.Cuenta"%>
+<%@page import="model.classes.Movimiento"%>
+<%@page import="model.classes.ClaseIngreso"%>
+<%@page import="model.classes.ClaseGasto"%>
+<%@page import="model.classes.Cuenta"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -486,7 +486,7 @@
 										</table>
 										<form method="POST" action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 											<%
-													request.getSession().setAttribute("listaMovimientosPe", listaIngresosYear);
+													request.getSession().setAttribute("listaMovimientos", listaMovimientosPersonalizado);
 												%>
 											<button type="submit" class="btn btn-default" name="exportar">
 												<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar Excel
@@ -646,7 +646,7 @@
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+													request.getSession().setAttribute("listaMovimientos", listaIngresosPersonalizado);
 												%>
 												<button type="submit" class="btn btn-default"
 													name="exportar">
@@ -807,7 +807,7 @@
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+													request.getSession().setAttribute("listaMovimientos", listaGastosPersonalizado);
 												%>
 												<button type="submit" class="btn btn-default"
 													name="exportar">
@@ -968,7 +968,7 @@
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+													request.getSession().setAttribute("listaMovimientos", listaMovimientosYear);
 												%>
 												<button type="submit" class="btn btn-default"
 													name="exportar">
@@ -1291,7 +1291,7 @@
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+													request.getSession().setAttribute("listaMovimientos", listaGastosYear);
 												%>
 												<button type="submit" class="btn btn-default"
 													name="exportar">
@@ -1452,7 +1452,7 @@
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+													request.getSession().setAttribute("listaMovimientos", listaMovimientosMonth);
 												%>
 												<button type="submit" class="btn btn-default"
 													name="exportar">
@@ -1614,7 +1614,7 @@
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+													request.getSession().setAttribute("listaMovimientos", listaIngresosMonth);
 												%>
 												<button type="submit" class="btn btn-default"
 													name="exportar">
@@ -1775,7 +1775,7 @@
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+													request.getSession().setAttribute("listaMovimientos", listaGastosMonth);
 												%>
 												<button type="submit" class="btn btn-default"
 													name="exportar">

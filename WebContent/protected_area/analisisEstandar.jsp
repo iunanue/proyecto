@@ -238,6 +238,15 @@
 	</script>
 
 
+	<script>
+	function setGeneralYear(){
+		<%
+		request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); 
+		%>
+	}
+	
+	</script>
+
 
 	<jsp:include page="/common/userHeader.jsp" />
 
@@ -400,11 +409,15 @@
 											</table>
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
+<%-- 												<%request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); %> --%>
 												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
+												for(int i=0;i<listaMovimientosYear.size();i++){
+													System.out.println("ID: "+ listaMovimientosYear.get(i).getId_movimiento());
+												}
+												System.out.println("------");
 												%>
 												<button type="submit" class="btn btn-default"
-													name="exportar">
+													name="exportar" onclick="setGeneralYear()">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
@@ -748,7 +761,6 @@
 					</ul>
 					<div class="tab-content">
 					
-					<!--Evolucion año -->
 					
 					
 						<div id="generalMonth" class="tab-pane fade in active">
