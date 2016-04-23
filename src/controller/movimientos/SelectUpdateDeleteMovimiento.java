@@ -1,4 +1,4 @@
-package controller;
+package controller.movimientos;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.business.GestorMovimientosService;
 import model.classes.Movimiento;
 import model.data.Connect;
 
@@ -44,7 +45,7 @@ public class SelectUpdateDeleteMovimiento extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		id_movimiento =  Integer.parseInt(request.getParameter("id_movimiento"));
-		movimiento = c.getIDao().getMovimiento(id_movimiento);
+		movimiento = GestorMovimientosService.getInstance().getMovimiento(id_movimiento);
 		
 		if (request.getParameter("update") != null) {
 			System.out.println("llega update");
@@ -65,7 +66,7 @@ public class SelectUpdateDeleteMovimiento extends HttpServlet {
 	}
 	private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		c.getIDao().deleteMovimiento(movimiento);	
+		GestorMovimientosService.getInstance().deleteMovimiento(movimiento);	
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 

@@ -1,4 +1,4 @@
-package controller;
+package controller.movimientos;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+import model.business.GestorMovimientosService;
 import model.classes.ClaseGasto;
 import model.classes.ClaseIngreso;
 import model.classes.Cuenta;
@@ -65,16 +66,6 @@ public class AddMovimiento extends HttpServlet {
 	
 		
 		
-
-//		System.out.println(tipo);
-//		System.out.println("Fecha " + fecha);
-//		System.out.println("Fecha param " + request.getParameter("fecha"));
-//		System.out.println(id_clase);
-//		System.out.println(username);
-//		System.out.println(id_cuenta);
-//		System.out.println(importe);
-//		System.out.println(descripcion);
-		
 		if (checkForm(request, response))
 		{
 			this.tipo = request.getParameter("tipo");
@@ -111,8 +102,7 @@ public class AddMovimiento extends HttpServlet {
 			this.importe = Float.parseFloat(request.getParameter("importe"));
 			
 			this.descripcion = request.getParameter("descripcion");
-			Movimiento movimiento = new Movimiento(tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
-			c.getIDao().addMovimiento(movimiento);
+			GestorMovimientosService.getInstance().addMovimiento(tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		else

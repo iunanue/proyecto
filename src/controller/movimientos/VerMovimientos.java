@@ -1,4 +1,4 @@
-package controller;
+package controller.movimientos;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,28 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.business.GestorCuentasService;
+import model.business.GestorMovimientosService;
 import model.classes.ClaseGasto;
 import model.classes.ClaseIngreso;
 import model.classes.Cuenta;
 import model.classes.Movimiento;
-import model.classes.Usuario;
 import model.data.Connect;
 
 /**
- * Servlet implementation class LoadUpdateMovimiento
+ * Servlet implementation class verMovimientos
  */
-@WebServlet("/protected_area/loadUpdateMovimiento")
-public class LoadUpdateMovimiento extends HttpServlet {
+@WebServlet("/protected_area/verMovimientos")
+public class VerMovimientos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+      
 	Connect c = new Connect();
-	
-	Movimiento movimiento;
-	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoadUpdateMovimiento() {
+    public VerMovimientos() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,29 +37,17 @@ public class LoadUpdateMovimiento extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		movimiento = (Movimiento) request.getAttribute("movimiento");
-		request.setAttribute("movimiento", movimiento);
+		// TODO Auto-generated method stub
+		List <Movimiento> listaMovimientos = GestorMovimientosService.getInstance().getMovimientos();
+		request.setAttribute("listaMovimientos", listaMovimientos);
+		List <ClaseIngreso> listaClaseIngreso = GestorMovimientosService.getInstance().getClaseIngreso();
+		request.setAttribute("listaClaseIngreso", listaClaseIngreso);
+		List <ClaseGasto> listaClaseGasto = GestorMovimientosService.getInstance().getClaseGasto();
+		request.setAttribute("listaClaseGasto", listaClaseGasto);
+		List <Cuenta> listaCuentas = GestorCuentasService.getInstance().getCuentas();
+		request.setAttribute("listaCuentas", listaCuentas);
 		
-		List<Usuario> listaUsuarios = c.getIDao().getUsers();
-		
-		 request.setAttribute("listaUsuarios", listaUsuarios);
-		 
-		 List<ClaseIngreso> listaClaseIngreso = c.getIDao().getClaseIngreso();
-		
-		 request.setAttribute("listaClaseIngreso", listaClaseIngreso);
-		 
-		 List<ClaseGasto> listaClaseGasto = c.getIDao().getClaseGasto();
-		 
-		 request.setAttribute("listaClaseGasto", listaClaseGasto);
-		 
-		 List<Cuenta> listaCuentas = c.getIDao().getCuentas();
-		 
-		 request.setAttribute("listaCuentas", listaCuentas);
-		
-		 System.out.println("ID:" + movimiento.getId_movimiento());
-		 System.out.println("fecha:" + movimiento.getFecha());
-		
-			request.getRequestDispatcher("/protected_area/updateMovimiento.jsp").forward(request, response);
+		request.getRequestDispatcher("/protected_area/verMovimientos.jsp").forward(request, response);
 	}
 
 	/**

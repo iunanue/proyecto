@@ -1,4 +1,4 @@
-package controller;
+package controller.movimientos;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.business.GestorMovimientosService;
 import model.classes.Movimiento;
 import model.data.Connect;
 
@@ -105,14 +106,14 @@ public class UpdateMovimiento extends HttpServlet {
 			System.out.println(importe);
 			System.out.println(descripcion);
 
-			Movimiento movimientoAntiguo = c.getIDao().getMovimiento(id_movimiento);
+			Movimiento movimientoAntiguo = GestorMovimientosService.getInstance().getMovimiento(id_movimiento);
 			Movimiento movimientoActualizado = new Movimiento(id_movimiento,tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
-			c.getIDao().updateMovimiento(movimientoAntiguo,movimientoActualizado);
+			GestorMovimientosService.getInstance().updateMovimiento(movimientoAntiguo,movimientoActualizado);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		else
 		{
-			movimiento = c.getIDao().getMovimiento(id_movimiento);
+			movimiento = GestorMovimientosService.getInstance().getMovimiento(id_movimiento);
 			request.setAttribute("movimiento", movimiento);
 			request.getSession().setAttribute("mensaje", mensaje);
 			request.getRequestDispatcher("/protected_area/loadUpdateMovimiento").forward(request, response);

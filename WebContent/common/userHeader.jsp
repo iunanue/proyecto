@@ -24,7 +24,7 @@
 					
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Movimientos<span class="caret"></span></a>
         			<ul class="dropdown-menu">
-          				<li><a href="${pageContext.request.contextPath}/protected_area/registrarMovimiento">Registrar</a></li>
+          				<li><a href="${pageContext.request.contextPath}/protected_area/loadAddMovimiento">Registrar</a></li>
 			        	<li role="separator" class="divider"></li>
 			         	<li><a href="${pageContext.request.contextPath}/protected_area/verMovimientos">Ver Movimientos</a></li>
 			         	<li role="separator" class="divider"></li>

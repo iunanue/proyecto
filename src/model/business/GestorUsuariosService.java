@@ -1,5 +1,6 @@
 package model.business;
 
+import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -11,6 +12,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import model.classes.ClaseGasto;
+import model.classes.ClaseIngreso;
 import model.classes.Usuario;
 import model.data.Connect;
 
@@ -48,10 +51,14 @@ public class GestorUsuariosService {
 		Connect.getIDao().deleteUsuario(usuario);
 	}
 	
-	
+	public List<Usuario> getUsers(){
+		return Connect.getIDao().getUsers();
+	}
+		
 	public Usuario getUsuario(String username){
 		return Connect.getIDao().getUsuario(username);
 	}
+	
 	public void forgotPassword(String username,String mail){
 		String newPassword = UUID.randomUUID().toString();
 		Usuario updatedUser = new Usuario(username,mail,newPassword);

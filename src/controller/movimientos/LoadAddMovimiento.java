@@ -1,4 +1,4 @@
-package controller;
+package controller.movimientos;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.business.GestorCuentasService;
+import model.business.GestorMovimientosService;
+import model.business.GestorUsuariosService;
 import model.classes.ClaseGasto;
 import model.classes.ClaseIngreso;
 import model.classes.Cuenta;
@@ -19,8 +22,8 @@ import model.data.Connect;
 /**
  * Servlet implementation class NuevoMovimiento
  */
-@WebServlet("/protected_area/registrarMovimiento")
-public class RegistrarMovimiento extends HttpServlet {
+@WebServlet("/protected_area/loadAddMovimiento")
+public class LoadAddMovimiento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	Connect c = new Connect();
@@ -28,7 +31,7 @@ public class RegistrarMovimiento extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegistrarMovimiento() {
+    public LoadAddMovimiento() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,16 +42,16 @@ public class RegistrarMovimiento extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		List<Usuario> listaUsuarios = c.getIDao().getUsers();
+		List<Usuario> listaUsuarios = GestorUsuariosService.getInstance().getUsers();
 		request.setAttribute("listaUsuarios", listaUsuarios);
 		 
-		List<ClaseIngreso> listaClaseIngreso = c.getIDao().getClaseIngreso();
+		List<ClaseIngreso> listaClaseIngreso = GestorMovimientosService.getInstance().getClaseIngreso();
 		request.setAttribute("listaClaseIngreso", listaClaseIngreso);
 		 
-		List<ClaseGasto> listaClaseGasto = c.getIDao().getClaseGasto();
+		List<ClaseGasto> listaClaseGasto = GestorMovimientosService.getInstance().getClaseGasto();
 		request.setAttribute("listaClaseGasto", listaClaseGasto);
 		 
-		List<Cuenta> listaCuentas = c.getIDao().getCuentas();		 
+		List<Cuenta> listaCuentas = GestorCuentasService.getInstance().getCuentas();		 
 		request.setAttribute("listaCuentas", listaCuentas);
 		 
 		request.getRequestDispatcher("/protected_area/registrarMovimiento.jsp").forward(request, response);	}
