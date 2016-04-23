@@ -106,9 +106,7 @@ public class UpdateMovimiento extends HttpServlet {
 			System.out.println(importe);
 			System.out.println(descripcion);
 
-			Movimiento movimientoAntiguo = GestorMovimientosService.getInstance().getMovimiento(id_movimiento);
-			Movimiento movimientoActualizado = new Movimiento(id_movimiento,tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
-			GestorMovimientosService.getInstance().updateMovimiento(movimientoAntiguo,movimientoActualizado);
+			GestorMovimientosService.getInstance().updateMovimiento(id_movimiento,tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		else

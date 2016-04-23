@@ -1,8 +1,8 @@
 <%@page import="controller.Config"%>
-<%@page import="classes.Usuario"%>
-<%@page import="classes.ClaseIngreso"%>
-<%@page import="classes.ClaseGasto"%>
-<%@page import="classes.Cuenta"%>
+<%@page import="model.classes.Usuario"%>
+<%@page import="model.classes.ClaseIngreso"%>
+<%@page import="model.classes.ClaseGasto"%>
+<%@page import="model.classes.Cuenta"%>
 <%@ page import="java.util.List"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
 <script src="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.6-dist/css/custom.css" type="text/css">
-<title>Registrar Movimiento</title>
+<title>Consultar Movimientos</title>
 </head>
 <body>
 	<script>

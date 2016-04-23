@@ -1,31 +1,31 @@
-package controller;
+package controller.cuentas;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.business.GestorCuentasService;
 import model.classes.Cuenta;
-import model.classes.Movimiento;
 import model.data.Connect;
 
 /**
- * Servlet implementation class LoadUpdateCuenta
+ * Servlet implementation class VerCuentas
  */
-@WebServlet("/protected_area/loadUpdateCuenta")
-public class LoadUpdateCuenta extends HttpServlet {
+@WebServlet("/protected_area/verCuentas")
+public class VerCuentas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-Connect c = new Connect();
-	
-	Cuenta cuenta;
+	Connect c = new Connect();
 	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoadUpdateCuenta() {
+    public VerCuentas() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,8 +35,12 @@ Connect c = new Connect();
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		cuenta = (Cuenta) request.getAttribute("cuenta");
-		request.getRequestDispatcher("/protected_area/updateCuenta.jsp").forward(request, response);
+		
+		List <Cuenta> listaCuentas = GestorCuentasService.getInstance().getCuentas();
+		System.out.println(listaCuentas.get(0).getSaldo());
+		System.out.println(listaCuentas.get(1).getSaldo());
+		request.setAttribute("listaCuentas", listaCuentas);
+		request.getRequestDispatcher("/protected_area/verCuentas.jsp").forward(request, response);
 	}
 
 	/**

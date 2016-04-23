@@ -47,7 +47,9 @@ public class GestorMovimientosService {
 		return Connect.getIDao().getMovimiento(id_movimiento);
 	}
 	
-	public void updateMovimiento(Movimiento movimientoAntiguo,Movimiento movimientoActualizado){
+	public void updateMovimiento(int id_movimiento,String tipo,Timestamp fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion){
+		Movimiento movimientoAntiguo = Connect.getIDao().getMovimiento(id_movimiento);
+		Movimiento movimientoActualizado = new Movimiento(id_movimiento,tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
 		Connect.getIDao().updateMovimiento(movimientoAntiguo, movimientoActualizado);
 	}
 	
@@ -55,6 +57,11 @@ public class GestorMovimientosService {
 		Connect.getIDao().deleteMovimiento(entity);
 	}
 	
+	public List<Movimiento> getGenerarConsultaMovimientos(boolean filtroFecha,boolean filtroTipo,boolean filtroClase,boolean filtroUsuario,boolean filtroCuenta,String tipo,Timestamp fechaInicio,Timestamp fechaFin,int id_clase,String username,int id_cuenta){
+		return Connect.getIDao().getGenerarConsultaMovimientos(filtroFecha,filtroTipo, filtroClase, filtroUsuario, filtroCuenta, tipo, fechaInicio, fechaFin, id_clase,username, id_cuenta);
+	}
+
+
 	public List<ClaseIngreso> getClaseIngreso(){
 		return Connect.getIDao().getClaseIngreso();
 	}

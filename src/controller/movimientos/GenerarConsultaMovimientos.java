@@ -1,4 +1,4 @@
-package controller;
+package controller.movimientos;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.business.GestorCuentasService;
+import model.business.GestorMovimientosService;
 import model.classes.Movimiento;
 import model.data.Connect;
 
@@ -154,13 +156,13 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 					if (tipo.equals("Ingreso")) {
 						System.out.println("claseingreso");
 						this.id_clase = Integer.parseInt(request.getParameter("claseIngreso"));
-						consulta.add(c.getIDao().getClaseIngreso().get(id_clase - 1).getDescripcion());
-						System.out.println(" \n" +c.getIDao().getClaseIngreso().get(id_clase - 1).getDescripcion());
+						consulta.add(GestorMovimientosService.getInstance().getClaseIngreso().get(id_clase - 1).getDescripcion());
+						System.out.println(" \n" +GestorMovimientosService.getInstance().getClaseIngreso().get(id_clase - 1).getDescripcion());
 					} else {
 						System.out.println("clasegasto");
 						this.id_clase = Integer.parseInt(request.getParameter("claseGasto"));
-						consulta.add(c.getIDao().getClaseGasto().get(id_clase - 1).getDescripcion());
-						System.out.println(" \n" +c.getIDao().getClaseGasto().get(id_clase - 1).getDescripcion());
+						consulta.add(GestorMovimientosService.getInstance().getClaseGasto().get(id_clase - 1).getDescripcion());
+						System.out.println(" \n" +GestorMovimientosService.getInstance().getClaseGasto().get(id_clase - 1).getDescripcion());
 					}
 				}
 				else
@@ -184,7 +186,7 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 
 			if (filtroCuenta == true) {
 				this.id_cuenta = Integer.parseInt(request.getParameter("cuenta"));
-				consulta.add(c.getIDao().getCuenta(id_cuenta).getDescripcion());
+				consulta.add(GestorCuentasService.getInstance().getCuenta(id_cuenta).getDescripcion());
 			}
 			else{
 				consulta.add(null);
@@ -194,7 +196,7 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 			
 			System.out.println(fechaInicio);
 
-			List<Movimiento> listaMovimientos = c.getIDao().getGenerarConsultaMovimientos(filtroFecha,
+			List<Movimiento> listaMovimientos = GestorMovimientosService.getInstance().getGenerarConsultaMovimientos(filtroFecha,
 					filtroTipo, filtroClase, filtroUsuario, filtroCuenta, tipo, fechaInicio, fechaFin, id_clase,
 					username, id_cuenta);
 

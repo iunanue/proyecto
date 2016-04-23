@@ -1,43 +1,35 @@
-package controller;
+package controller.cuentas;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.business.GestorCuentasService;
 import model.classes.Cuenta;
 import model.classes.Movimiento;
 import model.data.Connect;
 
 /**
- * Servlet implementation class UpdateCuenta
+ * Servlet implementation class AddCuenta
  */
-@WebServlet("/protected_area/updateCuenta")
-public class UpdateCuenta extends HttpServlet {
+@WebServlet("/protected_area/addCuenta")
+public class AddCuenta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	Connect c = new Connect();
 	
-	Cuenta cuenta;
-	
-	int id_cuenta;
-	String descripcion;
 	float saldo;
-	
+	String descripcion;
 	
 	String mensaje = "";
 	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateCuenta() {
+    public AddCuenta() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -55,27 +47,23 @@ public class UpdateCuenta extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.id_cuenta =  Integer.parseInt(request.getParameter("id_cuenta"));
+	
 		if (checkForm(request, response))
 		{
-			this.saldo = Float.parseFloat(request.getParameter("saldo"));
-			this.descripcion = request.getParameter("descripcion");
+			saldo = Float.parseFloat(request.getParameter("saldo"));
+			descripcion = request.getParameter("descripcion");
 			
-			cuenta = c.getIDao().getCuenta(id_cuenta);
-			cuenta.setSaldo(saldo);
-			cuenta.setDescripcion(descripcion);
-		
-			c.getIDao().updateCuenta(cuenta);
+			GestorCuentasService.getInstance().addCuenta(saldo,descripcion);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		else
 		{
 			request.getSession().setAttribute("mensaje", mensaje);
-			request.getRequestDispatcher("/protected_area/loadUpdateCuenta").forward(request, response);
+			request.getRequestDispatcher("/protected_area/nuevaCuenta.jsp").forward(request, response);
 		}
 	}
 	private boolean checkForm(HttpServletRequest request, HttpServletResponse response) {
-		if ((request.getParameter("descripcion").equals(""))||(request.getParameter("saldo").equals(""))) {
+		if ((request.getParameter("saldo").equals(""))||(request.getParameter("descripcion").equals(""))) {
 			mensaje = "Rellene todos los campos por favor.";
 			System.out.println(mensaje);
 			return false;
