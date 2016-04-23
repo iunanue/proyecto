@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.Cuenta;
-import model.Connect;
+import model.classes.Cuenta;
+import model.data.Connect;
 
 /**
  * Servlet implementation class VerCuentas

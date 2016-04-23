@@ -1,4 +1,4 @@
-package controller;
+package controller.usuarios;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
-import classes.Usuario;
-import model.Connect;
+import model.business.GestorUsuariosService;
+import model.classes.Usuario;
+import model.data.Connect;
 
 /**
  * Servlet implementation class updateUsuario
@@ -54,7 +55,7 @@ Connect c = new Connect();
 		password = request.getParameter("password");
 		password2 = request.getParameter("password2");
 		
-		usuario = new Usuario(username,mail,password);
+		usuario = new Usuario();
 		
 		System.out.println("llega servlet");
 		if (request.getParameter("update") != null) {
@@ -73,7 +74,7 @@ Connect c = new Connect();
 					
 		if (checkForm(request, response))
 		{
-			c.getIDao().updateUsuario(usuario);
+			GestorUsuariosService.getInstance().updateUsuario(username,mail,password);
 			request.getRequestDispatcher("index.jsp").forward(request, response);	
 		}
 		else
@@ -86,8 +87,8 @@ Connect c = new Connect();
 	{
 		if (checkForm(request, response))
 		{
-			c.getIDao().deleteUsuario(usuario);
-			request.getRequestDispatcher("/Logout").forward(request, response);
+			GestorUsuariosService.getInstance().deleteUsuario(username,mail,password);
+			request.getRequestDispatcher("/logout").forward(request, response);
 		}
 		else
 		{

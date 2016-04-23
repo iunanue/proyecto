@@ -56,7 +56,7 @@
 					href="${pageContext.request.contextPath}/protected_area/miCuenta"><span
 						class="glyphicon glyphicon-user"></span> <%=request.getUserPrincipal().getName()%></a></li>
 
-				<li><a href="${pageContext.request.contextPath}/Logout"><span
+				<li><a href="${pageContext.request.contextPath}/logout"><span
 						class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 
 			</ul>

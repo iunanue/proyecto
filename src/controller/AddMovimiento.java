@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
-import classes.ClaseGasto;
-import classes.ClaseIngreso;
-import classes.Cuenta;
-import classes.Movimiento;
-import classes.Usuario;
-import model.Connect;
+import model.classes.ClaseGasto;
+import model.classes.ClaseIngreso;
+import model.classes.Cuenta;
+import model.classes.Movimiento;
+import model.classes.Usuario;
+import model.data.Connect;
 
 /**
  * Servlet implementation class AddMovimiento

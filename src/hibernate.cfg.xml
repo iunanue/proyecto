@@ -9,11 +9,11 @@
    <property name="hibernate.connection.url">jdbc:mysql://localhost/proyecto</property>
    <property name="hibernate.connection.username">root</property>
    <property name="hibernate.connection.password"></property>
-   <mapping class="classes.Usuario"/>
-   <mapping class="classes.UsuarioRol"/>
-   <mapping class="classes.Cuenta"/>
-   <mapping class="classes.ClaseIngreso"/>
-   <mapping class="classes.ClaseGasto"/>
-   <mapping class="classes.Movimiento"/>
+   <mapping class="model.classes.Usuario"/>
+   <mapping class="model.classes.UsuarioRol"/>
+   <mapping class="model.classes.Cuenta"/>
+   <mapping class="model.classes.ClaseIngreso"/>
+   <mapping class="model.classes.ClaseGasto"/>
+   <mapping class="model.classes.Movimiento"/>
 </session-factory>
 </hibernate-configuration>

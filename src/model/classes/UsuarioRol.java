@@ -1,4 +1,4 @@
-package classes;
+package model.classes;
 import java.io.Serializable;
 
 import javax.persistence.*;

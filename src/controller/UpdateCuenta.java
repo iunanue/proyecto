@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.Cuenta;
-import classes.Movimiento;
-import model.Connect;
+import model.classes.Cuenta;
+import model.classes.Movimiento;
+import model.data.Connect;
 
 /**
  * Servlet implementation class UpdateCuenta

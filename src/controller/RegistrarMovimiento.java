@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.ClaseGasto;
-import classes.ClaseIngreso;
-import classes.Cuenta;
-import classes.Usuario;
-import model.Connect;
+import model.classes.ClaseGasto;
+import model.classes.ClaseIngreso;
+import model.classes.Cuenta;
+import model.classes.Usuario;
+import model.data.Connect;
 
 /**
  * Servlet implementation class NuevoMovimiento

@@ -1,4 +1,4 @@
-package model;
+package model.data;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -9,14 +9,15 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.SessionFactory;
 
-import classes.ClaseGasto;
-import classes.ClaseIngreso;
-import classes.Cuenta;
-import classes.Movimiento;
-import classes.Usuario;
-import classes.UsuarioRol;
+import model.classes.ClaseGasto;
+import model.classes.ClaseIngreso;
+import model.classes.Cuenta;
+import model.classes.Movimiento;
+import model.classes.Usuario;
+import model.classes.UsuarioRol;
+
+import org.hibernate.SessionFactory;
 
 public class Dao implements IDao {
 

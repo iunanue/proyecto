@@ -14,7 +14,7 @@
 		<div id="login-form" class="login-form">
 			<h3>Registro</h3>
 			<fieldset>
-				<form method="POST" action="${pageContext.request.contextPath}/Register">
+				<form method="POST" action="${pageContext.request.contextPath}/register">
 					<label>Username:<span class="required"> *</span></label> 
 					<input class="field" type="text" name="username" placeholder="Username"> 
 					<label>E-mail:<span class="required"> *</span></label> 

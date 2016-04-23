@@ -30,11 +30,11 @@ import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 
-import classes.ClaseGasto;
-import classes.ClaseIngreso;
-import classes.Cuenta;
-import classes.Movimiento;
-import model.Connect;
+import model.classes.ClaseGasto;
+import model.classes.ClaseIngreso;
+import model.classes.Cuenta;
+import model.classes.Movimiento;
+import model.data.Connect;
 
 /**
  * Servlet implementation class exportExcel

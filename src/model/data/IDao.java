@@ -1,13 +1,13 @@
-package model;
+package model.data;
 
 import java.sql.Timestamp;
 import java.util.List;
 
-import classes.ClaseGasto;
-import classes.ClaseIngreso;
-import classes.Cuenta;
-import classes.Movimiento;
-import classes.Usuario;
+import model.classes.ClaseGasto;
+import model.classes.ClaseIngreso;
+import model.classes.Cuenta;
+import model.classes.Movimiento;
+import model.classes.Usuario;
 
 public interface IDao {
 

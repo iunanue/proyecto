@@ -1,6 +1,5 @@
-package controller;
+package controller.usuarios;
 
-import model.Connect;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -11,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
-import classes.Usuario;
+import model.business.GestorUsuariosService;
+import model.classes.Usuario;
+import model.data.Connect;
 
 /**
  * Servlet implementation class Register
  */
-@WebServlet("/Register")
+@WebServlet("/register")
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	Connect c = new Connect();
 
 	String username;
 	String mail;
@@ -62,15 +61,14 @@ public class Register extends HttpServlet {
 		System.out.println(request.getParameter("username"));
 		System.out.println(request.getParameter("mail"));
 		System.out.println(request.getParameter("password"));
-		
+		System.out.println(request.getParameter("password2"));
 		
 		if (checkForm(request, response))
 		{
-			if(c.getIDao().existsUsuario(username) == false)
+			if(GestorUsuariosService.getInstance().existsUsuario(username) == false)
 			{
 				System.out.println("no existe");
-				Usuario usuario = new Usuario(username,mail,password);
-				c.getIDao().addUsuario(usuario);
+				GestorUsuariosService.getInstance().addUsuario(username, mail, password);
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 			else
@@ -86,8 +84,6 @@ public class Register extends HttpServlet {
 			request.getSession().setAttribute("mensaje", mensaje);
 			request.getRequestDispatcher("register.jsp").forward(request, response);
 		}
-		
-
 	}
 
 	private boolean checkForm(HttpServletRequest request, HttpServletResponse response) {

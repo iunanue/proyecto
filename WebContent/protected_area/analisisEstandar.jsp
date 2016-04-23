@@ -1,7 +1,7 @@
 <%@page import="controller.Config"%>
-<%@page import="classes.Movimiento"%>
-<%@page import="classes.ClaseIngreso"%>
-<%@page import="classes.ClaseGasto"%>
+<%@page import="model.clases.Movimiento"%>
+<%@page import="model.clases.ClaseIngreso"%>
+<%@page import="model.clases.ClaseGasto"%>
 <%@page import="classes.Cuenta"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.text.SimpleDateFormat"%>
