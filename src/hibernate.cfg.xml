@@ -15,5 +15,6 @@
    <mapping class="model.classes.ClaseIngreso"/>
    <mapping class="model.classes.ClaseGasto"/>
    <mapping class="model.classes.Movimiento"/>
+   <mapping class="model.classes.Alerta"/>
 </session-factory>
 </hibernate-configuration>

@@ -82,6 +82,10 @@ width:100%;
 .label-pill{
 	font-size: large;
 }
+.noAlertas{
+	display: inline-block;
+}
+
 .recuadro{
 	border: 1px solid #ddd;
 	border-top-color:transparent;
@@ -93,6 +97,9 @@ width:100%;
 
 .paddingTop{
 	padding-top:3%;
+}
+.paddingLeft{
+	padding-left:3%;
 }
 /* Set black background color, white text and some padding */
 /* footer { */
@@ -253,6 +260,32 @@ footer p {
 	padding-bottom: 10px;
 }
 
+#login-form.alertas-form {
+	width: 100%;
+	border-radius: 4px;
+	border: 1px solid rgb(221, 221, 221);
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#login-form.alertas-form input[type="number"]{
+	border: 1px solid #dcdcdc;
+	padding: 12px 10px;
+	width: 30%;
+}
+
+#login-form.alertas-form fieldset {
+	background: #fff;
+	border-radius: 0 0 5px 5px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	
+	position: relative;
+}
+.alertCustom{
+	margin-bottom: 0px;
+}
 #login-form.miCuenta-form {
 	width: 50%;
 	border-radius: 4px;

@@ -10,6 +10,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
+import model.classes.Alerta;
 import model.classes.ClaseGasto;
 import model.classes.ClaseIngreso;
 import model.classes.Cuenta;
@@ -458,6 +459,55 @@ public class Dao implements IDao {
         session.close();
        
         return listaMovimientos;	
+	}
+
+	@Override
+	public void addAlerta(Alerta entity) {
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(entity);
+		tx.commit();
+		session.close();	
+	}
+
+	@Override
+	public void updateAlerta(Alerta entity) {
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+
+		Transaction tx = session.beginTransaction();
+
+		session.saveOrUpdate(entity);
+
+		tx.commit();
+		session.close();
+	}
+
+	@Override
+	public void deleteAlerta(Alerta entity) {
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(entity);
+		tx.commit();
+		session.close();
+		
+	}
+
+	@Override
+	public Alerta getAlerta(String username) {
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Alerta alerta = null;
+		Transaction tx = session.beginTransaction();
+
+		alerta = (Alerta) session.get(Alerta.class, username);
+
+		tx.commit();
+		session.close();
+
+		return alerta;
 	}
 
 

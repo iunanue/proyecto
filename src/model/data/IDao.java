@@ -3,6 +3,7 @@ package model.data;
 import java.sql.Timestamp;
 import java.util.List;
 
+import model.classes.Alerta;
 import model.classes.ClaseGasto;
 import model.classes.ClaseIngreso;
 import model.classes.Cuenta;
@@ -56,4 +57,12 @@ public interface IDao {
 	public List<Movimiento> getGenerarConsultaMovimientos(boolean filtroFecha,boolean filtroTipo,boolean filtroClase,boolean filtroUsuario,boolean filtroCuenta,String tipo,Timestamp fechaInicio,Timestamp fechaFin,int id_clase,String username,int id_cuenta);
 
 	public List<Movimiento> getGenerarAnalisisEstandar(Timestamp fechaInicio,Timestamp fechaFin);
+	
+	public void addAlerta(Alerta entity);
+	
+	public Alerta getAlerta(String username);
+	
+	public void updateAlerta(Alerta entity);
+	
+	public void deleteAlerta(Alerta entity);
 }
