@@ -1,5 +1,11 @@
 @CHARSET "ISO-8859-1";
 
+
+body {
+	/* Margin bottom by footer height */
+/* 	margin-bottom: 5%; */
+	/*   margin-bottom: 50px; */
+}
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
 	margin-bottom: 0;
@@ -17,8 +23,15 @@ color: #ffffff;
 .tableCuentas{
 width:100%;
 }
+.thead-propio{
+	background-color: #333;
+	color:white;
+}
 .titulo1{
 	padding-bottom: 3%;
+}
+.titulo1Alertas{
+	padding-bottom: 1%;
 }
 .titulo2{
 	padding-bottom: 3%;
@@ -109,11 +122,7 @@ width:100%;
 /* 	text-align: center; */
 /* 	margin-top: 100%; */
 /* } */
-body {
-	/* Margin bottom by footer height */
-/* 	margin-bottom: 5%; */
-	/*   margin-bottom: 50px; */
-}
+
 
 footer {
 	position: relative;
@@ -163,10 +172,14 @@ footer p {
 	color:red;
 	font-weight: bold;
 }
+.cero{
+	color:yellow;
+	font-weight: bold;
+}
 .total{
 /* 	background-color:#dbdbdb; */
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 15px;
 	padding-top:5%;
 	border-top: 5px solid #c0c0c0;
 	
@@ -178,10 +191,7 @@ footer p {
 	padding-top:5%;
 	
 }
-.cero{
-	color:yellow;
-	font-weight: bold;
-}
+
 .list-group{
 	width:30%;
 }
@@ -221,6 +231,14 @@ footer p {
 }
 .contentWrapperAnalisis{
 	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 75px;
+	padding-bottom: 10px;
+}
+.contentWrapperIndex{
+	width: 90%;
+	
 	margin-left: auto;
 	margin-right: auto;
 	padding-top: 75px;

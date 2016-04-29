@@ -65,4 +65,6 @@ public interface IDao {
 	public void updateAlerta(Alerta entity);
 	
 	public void deleteAlerta(Alerta entity);
+	
+	public List<Movimiento> getMovimientosUsernameFecha(String username,Timestamp fechaInicio,Timestamp fechaFin);
 }

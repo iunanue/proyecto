@@ -239,9 +239,34 @@
 
 
 	<script>
-	function setGeneralYear(){
+	function movimientosYear(){
 		<%
-		request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); 
+			request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); 
+		%>
+	}
+	function ingresosYear(){
+		<%
+			request.getSession().setAttribute("listaMovimientos", listaIngresosYear); 
+		%>
+	}
+	function gastosYear(){
+		<%
+			request.getSession().setAttribute("listaMovimientos", listaGastosYear); 
+		%>
+	}
+	function movimientosMonthYear(){
+		<%
+			request.getSession().setAttribute("listaMovimientos", listaMovimientosMonth); 
+		%>
+	}
+	function ingresosMonth(){
+		<%
+			request.getSession().setAttribute("listaMovimientos", listaIngresosMonth); 
+		%>
+	}
+	function gastosMonth(){
+		<%
+			request.getSession().setAttribute("listaMovimientos", listaGastosMonth); 
 		%>
 	}
 	
@@ -322,7 +347,7 @@
 									<h3>Listado de Movimientos del Año</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>
@@ -401,15 +426,24 @@
 														<td></td>
 														<td></td>
 														<td class=total>TOTAL</td>
-														<td class="total ingreso">+<%=total%></td>
+														<%
+															if(total>0){
+																%><td class="total ingreso"><%=+total%></td><%
+															}
+															if(total<0){
+																%><td class="total gasto"><%=total%></td><%
+															}
+															if(total == 0){
+																%><td class="total cero"><%=+total%></td><%
+															}
+														
+														%>
 														<td></td>
 														<td></td>
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-<%-- 												<%request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); %> --%>
+											<form method="POST" action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
 												<%
 												for(int i=0;i<listaMovimientosYear.size();i++){
 													System.out.println("ID: "+ listaMovimientosYear.get(i).getId_movimiento());
@@ -417,7 +451,7 @@
 												System.out.println("------");
 												%>
 												<button type="submit" class="btn btn-default"
-													name="exportar" onclick="setGeneralYear()">
+													name="exportar" onclick="movimientosYear()">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
@@ -488,7 +522,7 @@
 									<h3>Listado de Ingresos del Año</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>
@@ -579,7 +613,7 @@
 													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
 												%>
 												<button type="submit" class="btn btn-default"
-													name="exportar">
+													name="exportar" onclick="ingresosYear()">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
@@ -650,7 +684,7 @@
 									<h3>Listado de Gastos del Año</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>
@@ -740,7 +774,7 @@
 													request.getSession().setAttribute("listaMovimientos", listaGastosYear);
 												%>
 												<button type="submit" class="btn btn-default"
-													name="exportar">
+													name="exportar" onclick="gastosYear()">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
@@ -811,7 +845,7 @@
 									<h3>Listado de Movimientos del Mes</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>
@@ -888,7 +922,18 @@
 														<td></td>
 														<td></td>
 														<td class=total>TOTAL</td>
-														<td class="total ingreso">+<%=total%></td>
+														<%
+															if(total>0){
+																%><td class="total ingreso"><%=+total%></td><%
+															}
+															if(total<0){
+																%><td class="total gasto"><%=total%></td><%
+															}
+															if(total == 0){
+																%><td class="total cero"><%=+total%></td><%
+															}
+														
+														%>
 														<td></td>
 														<td></td>
 													</tr>
@@ -900,7 +945,7 @@
 													request.getSession().setAttribute("listaMovimientos", listaMovimientosMonth);
 												%>
 												<button type="submit" class="btn btn-default"
-													name="exportar">
+													name="exportar" onclick="movimientosMonth()">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
@@ -970,7 +1015,7 @@
 										<h3>Listado de Ingresos del Mes</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>
@@ -1061,7 +1106,7 @@
 													request.getSession().setAttribute("listaMovimientos", listaIngresosMonth);
 												%>
 												<button type="submit" class="btn btn-default"
-													name="exportar">
+													name="exportar" onclick="ingresosMonth()">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
@@ -1131,7 +1176,7 @@
 									<h3>Listado de Gastos del Mes</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>
@@ -1221,7 +1266,7 @@
 													request.getSession().setAttribute("listaMovimientos", listaGastosMonth);
 												%>
 												<button type="submit" class="btn btn-default"
-													name="exportar">
+													name="exportar" onclick="gastosMonth()">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>

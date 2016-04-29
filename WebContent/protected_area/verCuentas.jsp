@@ -117,8 +117,8 @@
 				<h4 class="titulo4">Listado de Cuentas</h4>
 				<div class="tableContainer">
 					<table class="table table-hover tableCuentas">
-						<thead>
-							<tr>
+						<thead class="thead-propio">
+							<tr class="total">
 								<th>id</th>
 								<th>Descripción</th>
 								<th>Saldo</th>

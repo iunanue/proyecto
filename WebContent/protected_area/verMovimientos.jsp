@@ -47,7 +47,7 @@
 				%>
 	<div class="tableContainer">
 		<table class="table table-hover">
-			<thead>
+			<thead class="thead-propio">
 				<tr class="total">
 					<th>id</th>
 					<th>Tipo</th>

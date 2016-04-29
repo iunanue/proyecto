@@ -15,12 +15,14 @@
 	<jsp:include page="/common/userHeader.jsp" />
 	<div class="jumbotron jumbotronPersonalizado">
 		<div class="container text-center">
-			<h1>
-				Bienvenido/a
-				<%=request.getUserPrincipal().getName()%></h1>
-			<p>Some text that represents "Me"...</p>
+			<h1>Hola <%=request.getUserPrincipal().getName()%></h1>
+			<p>Gracias por visitar SaveApp</p>
 		</div>
 	</div>
-	<jsp:include page="/common/footer.jsp" />
+	<div class="contentWrapperIndex">
+		
+		
+		
+	</div>
 </body>
 </html>

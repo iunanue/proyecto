@@ -399,7 +399,7 @@
 									<h3>Listado de Movimientos</h3>
 									<div class="tableContainer">
 										<table class="table table-hover">
-											<thead>
+											<thead class="thead-propio">
 												<tr class="totalCabecerasAnalisis">
 													<th>id</th>
 													<th>Tipo</th>
@@ -473,14 +473,25 @@
 													%>
 												<tr class="total">
 													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td class=total>TOTAL</td>
-													<td class="total ingreso">+<%=total%></td>
-													<td></td>
-													<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td class=total>TOTAL</td>
+														<%
+															if(total>0){
+																%><td class="total ingreso"><%=+total%></td><%
+															}
+															if(total<0){
+																%><td class="total gasto"><%=total%></td><%
+															}
+															if(total == 0){
+																%><td class="total cero"><%=+total%></td><%
+															}
+														
+														%>
+														<td></td>
+														<td></td>
 												</tr>
 											</tbody>
 										</table>
@@ -558,7 +569,7 @@
 										<h3>Listado de Ingresos</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>
@@ -720,7 +731,7 @@
 										<h3>Listado de Gastos</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>
@@ -881,7 +892,7 @@
 									<h3>Listado de Movimientos del Año</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>
@@ -959,7 +970,18 @@
 														<td></td>
 														<td></td>
 														<td class=total>TOTAL</td>
-														<td class="total ingreso">+<%=total%></td>
+														<%
+															if(total>0){
+																%><td class="total ingreso"><%=+total%></td><%
+															}
+															if(total<0){
+																%><td class="total gasto"><%=total%></td><%
+															}
+															if(total == 0){
+																%><td class="total cero"><%=+total%></td><%
+															}
+														
+														%>
 														<td></td>
 														<td></td>
 													</tr>
@@ -1042,7 +1064,7 @@
 									<h3>Listado de Ingresos del Año</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>
@@ -1204,7 +1226,7 @@
 									<h3>Listado de Gastos del Año</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>
@@ -1366,7 +1388,7 @@
 									<h3>Listado de Movimientos del Mes</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>
@@ -1443,7 +1465,18 @@
 														<td></td>
 														<td></td>
 														<td class=total>TOTAL</td>
-														<td class="total ingreso">+<%=total%></td>
+														<%
+															if(total>0){
+																%><td class="total ingreso"><%=+total%></td><%
+															}
+															if(total<0){
+																%><td class="total gasto"><%=total%></td><%
+															}
+															if(total == 0){
+																%><td class="total cero"><%=+total%></td><%
+															}
+														
+														%>
 														<td></td>
 														<td></td>
 													</tr>
@@ -1526,7 +1559,7 @@
 										<h3>Listado de Ingresos del Mes</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>
@@ -1688,7 +1721,7 @@
 									<h3>Listado de Gastos del Mes</h3>
 										<div class="tableContainer">
 											<table class="table table-hover">
-												<thead>
+												<thead class="thead-propio">
 													<tr class="totalCabecerasAnalisis">
 														<th>id</th>
 														<th>Tipo</th>

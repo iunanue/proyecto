@@ -24,7 +24,6 @@
 			
 			<%
 			if(alerta!=null){
-				System.out.println("llego dentro");
 				%>
 				
 				$('#alimentacionMonth').val("<%=alerta.getAlimentacionMonth()%>");
@@ -60,33 +59,12 @@
 				<div id="login-form" class="alertas-form">
 					<h3>Personalizar alertas de Gasto</h3>
 					<div id="noAlertas" style="display: none" class=" noAlertas paddingTop paddingLeft">
-							<div class="alert alert-warning alertCustom" role="alert"><p>No has definido aún ninguna alerta.</p></div>	
+							<div class="alert alert-warning alertCustom" role="alert"><p>No ha definido aún ninguna alerta.</p></div>	
 					</div>		
 					<fieldset>
 						<form method="POST" id="form" action="${pageContext.request.contextPath}/protected_area/personalizarAlertas">							
 							<div class="row bordeAbajo">
 								<div class="col-sm-6 bordeDerecha">
-									<div class="paddingAnalisis ">
-										<h2>Alertas del Mes</h2>
-										<label>Alimentación:<span class="required"> *</span></label> 
-										<input id="alimentacionMonth" type="number" name="alimentacionMonth" step="0.01"> 
-										<label>Estudios:<span class="required"> *</span></label> 
-										<input id="estudiosMonth" type="number" name="estudiosMonth" step="0.01"> 
-										<label>Suministros:<span class="required"> *</span></label> 
-										<input id="suministrosMonth" type="number" name="suministrosMonth" step="0.01">
-										<label>Mantenimiento:<span class="required"> *</span></label> 
-										<input id="mantenimientoMonth" type="number" name="mantenimientoMonth" step="0.01">
-										<label>Hipoteca/Alquiler:<span class="required"> *</span></label> 
-										<input id="hipotecaAlquilerMonth" type="number" name="hipotecaAlquilerMonth" step="0.01">
-										<label>Seguros:<span class="required"> *</span></label> 
-										<input id="segurosMonth" type="number" name="segurosMonth" step="0.01">
-										<label>Ocio:<span class="required"> *</span></label> 
-										<input id="ocioMonth" type="number" name="ocioMonth" step="0.01">
-										<label>Otros:<span class="required"> *</span></label> 
-										<input id="otrosMonth" type="number" name="otrosMonth" step="0.01">
-									</div>
-								</div>
-								<div class="col-sm-6">
 									<div class="paddingAnalisis ">
 										<h2>Alertas del Año</h2>
 										<label>Alimentación:<span class="required"> *</span></label> 
@@ -105,6 +83,28 @@
 										<input id="ocioYear" type="number" name="ocioYear" step="0.01">
 										<label>Otros:<span class="required"> *</span></label> 
 										<input id="otrosYear" type="number" name="otrosYear" step="0.01">
+										
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="paddingAnalisis ">
+										<h2>Alertas del Mes</h2>
+										<label>Alimentación:<span class="required"> *</span></label> 
+										<input id="alimentacionMonth" type="number" name="alimentacionMonth" step="0.01"> 
+										<label>Estudios:<span class="required"> *</span></label> 
+										<input id="estudiosMonth" type="number" name="estudiosMonth" step="0.01"> 
+										<label>Suministros:<span class="required"> *</span></label> 
+										<input id="suministrosMonth" type="number" name="suministrosMonth" step="0.01">
+										<label>Mantenimiento:<span class="required"> *</span></label> 
+										<input id="mantenimientoMonth" type="number" name="mantenimientoMonth" step="0.01">
+										<label>Hipoteca/Alquiler:<span class="required"> *</span></label> 
+										<input id="hipotecaAlquilerMonth" type="number" name="hipotecaAlquilerMonth" step="0.01">
+										<label>Seguros:<span class="required"> *</span></label> 
+										<input id="segurosMonth" type="number" name="segurosMonth" step="0.01">
+										<label>Ocio:<span class="required"> *</span></label> 
+										<input id="ocioMonth" type="number" name="ocioMonth" step="0.01">
+										<label>Otros:<span class="required"> *</span></label> 
+										<input id="otrosMonth" type="number" name="otrosMonth" step="0.01">
 									</div>
 								</div>
 							</div>
