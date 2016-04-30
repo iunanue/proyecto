@@ -237,40 +237,8 @@
 		}
 	</script>
 
-
-	<script>
-	function movimientosYear(){
-		<%
-			request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); 
-		%>
-	}
-	function ingresosYear(){
-		<%
-			request.getSession().setAttribute("listaMovimientos", listaIngresosYear); 
-		%>
-	}
-	function gastosYear(){
-		<%
-			request.getSession().setAttribute("listaMovimientos", listaGastosYear); 
-		%>
-	}
-	function movimientosMonthYear(){
-		<%
-			request.getSession().setAttribute("listaMovimientos", listaMovimientosMonth); 
-		%>
-	}
-	function ingresosMonth(){
-		<%
-			request.getSession().setAttribute("listaMovimientos", listaIngresosMonth); 
-		%>
-	}
-	function gastosMonth(){
-		<%
-			request.getSession().setAttribute("listaMovimientos", listaGastosMonth); 
-		%>
-	}
 	
-	</script>
+	
 
 
 	<jsp:include page="/common/userHeader.jsp" />
@@ -444,14 +412,8 @@
 												</tbody>
 											</table>
 											<form method="POST" action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-												for(int i=0;i<listaMovimientosYear.size();i++){
-													System.out.println("ID: "+ listaMovimientosYear.get(i).getId_movimiento());
-												}
-												System.out.println("------");
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar" onclick="movimientosYear()">
+												<button id="buttonMovimientosYear" type="submit" class="btn btn-default"
+													name="exportar" >
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
@@ -609,11 +571,9 @@
 											</table>
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar" onclick="ingresosYear()">
+												
+												<button id="buttonIngresosYear"type="submit" class="btn btn-default"
+													name="exportar">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
@@ -770,11 +730,9 @@
 											</table>
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-													request.getSession().setAttribute("listaMovimientos", listaGastosYear);
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar" onclick="gastosYear()">
+												
+												<button id="buttonGastosYear" type="submit" class="btn btn-default"
+													name="exportar">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
@@ -941,11 +899,9 @@
 											</table>
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-													request.getSession().setAttribute("listaMovimientos", listaMovimientosMonth);
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar" onclick="movimientosMonth()">
+												
+												<button id="buttonMovimientosMonth" type="submit" class="btn btn-default"
+													name="exportar">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
@@ -1102,11 +1058,9 @@
 											</table>
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosMonth);
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar" onclick="ingresosMonth()">
+												
+												<button id="buttonIngresosMonth" type="submit" class="btn btn-default"
+													name="exportar">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
@@ -1262,11 +1216,9 @@
 											</table>
 											<form method="POST"
 												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-													request.getSession().setAttribute("listaMovimientos", listaGastosMonth);
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar" onclick="gastosMonth()">
+												
+												<button id="buttonGastosMonth" type="submit" class="btn btn-default"
+													name="exportar">
 													<span class="glyphicon glyphicon-download-alt"
 														aria-hidden="true"></span> Descargar Excel
 												</button>
@@ -1300,6 +1252,97 @@
 <!-- 						</div> -->
 <!-- 					</div> -->
 
+<script  type="text/javascript">
+				
 
+$('#generalYear').on( '#buttonMovimientosYear',function(event){
+  $("#buttonMovimientosYear").on('click', function()
+  {
+	  <%
+		System.out.println("buttonMovimientosYear");
+			request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); 
+			%> 
+  });
+});
+$('#ingresosYear').on( '#buttonIngresosYear',function(event){
+	  $("#buttonIngresosYear").on('click', function()
+	  {
+		  <%
+			System.out.println("buttonMovimientosYear");
+				request.getSession().setAttribute("listaMovimientos", listaIngresosYear); 
+				%> 
+	  });
+	});
+	
+			
+// 			$( "#buttonMovimientosYear" ).on( "click", function() {
+<%-- 				<% --%>
+// 				System.out.println("buttonMovimientosYear");
+// 					request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); 
+<%-- 					%>  --%>
+// 				});
+// 			$( "#buttonIngresosYear" ).on( "click", function() {
+<%-- 				<%  --%>
+// 	 				System.out.println("buttonIngresosYear");
+// 	 					request.getSession().setAttribute("listaMovimientos", listaIngresosYear); 
+<%-- 	 				%>  --%>
+// 				});
+// 			(function(){
+// 			    $(document).on('#buttonMovimientosYear', function() {
+<%-- 			    	<% --%>
+// 					System.out.println("listaMovimientosYear");
+// 						request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); 
+<%--  					%>  --%>
+// 			    });
+// 			})();
+			
+// 			(function(){
+// 			    $(document).on('#buttonIngresosYear', function() {
+<%-- 			    	<%  --%>
+// 	 				System.out.println("listaMovimientosYear");
+// 	 					request.getSession().setAttribute("listaMovimientos", listaIngresosYear); 
+<%-- 	 				%>  --%>
+// 			    });
+// 			})();
+			
+// 			$(document).on('click', 'buttonMovimientosYear', function(){
+<%-- 			<% --%>
+// 			System.out.println("listaMovimientosYear");
+// 				request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); 
+<%-- 			%> --%>
+// 			});
+// 			$(document).on('click', 'buttonIngresosYear', function(){
+<%-- 				<% --%>
+// 				System.out.println("listaMovimientosYear");
+// 					request.getSession().setAttribute("listaMovimientos", listaIngresosYear); 
+<%-- 				%> --%>
+// 				});
+// 		$("#ingresosYear").click(function() {
+<%-- 			<% --%>
+// 			System.out.println("listaIngresosYear");
+// 				request.getSession().setAttribute("listaMovimientos", listaIngresosYear); 
+<%-- 			%> --%>
+// 			});
+// 		$("#gastosYear").click(function() {
+<%-- 			<% --%>
+// 				request.getSession().setAttribute("listaMovimientos", listaGastosYear); 
+<%-- 			%> --%>
+// 			});
+// 		$("#movimientosMonth").click(function() {
+<%-- 			<% --%>
+// 				request.getSession().setAttribute("listaMovimientos", listaMovimientosMonth); 
+<%-- 			%> --%>
+// 			});
+// 		$("#ingresosMonth").click(function() {
+<%-- 			<% --%>
+// 				request.getSession().setAttribute("listaMovimientos", listaIngresosMonth); 
+<%-- 			%> --%>
+// 			});
+// 		$("#gastosMonth").click(function() {
+<%-- 			<% --%>
+// 				request.getSession().setAttribute("listaMovimientos", listaGastosMonth); 
+<%-- 			%> --%>
+// 			});
+	</script>
 </body>
 </html>

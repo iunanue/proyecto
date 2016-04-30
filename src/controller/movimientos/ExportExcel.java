@@ -75,7 +75,7 @@ public class ExportExcel extends HttpServlet {
 		List<Movimiento> listaMovimientos = (List<Movimiento>) request.getSession().getAttribute("listaMovimientos");
 
 		for(int i=0;i<listaMovimientos.size();i++){
-			System.out.println("ID: "+ listaMovimientos.get(i).getId_movimiento());
+			System.out.println("ID C: "+ listaMovimientos.get(i).getId_movimiento());
 		}
 		
 		GestorMovimientosService.getInstance().exportExcel(listaMovimientos);
