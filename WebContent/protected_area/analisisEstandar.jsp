@@ -236,11 +236,7 @@
 
 		}
 	</script>
-
-	
-	
-
-
+		
 	<jsp:include page="/common/userHeader.jsp" />
 
 	<jsp:include page="/common/userHeader.jsp" />
@@ -252,10 +248,8 @@
 			<li class="active"><a data-toggle="tab" href="#year">Análisis del Año</a></li>
 			<li><a data-toggle="tab" href="#month">Análisis del Mes</a></li>
 		</ul>
-
 		<div>
 			<div class="tab-content">
-
 				<div id="year" class="tab-pane fade in active recuadro">
 					<ul class="nav nav-tabs navTipo">
 						<li class="active"><a data-toggle="tab" href="#generalYear">General</a></li>
@@ -265,8 +259,7 @@
 					<div class="tab-content">
 					
 					<!--Evolucion año -->
-					
-					
+										
 						<div id="generalYear" class="tab-pane fade in active">
 						<div class="bordeAbajo">
 									<div class="row">
@@ -292,7 +285,6 @@
 											- <span class="label label-pill label-danger"><%=totalGastosYear%></span>
 											= <span class="label label-pill label-info"><%=beneficioYear%></span>
 										</p>
-
 									</div>
 								</div>
 							</div>
@@ -331,7 +323,6 @@
 												<tbody>
 													<%
 														float total = beneficioYear;
-
 														Movimiento movimiento;
 														String clase = null;
 														for (int i = 0; i < listaMovimientosYear.size(); i++) {
@@ -403,26 +394,17 @@
 															}
 															if(total == 0){
 																%><td class="total cero"><%=+total%></td><%
-															}
-														
+															}														
 														%>
 														<td></td>
 														<td></td>
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST" action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<button id="buttonMovimientosYear" type="submit" class="btn btn-default"
-													name="exportar" >
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
 						</div>
-						
 						
 						<!-- Año Ingresos -->
 						
@@ -471,12 +453,10 @@
 																%>
 															</ul>
 														</div>
-
 													</div>
 												</div>
 											</div>
 										</div>
-
 									</div>
 								</div>
 								<div>
@@ -499,9 +479,7 @@
 												</thead>
 												<tbody>
 													<%
-														 total = totalIngresosYear;
-
-														
+														 total = totalIngresosYear;														
 														 clase = null;
 														for (int i = 0; i < listaIngresosYear.size(); i++) {
 															movimiento = listaIngresosYear.get(i);
@@ -569,21 +547,11 @@
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												
-												<button id="buttonIngresosYear"type="submit" class="btn btn-default"
-													name="exportar">
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
 
 						<!-- Año Gastos -->
 						
@@ -635,9 +603,7 @@
 												</div>
 											</div>
 										</div>
-
 									</div>
-
 								</div>
 								<div>
 									<div class="paddingAnalisis">
@@ -728,15 +694,6 @@
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												
-												<button id="buttonGastosYear" type="submit" class="btn btn-default"
-													name="exportar">
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
@@ -744,26 +701,14 @@
 						</div>
 					</div>
 				</div>
-
 				<div id="month" class="tab-pane fade recuadro">
 						<ul class="nav nav-tabs navTipo">
 						<li class="active"><a data-toggle="tab" href="#generalMonth">General</a></li>
 						<li><a data-toggle="tab" href="#ingresosMonth">Ingresos</a></li>
 						<li><a data-toggle="tab" href="#gastosMonth">Gastos</a></li>
 					</ul>
-					<div class="tab-content">
-					
-					
-					
+					<div class="tab-content">				
 						<div id="generalMonth" class="tab-pane fade in active">
-<!-- 						<div class="bordeAbajo"> -->
-<!-- 									<div class="row"> -->
-<!-- 											<div class="paddingAnalisis paddingIzquierda"> -->
-<!-- 												<h3>Evolución</h3> -->
-<!-- 												<div id="chartEvolucionYear" ></div> -->
-<!-- 											</div> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
 							<div class="bordeAbajo">
 								<div class="paddingAnalisis">
 									<h3>Resultado del Mes</h3>
@@ -897,21 +842,11 @@
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												
-												<button id="buttonMovimientosMonth" type="submit" class="btn btn-default"
-													name="exportar">
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
-						</div>
-						
-						
+						</div>		
+										
 						<!-- Mes Ingresos -->
 						
 						<div id="ingresosMonth" class="tab-pane fade">
@@ -963,7 +898,6 @@
 												</div>
 											</div>
 										</div>
-
 									</div>
 								</div>
 								<div>
@@ -986,9 +920,7 @@
 												</thead>
 												<tbody>
 													<%
-														 total = totalIngresosMonth;
-
-														
+														 total = totalIngresosMonth;														
 														 clase = null;
 														for (int i = 0; i < listaIngresosMonth.size(); i++) {
 															movimiento = listaIngresosMonth.get(i);
@@ -1056,15 +988,6 @@
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												
-												<button id="buttonIngresosMonth" type="submit" class="btn btn-default"
-													name="exportar">
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
@@ -1121,9 +1044,7 @@
 												</div>
 											</div>
 										</div>
-
 									</div>
-
 								</div>
 								<div>
 									<div class="paddingAnalisis">
@@ -1214,15 +1135,6 @@
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												
-												<button id="buttonGastosMonth" type="submit" class="btn btn-default"
-													name="exportar">
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
@@ -1235,114 +1147,5 @@
 			</div>
 		</div>
 	</div>
-<!-- 					<h3>Mes</h3> -->
-
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-sm-6 bordeDerecha"> -->
-<!-- 							<div id="chartIngresosMonth" class="grafico bordeAbajo"></div> -->
-<!-- 							<div id="chartGastosMonth" class="grafico"></div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-sm-6"> -->
-<!-- 							<div> -->
-<!-- 								<h3>Resultado del Mes</h3> -->
-<%-- 								<span class="label label-pill label-success"><%=totalIngresosMonth%></span> --%>
-<%-- 								- <span class="label label-pill label-danger"><%=totalGastosMonth%></span> --%>
-<%-- 								= <span class="label label-pill label-info"><%=beneficioMonth%></span> --%>
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-
-<script  type="text/javascript">
-				
-
-$('#generalYear').on( '#buttonMovimientosYear',function(event){
-  $("#buttonMovimientosYear").on('click', function()
-  {
-	  <%
-		System.out.println("buttonMovimientosYear");
-			request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); 
-			%> 
-  });
-});
-$('#ingresosYear').on( '#buttonIngresosYear',function(event){
-	  $("#buttonIngresosYear").on('click', function()
-	  {
-		  <%
-			System.out.println("buttonMovimientosYear");
-				request.getSession().setAttribute("listaMovimientos", listaIngresosYear); 
-				%> 
-	  });
-	});
-	
-			
-// 			$( "#buttonMovimientosYear" ).on( "click", function() {
-<%-- 				<% --%>
-// 				System.out.println("buttonMovimientosYear");
-// 					request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); 
-<%-- 					%>  --%>
-// 				});
-// 			$( "#buttonIngresosYear" ).on( "click", function() {
-<%-- 				<%  --%>
-// 	 				System.out.println("buttonIngresosYear");
-// 	 					request.getSession().setAttribute("listaMovimientos", listaIngresosYear); 
-<%-- 	 				%>  --%>
-// 				});
-// 			(function(){
-// 			    $(document).on('#buttonMovimientosYear', function() {
-<%-- 			    	<% --%>
-// 					System.out.println("listaMovimientosYear");
-// 						request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); 
-<%--  					%>  --%>
-// 			    });
-// 			})();
-			
-// 			(function(){
-// 			    $(document).on('#buttonIngresosYear', function() {
-<%-- 			    	<%  --%>
-// 	 				System.out.println("listaMovimientosYear");
-// 	 					request.getSession().setAttribute("listaMovimientos", listaIngresosYear); 
-<%-- 	 				%>  --%>
-// 			    });
-// 			})();
-			
-// 			$(document).on('click', 'buttonMovimientosYear', function(){
-<%-- 			<% --%>
-// 			System.out.println("listaMovimientosYear");
-// 				request.getSession().setAttribute("listaMovimientos", listaMovimientosYear); 
-<%-- 			%> --%>
-// 			});
-// 			$(document).on('click', 'buttonIngresosYear', function(){
-<%-- 				<% --%>
-// 				System.out.println("listaMovimientosYear");
-// 					request.getSession().setAttribute("listaMovimientos", listaIngresosYear); 
-<%-- 				%> --%>
-// 				});
-// 		$("#ingresosYear").click(function() {
-<%-- 			<% --%>
-// 			System.out.println("listaIngresosYear");
-// 				request.getSession().setAttribute("listaMovimientos", listaIngresosYear); 
-<%-- 			%> --%>
-// 			});
-// 		$("#gastosYear").click(function() {
-<%-- 			<% --%>
-// 				request.getSession().setAttribute("listaMovimientos", listaGastosYear); 
-<%-- 			%> --%>
-// 			});
-// 		$("#movimientosMonth").click(function() {
-<%-- 			<% --%>
-// 				request.getSession().setAttribute("listaMovimientos", listaMovimientosMonth); 
-<%-- 			%> --%>
-// 			});
-// 		$("#ingresosMonth").click(function() {
-<%-- 			<% --%>
-// 				request.getSession().setAttribute("listaMovimientos", listaIngresosMonth); 
-<%-- 			%> --%>
-// 			});
-// 		$("#gastosMonth").click(function() {
-<%-- 			<% --%>
-// 				request.getSession().setAttribute("listaMovimientos", listaGastosMonth); 
-<%-- 			%> --%>
-// 			});
-	</script>
 </body>
 </html>

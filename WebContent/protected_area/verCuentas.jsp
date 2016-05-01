@@ -50,9 +50,9 @@
 		var optionsComposicion = {
 				title : 'Ingresos del mes',
 				is3D: true,
-				chartArea:{left:0,top:0,width:"100%",height:"100%"},
-				height: 400,
-				width: 450
+// 				chartArea:{left:0,top:0,width:"100%",height:"100%"},
+// 				height: 400,
+// 				width: 450
 		};
 
 		var composicion = new google.visualization.PieChart(document
@@ -87,11 +87,10 @@
 	      
 	      var optionsSaldo = {
 					is3D: true,
-					chartArea:{left:50},
-// 					height: 400,
-					width: 1200,
-					min: 300,
-					max: 1400,
+// 					chartArea:{left:50},
+// 					width: 1100,
+// 					min: 300,
+// 					max: 1400,
 			            legend:"none"
 					    };
 	      
@@ -172,7 +171,7 @@
 			<div class="col-sm-6 bordeIzquierda">
 				<div class="paddingAnalisis paddingIzquierda">
 					<h4 class="titulo4">Composición de la cartera de Cuentas</h4>
-					<div id="composicion"></div>
+					<div id="composicion" class="composicion"></div>
 				</div>
 			</div>
 		</div>
@@ -180,7 +179,7 @@
 		<div>
 			<div class="paddingAnalisis">
 				<h4 class="titulo4">Saldo de las Cuentas</h4>
-				<div id="saldo"></div>
+				<div id="saldo" class="saldoCuentas"></div>
 			</div>
 		</div>
 

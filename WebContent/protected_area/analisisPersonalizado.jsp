@@ -306,8 +306,6 @@
 		}
 	</script>
 
-
-
 	<jsp:include page="/common/userHeader.jsp" />
 
 	<jsp:include page="/common/userHeader.jsp" />
@@ -495,19 +493,10 @@
 												</tr>
 											</tbody>
 										</table>
-										<form method="POST" action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-											<%
-													request.getSession().setAttribute("listaMovimientos", listaMovimientosPersonalizado);
-												%>
-											<button type="submit" class="btn btn-default" name="exportar">
-												<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar Excel
-											</button>
-										</form>
 									</div>
 								</div>
 							</div>
 						</div>
-
 
 						<!-- Personalizado Ingresos -->
 
@@ -556,12 +545,10 @@
 																%>
 															</ul>
 														</div>
-
 													</div>
 												</div>
 											</div>
 										</div>
-
 									</div>
 								</div>
 								<div>
@@ -654,23 +641,11 @@
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosPersonalizado);
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar">
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
 
 						<!-- Personalizado Gastos -->
 
@@ -722,9 +697,7 @@
 												</div>
 											</div>
 										</div>
-
 									</div>
-
 								</div>
 								<div>
 									<div class="paddingAnalisis">
@@ -815,24 +788,12 @@
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-													request.getSession().setAttribute("listaMovimientos", listaGastosPersonalizado);
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar">
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
 				</div>
 				<div id="year" class="tab-pane fade recuadro">
 					<ul class="nav nav-tabs navTipo">
@@ -869,7 +830,6 @@
 											- <span class="label label-pill label-danger"><%=totalGastosYear%></span>
 											= <span class="label label-pill label-info"><%=beneficioYear%></span>
 										</p>
-
 									</div>
 								</div>
 							</div>
@@ -979,31 +939,18 @@
 															}
 															if(total == 0){
 																%><td class="total cero"><%=+total%></td><%
-															}
-														
+															}														
 														%>
 														<td></td>
 														<td></td>
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-													request.getSession().setAttribute("listaMovimientos", listaMovimientosYear);
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar">
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
 						</div>
-						
-						
+												
 						<!-- Año Ingresos -->
 						
 						<div id="ingresosYear" class="tab-pane fade">
@@ -1051,12 +998,10 @@
 																%>
 															</ul>
 														</div>
-
 													</div>
 												</div>
 											</div>
 										</div>
-
 									</div>
 								</div>
 								<div>
@@ -1080,8 +1025,6 @@
 												<tbody>
 													<%
 														 total = totalIngresosYear;
-
-														
 														 clase = null;
 														for (int i = 0; i < listaIngresosYear.size(); i++) {
 															movimiento = listaIngresosYear.get(i);
@@ -1149,23 +1092,11 @@
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosYear);
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar">
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
 
 						<!-- Año Gastos -->
 						
@@ -1219,7 +1150,6 @@
 										</div>
 
 									</div>
-
 								</div>
 								<div>
 									<div class="paddingAnalisis">
@@ -1310,17 +1240,6 @@
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-													request.getSession().setAttribute("listaMovimientos", listaGastosYear);
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar">
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
@@ -1328,7 +1247,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div id="month" class="tab-pane fade recuadro">
 						<ul class="nav nav-tabs navTipo">
 						<li class="active"><a data-toggle="tab" href="#generalMonth">General</a></li>
@@ -1338,17 +1256,8 @@
 					<div class="tab-content">
 					
 					<!--Evolucion año -->
-					
-					
+										
 						<div id="generalMonth" class="tab-pane fade in active">
-<!-- 						<div class="bordeAbajo"> -->
-<!-- 									<div class="row"> -->
-<!-- 											<div class="paddingAnalisis paddingIzquierda"> -->
-<!-- 												<h3>Evolución</h3> -->
-<!-- 												<div id="chartEvolucionYear" ></div> -->
-<!-- 											</div> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
 							<div class="bordeAbajo">
 								<div class="paddingAnalisis">
 									<h3>Resultado del Mes</h3>
@@ -1365,7 +1274,6 @@
 											- <span class="label label-pill label-danger"><%=totalGastosMonth%></span>
 											= <span class="label label-pill label-info"><%=beneficioMonth%></span>
 										</p>
-
 									</div>
 								</div>
 							</div>
@@ -1474,31 +1382,18 @@
 															}
 															if(total == 0){
 																%><td class="total cero"><%=+total%></td><%
-															}
-														
+															}														
 														%>
 														<td></td>
 														<td></td>
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-													request.getSession().setAttribute("listaMovimientos", listaMovimientosMonth);
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar">
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
 						</div>
-						
-						
+												
 						<!-- Mes Ingresos -->
 						
 						<div id="ingresosMonth" class="tab-pane fade">
@@ -1546,12 +1441,10 @@
 																%>
 															</ul>
 														</div>
-
 													</div>
 												</div>
 											</div>
 										</div>
-
 									</div>
 								</div>
 								<div>
@@ -1574,9 +1467,7 @@
 												</thead>
 												<tbody>
 													<%
-														 total = totalIngresosMonth;
-
-														
+														 total = totalIngresosMonth;						
 														 clase = null;
 														for (int i = 0; i < listaIngresosMonth.size(); i++) {
 															movimiento = listaIngresosMonth.get(i);
@@ -1644,23 +1535,11 @@
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-													request.getSession().setAttribute("listaMovimientos", listaIngresosMonth);
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar">
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
 
 						<!-- Month Gastos -->
 						
@@ -1712,9 +1591,7 @@
 												</div>
 											</div>
 										</div>
-
 									</div>
-
 								</div>
 								<div>
 									<div class="paddingAnalisis">
@@ -1805,30 +1682,15 @@
 													</tr>
 												</tbody>
 											</table>
-											<form method="POST"
-												action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
-												<%
-													request.getSession().setAttribute("listaMovimientos", listaGastosMonth);
-												%>
-												<button type="submit" class="btn btn-default"
-													name="exportar">
-													<span class="glyphicon glyphicon-download-alt"
-														aria-hidden="true"></span> Descargar Excel
-												</button>
-											</form>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					
+					</div>	
 				</div>
-
 			</div>
 		</div>
 	</div>
-
-
 </body>
 </html>

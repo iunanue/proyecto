@@ -55,7 +55,12 @@ width:100%;
   border:1px solid red;
   width:50%;
 }
-
+.saldoCuentas{
+	width:100%;
+}
+.composicion{
+	width:100%;
+}
 .bordeIzquierda{
 	border-left: 1px solid #ddd;
 }
