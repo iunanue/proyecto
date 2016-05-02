@@ -56,8 +56,8 @@ public class GestorAlertasService {
 		Connect.getIDao().updateAlerta(alertaActualizada);
 	}
 	
-	public void deleteMovimiento(Movimiento entity){
-		Connect.getIDao().deleteMovimiento(entity);
+	public void deleteAlerta(Alerta entity){
+		Connect.getIDao().deleteAlerta(entity);
 	}
 	
 	public void getAlertas(String username){

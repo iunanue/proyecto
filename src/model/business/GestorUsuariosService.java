@@ -12,6 +12,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import model.classes.Alerta;
 import model.classes.ClaseGasto;
 import model.classes.ClaseIngreso;
 import model.classes.Usuario;
@@ -47,6 +48,8 @@ public class GestorUsuariosService {
 	}
 	
 	public void deleteUsuario(String username,String mail,String password){
+		Alerta alerta = new Alerta(username,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		GestorAlertasService.getInstance().deleteAlerta(alerta);
 		Usuario usuario = new Usuario(username,mail,password);
 		Connect.getIDao().deleteUsuario(usuario);
 	}
