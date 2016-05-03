@@ -35,7 +35,7 @@
 					<h2></h2>
 					<fieldset>
 						<form method="POST" id="form" action="${pageContext.request.contextPath}/protected_area/updateCuenta">
-							
+							<label>ID:</label>
 							<input id="id_cuenta" class="field" type="text" name="id_cuenta" placeholder="id_cuenta" value="<%=cuenta.getId_cuenta()%>" readonly> 
 							<label>Descripción:</label>
 							<textarea id="descripcion" class="descripcion" name="descripcion"></textarea>
