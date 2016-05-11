@@ -1,4 +1,3 @@
-<%@page import="controller.Config"%>
 <%@page import="model.classes.Movimiento"%>
 <%@page import="model.classes.Usuario"%>
 <%@page import="model.classes.ClaseIngreso"%>
@@ -151,7 +150,6 @@
 								onClick="return confirm('¿Desea modificar este movimiento?');">
 						</form>
 					</fieldset>
-					<%-- 			<a href="<%=Config.getInstance().getRoot()%>protected_area/updateUsuario.jsp">Acceder</a> --%>
 
 				<%
 					if (request.getSession().getAttribute("mensaje") != null) {

@@ -1,4 +1,3 @@
-<%@page import="controller.Config"%>
 <%@page import="model.classes.Movimiento"%>
 <%@page import="model.classes.ClaseIngreso"%>
 <%@page import="model.classes.ClaseGasto"%>
@@ -148,7 +147,7 @@
 			</tbody>
 		</table>
 
-		<form method="POST" action="<%=Config.getInstance().getRoot()%>/protected_area/exportExcel">
+		<form method="POST" action="${pageContext.request.contextPath}/protected_area/exportExcel">
 							<%request.getSession().setAttribute("listaMovimientos", listaMovimientos); %>
 							<button type="submit" class="btn btn-default" name="exportar">
 								<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar Excel

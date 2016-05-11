@@ -35,7 +35,6 @@ public class VerAlertas extends HttpServlet {
 		request.setAttribute("listaAlertasYear", GestorAlertasService.getInstance().getListaAlertasYear());
 		request.setAttribute("listaAlertasMonth", GestorAlertasService.getInstance().getListaAlertasMonth());
 		
-		System.out.println("a ver: " +GestorAlertasService.getInstance().getListaAlertasYear().get(1));
 		request.getRequestDispatcher("/protected_area/verAlertas.jsp").forward(request, response);
 	}
 

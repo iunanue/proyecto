@@ -1,4 +1,3 @@
-<%@page import="controller.Config"%>
 <%@page import="model.classes.Movimiento"%>
 <%@page import="model.classes.ClaseIngreso"%>
 <%@page import="model.classes.ClaseGasto"%>

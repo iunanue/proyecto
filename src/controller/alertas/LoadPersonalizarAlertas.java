@@ -31,7 +31,6 @@ public class LoadPersonalizarAlertas extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-//		System.out.println(GestorAlertasService.getInstance().getAlerta(request.getUserPrincipal().getName()).getUsername());
 		request.setAttribute("alerta", GestorAlertasService.getInstance().getAlerta(request.getUserPrincipal().getName()));
 		request.getRequestDispatcher("/protected_area/personalizarAlertas.jsp").forward(request, response);
 	}

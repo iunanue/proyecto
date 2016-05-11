@@ -1,4 +1,3 @@
-<%@page import="controller.Config"%>
 <%@page import="model.classes.Cuenta"%>
 <%@ page import="java.util.List"%>
 
@@ -43,13 +42,11 @@
 							<input id="saldo" type="number" name="saldo"
 								 step="0.01"> 
 								
-<%-- 							<input type="hidden" name="id_movimiento" value="<%=movimiento.getId_movimiento()%>" /> --%>
 							<input class="button blue" name="update" type="submit"
 								value="Actualizar"
 								onClick="return confirm('¿Desea actualizar esta cuenta?');">
 						</form>
 					</fieldset>
-					<%-- 			<a href="<%=Config.getInstance().getRoot()%>protected_area/updateUsuario.jsp">Acceder</a> --%>
 
 				<%
 					if (request.getSession().getAttribute("mensaje") != null) {
@@ -61,7 +58,6 @@
 					}
 					request.getSession().setAttribute("mensaje", null);
 				%>
-				<!-- 	<div class="marginEnd"></div> -->
 				</div>
 	</div>
 </body>

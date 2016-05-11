@@ -126,7 +126,6 @@ public class PersonalizarAlertas extends HttpServlet {
 			(request.getParameter("ocioYear").equals(""))||
 			(request.getParameter("otrosYear").equals(""))) {
 			mensaje = "Rellene todos los campos por favor.";
-			System.out.println(mensaje);
 			return false;
 		}
 		else{
