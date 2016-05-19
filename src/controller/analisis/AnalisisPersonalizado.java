@@ -194,6 +194,7 @@ public class AnalisisPersonalizado extends HttpServlet {
 			request.setAttribute("listaClaseIngresoPersonalizado", GestorAnalisisService.getInstance().getListaClaseIngresoPersonalizado());
 			request.setAttribute("listaClaseGastoPersonalizado", GestorAnalisisService.getInstance().getListaClaseGastoPersonalizado());
 			
+			request.setAttribute("listaTiposMovimiento", GestorMovimientosService.getInstance().getTiposMovimiento());
 
 
 			request.getRequestDispatcher("/protected_area/analisisPersonalizado.jsp").forward(request, response);

@@ -23,6 +23,7 @@ import model.classes.ClaseGasto;
 import model.classes.ClaseIngreso;
 import model.classes.Cuenta;
 import model.classes.Movimiento;
+import model.classes.TipoMovimiento;
 import model.data.Connect;
 
 /**
@@ -73,7 +74,7 @@ public class AnalisisEstandar extends HttpServlet {
 		request.setAttribute("listaClaseGastoYear", GestorAnalisisService.getInstance().getListaClaseGastoYear());
 		request.setAttribute("listaClaseGastoMonth", GestorAnalisisService.getInstance().getListaClaseGastoMonth());
 		request.setAttribute("listaCuentas", GestorCuentasService.getInstance().getCuentas());
-		
+		request.setAttribute("listaTiposMovimiento", GestorMovimientosService.getInstance().getTiposMovimiento());
 		request.getRequestDispatcher("/protected_area/analisisEstandar.jsp").forward(request, response);
 	}
 
