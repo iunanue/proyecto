@@ -15,6 +15,7 @@ import model.classes.ClaseGasto;
 import model.classes.ClaseIngreso;
 import model.classes.Cuenta;
 import model.classes.Movimiento;
+import model.classes.TipoMovimiento;
 import model.classes.Usuario;
 import model.classes.UsuarioRol;
 
@@ -191,10 +192,10 @@ public class Dao implements IDao {
 		Cuenta cuenta = getCuenta(movimiento.getId_cuenta());
 		float saldo = cuenta.getSaldo();
 		if(funcion.equals("add")){
-			if(movimiento.getTipo().equals("Ingreso")){
+			if(movimiento.getTipo()==1){
 				saldo = saldo + movimiento.getImporte();
 			}
-			if(movimiento.getTipo().equals("Gasto")){
+			if(movimiento.getTipo()==2){
 				saldo = saldo - movimiento.getImporte();
 			}
 		}
@@ -202,10 +203,10 @@ public class Dao implements IDao {
 			saldo = saldo + movimiento.getImporte();
 		}
 		if(funcion.equals("delete")){
-			if(movimiento.getTipo().equals("Ingreso")){
+			if(movimiento.getTipo()==1){
 				saldo = saldo - movimiento.getImporte();
 			}
-			if(movimiento.getTipo().equals("Gasto")){
+			if(movimiento.getTipo()==2){
 				saldo = saldo + movimiento.getImporte();
 			}
 		}
@@ -281,19 +282,19 @@ public class Dao implements IDao {
 		
 		float diferencia = 0;
 		if(movimientoAntiguo.getId_cuenta()==movimientoActualizado.getId_cuenta()){
-			if((movimientoAntiguo.getTipo().equals("Ingreso"))&&(movimientoActualizado.getTipo().equals("Ingreso"))){
+			if((movimientoAntiguo.getTipo()==1)&&(movimientoActualizado.getTipo()==1)){
 				diferencia = movimientoActualizado.getImporte()-movimientoAntiguo.getImporte();
 				movimientoAntiguoCopia.setImporte(diferencia);
 			}
-			if((movimientoAntiguo.getTipo().equals("Gasto"))&&(movimientoActualizado.getTipo().equals("Gasto"))){
+			if((movimientoAntiguo.getTipo()==2)&&(movimientoActualizado.getTipo()==2)){
 				diferencia = movimientoActualizado.getImporte()-movimientoAntiguo.getImporte();
 				movimientoAntiguoCopia.setImporte(-diferencia);
 			}
-			if((movimientoAntiguo.getTipo().equals("Ingreso"))&&(movimientoActualizado.getTipo().equals("Gasto"))){
+			if((movimientoAntiguo.getTipo()==1)&&(movimientoActualizado.getTipo()==2)){
 				diferencia = movimientoActualizado.getImporte()+movimientoAntiguo.getImporte();
 				movimientoAntiguoCopia.setImporte(-diferencia);
 			}
-			if((movimientoAntiguo.getTipo().equals("Gasto"))&&(movimientoActualizado.getTipo().equals("Ingreso"))){
+			if((movimientoAntiguo.getTipo()==2)&&(movimientoActualizado.getTipo()==1)){
 				diferencia = movimientoActualizado.getImporte()+movimientoAntiguo.getImporte();
 				movimientoAntiguoCopia.setImporte(diferencia);
 			}
@@ -301,24 +302,24 @@ public class Dao implements IDao {
 		}
 		else
 		{
-			if((movimientoAntiguo.getTipo().equals("Ingreso"))&&(movimientoActualizado.getTipo().equals("Ingreso"))){
+			if((movimientoAntiguo.getTipo()==1)&&(movimientoActualizado.getTipo()==1)){
 				movimientoAntiguoCopia.setImporte(-movimientoAntiguo.getImporte());
 				refreshCuenta(movimientoAntiguoCopia, "update");
 				refreshCuenta(movimientoActualizadoCopia, "update");			
 			}
-			if((movimientoAntiguo.getTipo().equals("Gasto"))&&(movimientoActualizado.getTipo().equals("Gasto"))){
+			if((movimientoAntiguo.getTipo()==2)&&(movimientoActualizado.getTipo()==2)){
 				movimientoAntiguoCopia.setImporte(movimientoAntiguo.getImporte());
 				refreshCuenta(movimientoAntiguoCopia, "update");
 				movimientoActualizadoCopia.setImporte(-movimientoActualizado.getImporte());
 				refreshCuenta(movimientoActualizadoCopia, "update");
 			}
-			if((movimientoAntiguo.getTipo().equals("Ingreso"))&&(movimientoActualizado.getTipo().equals("Gasto"))){
+			if((movimientoAntiguo.getTipo()==1)&&(movimientoActualizado.getTipo()==2)){
 				movimientoAntiguoCopia.setImporte(-movimientoAntiguo.getImporte());
 				refreshCuenta(movimientoAntiguoCopia, "update");
 				movimientoActualizadoCopia.setImporte(-movimientoActualizado.getImporte());
 				refreshCuenta(movimientoActualizadoCopia, "update");
 			}
-			if((movimientoAntiguo.getTipo().equals("Gasto"))&&(movimientoActualizado.getTipo().equals("Ingreso"))){
+			if((movimientoAntiguo.getTipo()==2)&&(movimientoActualizado.getTipo()==1)){
 				refreshCuenta(movimientoAntiguoCopia, "update");
 				refreshCuenta(movimientoActualizadoCopia, "update");
 			}
@@ -369,7 +370,7 @@ public class Dao implements IDao {
 
 	@Override
 	public List<Movimiento> getGenerarConsultaMovimientos(boolean filtroFecha, boolean filtroTipo, boolean filtroClase,
-			boolean filtroUsuario, boolean filtroCuenta, String tipo, Timestamp fechaInicio, Timestamp fechaFin,
+			boolean filtroUsuario, boolean filtroCuenta, int id_tipoMovimiento, Timestamp fechaInicio, Timestamp fechaFin,
 			int id_clase, String username, int id_cuenta) {
 		SessionFactory sesion= getSessionFactory();
         Session session =sesion.openSession();
@@ -381,7 +382,7 @@ public class Dao implements IDao {
         	criteria.add(Restrictions.le("fecha", fechaFin));
         }
         if(filtroTipo == true){
-        	criteria.add(Restrictions.eq("tipo", tipo));
+        	criteria.add(Restrictions.eq("id_tipoMovimiento", id_tipoMovimiento));
         }
         if(filtroClase == true){
         	criteria.add(Restrictions.eq("id_clase", id_clase));
@@ -531,6 +532,22 @@ public class Dao implements IDao {
        
         return listaMovimientos;		
 		
+	}
+
+	@Override
+	public List<TipoMovimiento> getTiposMovimiento() {
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(TipoMovimiento.class);
+		@SuppressWarnings("unchecked")
+		List<TipoMovimiento> listaTiposMovimiento = criteria.list();
+
+		tx.commit();
+		session.close();
+
+		return listaTiposMovimiento;
 	}
 
 

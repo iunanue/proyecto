@@ -85,8 +85,8 @@
 							</div>
 							<div id="tipo" style="display: none">
 							<label>Tipo de movimiento:</label>
-								<input type="radio" id="ingreso" name="tipo" value="Ingreso" checked onclick="check()">Ingreso<br> 
-								<input type="radio" id="gasto" name="tipo" value="Gasto" onclick="check()">Gasto<br>
+								<input type="radio" id="ingreso" name="id_tipoMovimiento" value="1" checked onclick="check()">Ingreso<br> 
+								<input type="radio" id="gasto" name="id_tipoMovimiento" value="2" onclick="check()">Gasto<br>
 							
 								<h3>Filtro de clase de movimiento:</h3>
 							<div id="filtroClase">

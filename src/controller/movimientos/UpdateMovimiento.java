@@ -27,7 +27,7 @@ public class UpdateMovimiento extends HttpServlet {
 	
 	Movimiento movimiento;
 	int id_movimiento;
-	String tipo;
+	int id_tipoMovimiento;
 	Timestamp fecha;
 	int id_clase;
 	String username;
@@ -61,7 +61,7 @@ public class UpdateMovimiento extends HttpServlet {
 		this.id_movimiento =  Integer.parseInt(request.getParameter("id_movimiento"));
 		if (checkForm(request, response))
 		{
-			this.tipo = request.getParameter("tipo");
+			this.id_tipoMovimiento = Integer.parseInt(request.getParameter("id_tipoMovimiento"));
 			
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Date aux = null;
@@ -79,11 +79,11 @@ public class UpdateMovimiento extends HttpServlet {
 //			System.out.println(string);
 			
 			
-			if(tipo.equals("Ingreso"))
+			if(id_tipoMovimiento==1)
 			{
 				this.id_clase =  Integer.parseInt(request.getParameter("claseIngreso"));
 			}
-			if(tipo.equals("Gasto"))
+			if(id_tipoMovimiento==2)
 			{
 				this.id_clase =  Integer.parseInt(request.getParameter("claseGasto"));
 			}
@@ -97,7 +97,7 @@ public class UpdateMovimiento extends HttpServlet {
 			this.descripcion = request.getParameter("descripcion");
 			
 
-			System.out.println(tipo);
+			System.out.println(id_tipoMovimiento);
 			System.out.println("Fecha " + fecha);
 			System.out.println("Fecha param " + request.getParameter("fecha"));
 			System.out.println(id_clase);
@@ -106,7 +106,7 @@ public class UpdateMovimiento extends HttpServlet {
 			System.out.println(importe);
 			System.out.println(descripcion);
 
-			GestorMovimientosService.getInstance().updateMovimiento(id_movimiento,tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
+			GestorMovimientosService.getInstance().updateMovimiento(id_movimiento,id_tipoMovimiento,fecha,id_clase,username,id_cuenta,importe,descripcion);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		else

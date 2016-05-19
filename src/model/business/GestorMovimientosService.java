@@ -22,6 +22,7 @@ import model.classes.ClaseGasto;
 import model.classes.ClaseIngreso;
 import model.classes.Cuenta;
 import model.classes.Movimiento;
+import model.classes.TipoMovimiento;
 import model.data.Connect;
 
 public class GestorMovimientosService {
@@ -35,8 +36,8 @@ public class GestorMovimientosService {
 		return gestorMovimientosService;
 	}
 	
-	public void addMovimiento(String tipo,Timestamp fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion){
-		Movimiento movimiento = new Movimiento(tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
+	public void addMovimiento(int id_tipoMovimiento,Timestamp fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion){
+		Movimiento movimiento = new Movimiento(id_tipoMovimiento,fecha,id_clase,username,id_cuenta,importe,descripcion);
 		Connect.getIDao().addMovimiento(movimiento);
 	}
 	
@@ -48,9 +49,9 @@ public class GestorMovimientosService {
 		return Connect.getIDao().getMovimiento(id_movimiento);
 	}
 	
-	public void updateMovimiento(int id_movimiento,String tipo,Timestamp fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion){
+	public void updateMovimiento(int id_movimiento,int id_tipoMovimiento,Timestamp fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion){
 		Movimiento movimientoAntiguo = Connect.getIDao().getMovimiento(id_movimiento);
-		Movimiento movimientoActualizado = new Movimiento(id_movimiento,tipo,fecha,id_clase,username,id_cuenta,importe,descripcion);
+		Movimiento movimientoActualizado = new Movimiento(id_movimiento,id_tipoMovimiento,fecha,id_clase,username,id_cuenta,importe,descripcion);
 		Connect.getIDao().updateMovimiento(movimientoAntiguo, movimientoActualizado);
 	}
 	
@@ -58,8 +59,8 @@ public class GestorMovimientosService {
 		Connect.getIDao().deleteMovimiento(entity);
 	}
 	
-	public List<Movimiento> getGenerarConsultaMovimientos(boolean filtroFecha,boolean filtroTipo,boolean filtroClase,boolean filtroUsuario,boolean filtroCuenta,String tipo,Timestamp fechaInicio,Timestamp fechaFin,int id_clase,String username,int id_cuenta){
-		return Connect.getIDao().getGenerarConsultaMovimientos(filtroFecha,filtroTipo, filtroClase, filtroUsuario, filtroCuenta, tipo, fechaInicio, fechaFin, id_clase,username, id_cuenta);
+	public List<Movimiento> getGenerarConsultaMovimientos(boolean filtroFecha,boolean filtroTipo,boolean filtroClase,boolean filtroUsuario,boolean filtroCuenta,int id_tipoMovimiento,Timestamp fechaInicio,Timestamp fechaFin,int id_clase,String username,int id_cuenta){
+		return Connect.getIDao().getGenerarConsultaMovimientos(filtroFecha,filtroTipo, filtroClase, filtroUsuario, filtroCuenta, id_tipoMovimiento, fechaInicio, fechaFin, id_clase,username, id_cuenta);
 	}
 
 
@@ -143,12 +144,12 @@ public class GestorMovimientosService {
 
 			Cell clase = row.createCell(3);
 			String clase_descripcion = null;
-			if (listaMovimientos.get(i - 1).getTipo().equals("Ingreso")) {
+			if (listaMovimientos.get(i - 1).getTipo()==1) {
 				clase_descripcion = listaClaseIngreso.get(listaMovimientos.get(i - 1).getId_clase() - 1)
 						.getDescripcion();
 				total = total + listaMovimientos.get(i-1).getImporte();
 			}
-			if (listaMovimientos.get(i - 1).getTipo().equals("Gasto")) {
+			if (listaMovimientos.get(i - 1).getTipo()==2) {
 				clase_descripcion = listaClaseGasto.get(listaMovimientos.get(i - 1).getId_clase() - 1)
 						.getDescripcion();
 				total = total - listaMovimientos.get(i-1).getImporte();
@@ -244,6 +245,9 @@ public class GestorMovimientosService {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+	}
+	public List<TipoMovimiento> getTiposMovimiento() {
+		return Connect.getIDao().getTiposMovimiento();
 	}
 	
 }

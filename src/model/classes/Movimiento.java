@@ -11,8 +11,8 @@ public class Movimiento {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_movimiento;
 	
-	@Column(name = "tipo")
-	private String tipo;//ingreso/gasto
+	@Column(name = "id_tipoMovimiento")
+	private int id_tipoMovimiento;//ingreso/gasto
 	
 	@Column(name = "fecha")
 	private Timestamp fecha;
@@ -32,10 +32,10 @@ public class Movimiento {
 	@Column(name = "descripcion")
 	private String descripcion;
 
-	public Movimiento(int id_movimiento,String tipo,Timestamp fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion)
+	public Movimiento(int id_movimiento,int id_tipoMovimiento,Timestamp fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion)
 	{
 		this.id_movimiento = id_movimiento;
-		this.tipo = tipo;
+		this.id_tipoMovimiento = id_tipoMovimiento;
 		this.fecha = fecha;
 		this.id_clase = id_clase;
 		this.username = username;
@@ -43,9 +43,9 @@ public class Movimiento {
 		this.importe = importe;
 		this.descripcion = descripcion;
 	}
-	public Movimiento(String tipo,Timestamp fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion)
+	public Movimiento(int id_tipoMovimiento,Timestamp fecha,int id_clase,String username,int id_cuenta,float importe,String descripcion)
 	{
-		this.tipo = tipo;
+		this.id_tipoMovimiento = id_tipoMovimiento;
 		this.fecha = fecha;
 		this.id_clase = id_clase;
 		this.username = username;
@@ -66,12 +66,12 @@ public class Movimiento {
 		this.id_movimiento = id_movimiento;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public int getTipo() {
+		return id_tipoMovimiento;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setTipo(int id_tipoMovimiento) {
+		this.id_tipoMovimiento = id_tipoMovimiento;
 	}
 
 	public Timestamp getFecha() {

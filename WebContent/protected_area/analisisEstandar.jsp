@@ -326,10 +326,10 @@
 														String clase = null;
 														for (int i = 0; i < listaMovimientosYear.size(); i++) {
 															movimiento = listaMovimientosYear.get(i);
-															if (movimiento.getTipo().equals("Ingreso")) {
+															if (movimiento.getTipo()==1) {
 																clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
 															}
-															if (movimiento.getTipo().equals("Gasto")) {
+															if (movimiento.getTipo()==2) {
 																clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
 															}
 													%>
@@ -345,7 +345,7 @@
 														<td><%=movimiento.getUsername()%></td>
 														<td><%=listaCuentas.get(movimiento.getId_cuenta() - 1).getDescripcion()%></td>
 														<%
-															if (movimiento.getTipo().equals("Ingreso")) {
+															if (movimiento.getTipo()==1) {
 														%><td class="ingreso">+<%=movimiento.getImporte()%></td>
 														<%
 															} else {
@@ -482,10 +482,10 @@
 														 clase = null;
 														for (int i = 0; i < listaIngresosYear.size(); i++) {
 															movimiento = listaIngresosYear.get(i);
-															if (movimiento.getTipo().equals("Ingreso")) {
+															if (movimiento.getTipo()==1) {
 																clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
 															}
-															if (movimiento.getTipo().equals("Gasto")) {
+															if (movimiento.getTipo()==2) {
 																clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
 															}
 													%>
@@ -501,7 +501,7 @@
 														<td><%=movimiento.getUsername()%></td>
 														<td><%=listaCuentas.get(movimiento.getId_cuenta() - 1).getDescripcion()%></td>
 														<%
-															if (movimiento.getTipo().equals("Ingreso")) {
+															if (movimiento.getTipo()==1) {
 														%><td class="ingreso">+<%=movimiento.getImporte()%></td>
 														<%
 															} else {
@@ -629,10 +629,10 @@
 														clase = null;
 														for (int i = 0; i < listaGastosYear.size(); i++) {
 															movimiento = listaGastosYear.get(i);
-															if (movimiento.getTipo().equals("Ingreso")) {
+															if (movimiento.getTipo()==1) {
 																clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
 															}
-															if (movimiento.getTipo().equals("Gasto")) {
+															if (movimiento.getTipo()==2) {
 																clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
 															}
 													%>
@@ -648,7 +648,7 @@
 														<td><%=movimiento.getUsername()%></td>
 														<td><%=listaCuentas.get(movimiento.getId_cuenta() - 1).getDescripcion()%></td>
 														<%
-															if (movimiento.getTipo().equals("Ingreso")) {
+															if (movimiento.getTipo()==1) {
 														%><td class="ingreso">+<%=movimiento.getImporte()%></td>
 														<%
 															} else {
@@ -766,10 +766,10 @@
 														clase = null;
 														for (int i = 0; i < listaMovimientosMonth.size(); i++) {
 															movimiento = listaMovimientosMonth.get(i);
-															if (movimiento.getTipo().equals("Ingreso")) {
+															if (movimiento.getTipo()==1) {
 																clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
 															}
-															if (movimiento.getTipo().equals("Gasto")) {
+															if (movimiento.getTipo()==2) {
 																clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
 															}
 													%>
@@ -785,7 +785,7 @@
 														<td><%=movimiento.getUsername()%></td>
 														<td><%=listaCuentas.get(movimiento.getId_cuenta() - 1).getDescripcion()%></td>
 														<%
-															if (movimiento.getTipo().equals("Ingreso")) {
+															if (movimiento.getTipo()==1) {
 														%><td class="ingreso">+<%=movimiento.getImporte()%></td>
 														<%
 															} else {
@@ -923,10 +923,10 @@
 														 clase = null;
 														for (int i = 0; i < listaIngresosMonth.size(); i++) {
 															movimiento = listaIngresosMonth.get(i);
-															if (movimiento.getTipo().equals("Ingreso")) {
+															if (movimiento.getTipo()==1) {
 																clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
 															}
-															if (movimiento.getTipo().equals("Gasto")) {
+															if (movimiento.getTipo()==2) {
 																clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
 															}
 													%>
@@ -942,7 +942,7 @@
 														<td><%=movimiento.getUsername()%></td>
 														<td><%=listaCuentas.get(movimiento.getId_cuenta() - 1).getDescripcion()%></td>
 														<%
-															if (movimiento.getTipo().equals("Ingreso")) {
+															if (movimiento.getTipo()==1) {
 														%><td class="ingreso">+<%=movimiento.getImporte()%></td>
 														<%
 															} else {
@@ -1070,10 +1070,10 @@
 														clase = null;
 														for (int i = 0; i < listaGastosMonth.size(); i++) {
 															movimiento = listaGastosMonth.get(i);
-															if (movimiento.getTipo().equals("Ingreso")) {
+															if (movimiento.getTipo()==1) {
 																clase = listaClaseIngreso.get(movimiento.getId_clase() - 1).getDescripcion();
 															}
-															if (movimiento.getTipo().equals("Gasto")) {
+															if (movimiento.getTipo()==2) {
 																clase = listaClaseGasto.get(movimiento.getId_clase() - 1).getDescripcion();
 															}
 													%>
@@ -1089,7 +1089,7 @@
 														<td><%=movimiento.getUsername()%></td>
 														<td><%=listaCuentas.get(movimiento.getId_cuenta() - 1).getDescripcion()%></td>
 														<%
-															if (movimiento.getTipo().equals("Ingreso")) {
+															if (movimiento.getTipo()==1) {
 														%><td class="ingreso">+<%=movimiento.getImporte()%></td>
 														<%
 															} else {

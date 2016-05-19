@@ -38,7 +38,7 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 	boolean filtroUsuario;
 	boolean filtroCuenta;
 
-	String tipo;
+	int id_tipoMovimiento;
 	Timestamp fechaInicio;
 	Timestamp fechaFin;
 	int id_clase;
@@ -149,11 +149,11 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 				System.out.println("\nFuera");
 			}
 			if (filtroTipo == true) {
-				this.tipo = request.getParameter("tipo");
-				consulta.add(tipo);
+				this.id_tipoMovimiento = Integer.parseInt(request.getParameter("id_tipoMovimiento"));
+				consulta.add(GestorMovimientosService.getInstance().getTiposMovimiento().get(id_tipoMovimiento).getDescripcion());
 				if (filtroClase == true) {
-					this.tipo = request.getParameter("tipo");
-					if (tipo.equals("Ingreso")) {
+					this.id_tipoMovimiento = Integer.parseInt(request.getParameter("id_tipoMovimiento"));
+					if (id_tipoMovimiento==1) {
 						System.out.println("claseingreso");
 						this.id_clase = Integer.parseInt(request.getParameter("claseIngreso"));
 						consulta.add(GestorMovimientosService.getInstance().getClaseIngreso().get(id_clase - 1).getDescripcion());
@@ -197,7 +197,7 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 			System.out.println(fechaInicio);
 
 			List<Movimiento> listaMovimientos = GestorMovimientosService.getInstance().getGenerarConsultaMovimientos(filtroFecha,
-					filtroTipo, filtroClase, filtroUsuario, filtroCuenta, tipo, fechaInicio, fechaFin, id_clase,
+					filtroTipo, filtroClase, filtroUsuario, filtroCuenta, id_tipoMovimiento, fechaInicio, fechaFin, id_clase,
 					username, id_cuenta);
 
 			request.setAttribute("listaMovimientos", listaMovimientos);

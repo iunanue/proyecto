@@ -42,22 +42,12 @@
 					<fieldset>
 						<form method="POST" id="form" action="${pageContext.request.contextPath}/protected_area/addMovimiento">
 							<label>Fecha:<span class="required"> *</span></label> <input id="datePicker" type="date" name="fecha"> 
+							
 							<label>Tipo de movimiento:<span class="required"> *</span></label>
 							<div id="tipo">
-								<input type="radio" id="ingreso" name="tipo" value="Ingreso"
-									checked onclick="check()">Ingreso<br> <input
-									type="radio" id="gasto" name="tipo" value="Gasto"
-									onclick="check()">Gasto<br>
+								<input type="radio" id="ingreso" name="id_tipoMovimiento" value="1" checked onclick="check()">Ingreso<br> 
+									<input type="radio" id="gasto" name="id_tipoMovimiento" value="2" onclick="check()">Gasto<br>
 							</div>
-
-							<!-- 						<label>Tipo de movimiento:</label> -->
-							<!-- 						<div class="dropdown"> -->
-							<!-- 							<select id="tipoMovimiento" name="tipoMovimiento" class="dropdown-select" -->
-							<!-- 								onclick='test()'> -->
-							<!-- 								<option value="ingreso">Ingreso</option> -->
-							<!-- 								<option value="gasto">Gasto</option> -->
-							<!-- 							</select> -->
-							<!-- 						</div> -->
 
 							<div id="claseIngreso" style="display: none">
 								<label>Clase de Ingreso:<span class="required"> *</span></label>

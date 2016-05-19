@@ -36,7 +36,7 @@
 			
 	
 			
-			if(tipo == "Ingreso"){
+			if(tipo == 1){
 				$("#claseIngreso").show();
 				$("#claseGasto").hide();
 				$("#ingreso").prop("checked", true);
@@ -44,7 +44,7 @@
 				$('#dropdownIngreso').prop('selectedIndex', <%=movimiento.getId_clase()-1%>);
 		
 			}
-			if(tipo == "Gasto"){
+			if(tipo == 2){
 				$("#claseIngreso").hide();
 				$("#claseGasto").show();
 				$("#ingreso").prop("checked", false);
@@ -77,10 +77,8 @@
 						<form method="POST" id="form" action="${pageContext.request.contextPath}/protected_area/updateMovimiento">
 							<label>Fecha:</label> <input id="date" type="date" name="fecha"> <label>Tipo de movimiento:</label>
 							<div id="tipo">
-								<input type="radio" id="ingreso" name="tipo" value="Ingreso"
-									checked onclick="check()">Ingreso<br> <input
-									type="radio" id="gasto" name="tipo" value="Gasto"
-									onclick="check()">Gasto<br>
+								<input type="radio" id="ingreso" name="id_tipoMovimiento" value="1" checked onclick="check()">Ingreso<br> 
+								<input type="radio" id="gasto" name="id_tipoMovimiento" value="2" onclick="check()">Gasto<br>
 							</div>
 							<div id="claseIngreso" style="display: none">
 								<label>Clase de Ingreso:</label>

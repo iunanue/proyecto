@@ -71,16 +71,16 @@
     				String clase = null;
     				for(int i=0;i<listaMovimientos.size();i++){
     				movimiento = listaMovimientos.get(i); 
-    				if(movimiento.getTipo().equals("Ingreso")){
+    				if(movimiento.getTipo()==1){
     					clase = listaClaseIngreso.get(movimiento.getId_clase()-1).getDescripcion();
     				}
-    				if(movimiento.getTipo().equals("Gasto")){
+    				if(movimiento.getTipo()==2){
     					clase = listaClaseGasto.get(movimiento.getId_clase()-1).getDescripcion();
     				}
     				%>
 				<tr>
 				<%
-					if(movimiento.getTipo().equals("Ingreso")){
+					if(movimiento.getTipo()==1){
 						total = total + movimiento.getImporte();
 					}
 					else{
@@ -98,7 +98,7 @@
 					<td><%=movimiento.getUsername()%></td>
 					<td><%=listaCuentas.get(movimiento.getId_cuenta()-1).getDescripcion()%></td>
 					<%
-					if(movimiento.getTipo().equals("Ingreso")){
+					if(movimiento.getTipo()==1){
 						
 						%><td class="ingreso">+<%=movimiento.getImporte()%></td>
 					<% }

@@ -194,7 +194,7 @@ public class GestorAnalisisService {
 			float totalIngresos = 0;
 			float totalGastos = 0;
 			for (int j = 0; j < listaMovimientosEvolucionYear.size(); j++) {
-				if (listaMovimientosEvolucionYear.get(j).getTipo().equals("Ingreso")) {
+				if (listaMovimientosEvolucionYear.get(j).getTipo()==1) {
 					totalIngresos = totalIngresos + listaMovimientosEvolucionYear.get(j).getImporte();
 				} else {
 					totalGastos = totalGastos + listaMovimientosEvolucionYear.get(j).getImporte();
@@ -231,7 +231,7 @@ public class GestorAnalisisService {
 		listaIngresosYear = new ArrayList<Movimiento>();
 		listaGastosYear = new ArrayList<Movimiento>();
 		for (int i = 0; i < listaMovimientosYear.size(); i++) {
-			if (listaMovimientosYear.get(i).getTipo().equals("Ingreso")) {
+			if (listaMovimientosYear.get(i).getTipo()==1) {
 				listaIngresosYear.add(listaMovimientosYear.get(i));
 			} else {
 				listaGastosYear.add(listaMovimientosYear.get(i));
@@ -274,7 +274,7 @@ public class GestorAnalisisService {
 		listaIngresosMonth = new ArrayList<Movimiento>();
 		listaGastosMonth = new ArrayList<Movimiento>();
 		for (int i = 0; i < listaMovimientosMonth.size(); i++) {
-			if (listaMovimientosMonth.get(i).getTipo().equals("Ingreso")) {
+			if (listaMovimientosMonth.get(i).getTipo()==1) {
 				listaIngresosMonth.add(listaMovimientosMonth.get(i));
 			} else {
 				listaGastosMonth.add(listaMovimientosMonth.get(i));
@@ -418,7 +418,7 @@ public class GestorAnalisisService {
 		
 		System.out.println(fechaInicio);
 
-		listaMovimientosPersonalizado = Connect.getIDao().getGenerarConsultaMovimientos(filtroFecha, false, false, filtroUsuario, filtroCuenta, null, fechaInicio, fechaFin, 0, username, id_cuenta);
+		listaMovimientosPersonalizado = Connect.getIDao().getGenerarConsultaMovimientos(filtroFecha, false, false, filtroUsuario, filtroCuenta, 0, fechaInicio, fechaFin, 0, username, id_cuenta);
 
 //		request.setAttribute("listaMovimientosPersonalizado", listaMovimientosPersonalizado);
 
@@ -434,7 +434,7 @@ public class GestorAnalisisService {
 		listaIngresosPersonalizado = new ArrayList<Movimiento>();
 		listaGastosPersonalizado = new ArrayList<Movimiento>();
 		for (int i = 0; i < listaMovimientosPersonalizado.size(); i++) {
-			if (listaMovimientosPersonalizado.get(i).getTipo().equals("Ingreso")) {
+			if (listaMovimientosPersonalizado.get(i).getTipo()==1) {
 				listaIngresosPersonalizado.add(listaMovimientosPersonalizado.get(i));
 			} else {
 				listaGastosPersonalizado.add(listaMovimientosPersonalizado.get(i));

@@ -8,6 +8,7 @@ import model.classes.ClaseGasto;
 import model.classes.ClaseIngreso;
 import model.classes.Cuenta;
 import model.classes.Movimiento;
+import model.classes.TipoMovimiento;
 import model.classes.Usuario;
 
 public interface IDao {
@@ -54,9 +55,11 @@ public interface IDao {
 
 	public List<Movimiento> getMovimientos();
 	
-	public List<Movimiento> getGenerarConsultaMovimientos(boolean filtroFecha,boolean filtroTipo,boolean filtroClase,boolean filtroUsuario,boolean filtroCuenta,String tipo,Timestamp fechaInicio,Timestamp fechaFin,int id_clase,String username,int id_cuenta);
+	public List<Movimiento> getGenerarConsultaMovimientos(boolean filtroFecha,boolean filtroTipo,boolean filtroClase,boolean filtroUsuario,boolean filtroCuenta,int id_tipoMovimiento,Timestamp fechaInicio,Timestamp fechaFin,int id_clase,String username,int id_cuenta);
 
 	public List<Movimiento> getGenerarAnalisisEstandar(Timestamp fechaInicio,Timestamp fechaFin);
+	
+	public List<TipoMovimiento> getTiposMovimiento();
 	
 	public void addAlerta(Alerta entity);
 	
