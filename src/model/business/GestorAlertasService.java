@@ -136,14 +136,13 @@ public class GestorAlertasService {
 		toMonth = new Timestamp(dateToMonth.getTime());
 		
 		
-		
-		
 		List<ClaseGasto> listaClaseGasto = Connect.getIDao().getClaseGasto();
 		listaAlertasYear = new ArrayList<Float>();
 		listaAlertasMonth = new ArrayList<Float>();
 		List<Movimiento> listaMovimientosYear = Connect.getIDao().getMovimientosUsernameFecha(username, fromYear, toYear);
+		System.out.println("size: " + listaMovimientosYear.size());
 		List<Movimiento> listaMovimientosMonth = Connect.getIDao().getMovimientosUsernameFecha(username, fromMonth, toMonth);	
-		
+		System.out.println("size: " + listaMovimientosMonth.size());
 		for(int i=0;i<listaClaseGasto.size();i++){
 			listaAlertasYear.add((float)0);
 			listaAlertasMonth.add((float)0);

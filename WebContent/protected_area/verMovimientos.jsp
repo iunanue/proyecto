@@ -2,6 +2,7 @@
 <%@page import="model.classes.ClaseIngreso"%>
 <%@page import="model.classes.ClaseGasto"%>
 <%@page import="model.classes.Cuenta"%>
+<%@page import="model.classes.TipoMovimiento"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -67,6 +68,7 @@
 					List <ClaseIngreso> listaClaseIngreso = (List) request.getAttribute("listaClaseIngreso");
 					List <ClaseGasto> listaClaseGasto = (List) request.getAttribute("listaClaseGasto");
 					List <Cuenta> listaCuentas = (List) request.getAttribute("listaCuentas");
+					List <TipoMovimiento> listaTiposMovimiento = (List) request.getAttribute("listaTiposMovimiento");
     				Movimiento movimiento;
     				String clase = null;
     				for(int i=0;i<listaMovimientos.size();i++){
@@ -88,7 +90,7 @@
 					}
 				%>
 					<td><%=movimiento.getId_movimiento()%></td>
-					<td><%=movimiento.getTipo()%></td>
+					<td><%=listaTiposMovimiento.get(movimiento.getTipo()-1).getDescripcion()%></td>
 					<%
 					SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 					String string  = dateFormat.format(movimiento.getFecha());

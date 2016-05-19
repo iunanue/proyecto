@@ -150,7 +150,7 @@ public class GenerarConsultaMovimientos extends HttpServlet {
 			}
 			if (filtroTipo == true) {
 				this.id_tipoMovimiento = Integer.parseInt(request.getParameter("id_tipoMovimiento"));
-				consulta.add(GestorMovimientosService.getInstance().getTiposMovimiento().get(id_tipoMovimiento).getDescripcion());
+				consulta.add(GestorMovimientosService.getInstance().getTiposMovimiento().get(id_tipoMovimiento-1).getDescripcion());
 				if (filtroClase == true) {
 					this.id_tipoMovimiento = Integer.parseInt(request.getParameter("id_tipoMovimiento"));
 					if (id_tipoMovimiento==1) {

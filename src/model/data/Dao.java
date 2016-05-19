@@ -520,7 +520,7 @@ public class Dao implements IDao {
         
         Criteria criteria = session.createCriteria(Movimiento.class);
     	criteria.add(Restrictions.eq("username", username));
-    	criteria.add(Restrictions.eq("tipo", "Gasto"));
+    	criteria.add(Restrictions.eq("id_tipoMovimiento", 2));
     	criteria.add(Restrictions.ge("fecha", fechaInicio));
     	criteria.add(Restrictions.le("fecha", fechaFin));
         

@@ -37,8 +37,6 @@
           				<li><a href="${pageContext.request.contextPath}/protected_area/nuevaCuenta.jsp">Nueva Cuenta</a></li>
 			        	<li role="separator" class="divider"></li>
 			         	<li><a href="${pageContext.request.contextPath}/protected_area/verCuentas">Ver Cuentas</a></li>
-			         	<li role="separator" class="divider"></li>
-			         	<li><a href="${pageContext.request.contextPath}/protected_area/loadConsultaMovimientos">Generar consulta</a></li>
         			</ul>
       			</li>
       			

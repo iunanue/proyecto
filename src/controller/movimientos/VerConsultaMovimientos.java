@@ -15,6 +15,7 @@ import model.classes.ClaseGasto;
 import model.classes.ClaseIngreso;
 import model.classes.Cuenta;
 import model.classes.Movimiento;
+import model.classes.TipoMovimiento;
 import model.data.Connect;
 
 /**
@@ -39,6 +40,7 @@ public class VerConsultaMovimientos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		List<Movimiento> listaMovimientos = (List<Movimiento>) request.getAttribute("listaMovimientos");
 		request.setAttribute("listaMovimientos", listaMovimientos);
 		
@@ -50,6 +52,9 @@ public class VerConsultaMovimientos extends HttpServlet {
 		
 		List <Cuenta> listaCuentas = GestorCuentasService.getInstance().getCuentas();
 		request.setAttribute("listaCuentas", listaCuentas);
+		
+		List <TipoMovimiento> listaTiposMovimiento = GestorMovimientosService.getInstance().getTiposMovimiento();
+		request.setAttribute("listaTiposMovimiento", listaTiposMovimiento);
 		
 		request.getRequestDispatcher("/protected_area/verMovimientos.jsp").forward(request, response);
 	}

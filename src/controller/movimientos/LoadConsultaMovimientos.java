@@ -16,6 +16,7 @@ import model.classes.ClaseGasto;
 import model.classes.ClaseIngreso;
 import model.classes.Cuenta;
 import model.classes.Movimiento;
+import model.classes.TipoMovimiento;
 import model.classes.Usuario;
 import model.data.Connect;
 
@@ -54,7 +55,7 @@ public class LoadConsultaMovimientos extends HttpServlet {
 		 
 		List<Cuenta> listaCuentas = GestorCuentasService.getInstance().getCuentas();	 
 		request.setAttribute("listaCuentas", listaCuentas);
-		 
+			 
 		request.getRequestDispatcher("/protected_area/consultarMovimientos.jsp").forward(request, response);	
 	}
 
