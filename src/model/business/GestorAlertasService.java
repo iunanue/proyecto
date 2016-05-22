@@ -24,7 +24,7 @@ public class GestorAlertasService {
 	private List<Float> listaAlertasMonth;
 	
 
-	public static GestorAlertasService getInstance() {
+	public static synchronized GestorAlertasService getInstance() {
 		if (gestorAlertasService == null) {
 			gestorAlertasService = new GestorAlertasService();
 		}

@@ -8,7 +8,7 @@ public class Connect {
 
 	}
 
-	public static IDao getIDao() {
+	public static synchronized IDao getIDao() {
 		if(iDao == null){
 			iDao = new Dao();
 		}

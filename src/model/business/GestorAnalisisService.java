@@ -58,7 +58,7 @@ public class GestorAnalisisService {
 	List<Float> listaClaseGastoPersonalizado;
 	
 
-	public static GestorAnalisisService getInstance() {
+	public static synchronized GestorAnalisisService getInstance() {
 		if (gestorAnalisisService == null) {
 			gestorAnalisisService = new GestorAnalisisService();
 		}

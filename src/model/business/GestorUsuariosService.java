@@ -26,7 +26,7 @@ public class GestorUsuariosService {
 		
 	}
 	
-	public static GestorUsuariosService getInstance() {
+	public static synchronized GestorUsuariosService getInstance() {
 		if(gestorUsuariosService == null){
 			gestorUsuariosService = new GestorUsuariosService();
 		}

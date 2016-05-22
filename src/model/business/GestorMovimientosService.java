@@ -29,7 +29,7 @@ public class GestorMovimientosService {
 
 	private static GestorMovimientosService gestorMovimientosService = null;
 
-	public static GestorMovimientosService getInstance() {
+	public static synchronized GestorMovimientosService getInstance() {
 		if (gestorMovimientosService == null) {
 			gestorMovimientosService = new GestorMovimientosService();
 		}

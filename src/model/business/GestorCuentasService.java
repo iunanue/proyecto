@@ -9,7 +9,7 @@ public class GestorCuentasService {
 
 	private static GestorCuentasService gestorCuentasService = null;
 
-	public static GestorCuentasService getInstance() {
+	public static synchronized GestorCuentasService getInstance() {
 		if (gestorCuentasService == null) {
 			gestorCuentasService = new GestorCuentasService();
 		}
