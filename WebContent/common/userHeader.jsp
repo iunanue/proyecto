@@ -24,11 +24,11 @@
 					
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Movimientos<span class="caret"></span></a>
         			<ul class="dropdown-menu">
-          				<li><a href="${pageContext.request.contextPath}/protected_area/loadAddMovimiento">Registrar</a></li>
+          				<li><a href="${pageContext.request.contextPath}/protected_area/loadAddMovimiento">Registrar Movimiento</a></li>
 			        	<li role="separator" class="divider"></li>
 			         	<li><a href="${pageContext.request.contextPath}/protected_area/verMovimientos">Ver Movimientos</a></li>
 			         	<li role="separator" class="divider"></li>
-			         	<li><a href="${pageContext.request.contextPath}/protected_area/loadConsultaMovimientos">Generar consulta</a></li>
+			         	<li><a href="${pageContext.request.contextPath}/protected_area/loadConsultaMovimientos">Generar Consulta</a></li>
         			</ul>
       			</li>
       			
