@@ -48,7 +48,7 @@
 	      
 
 		var optionsComposicion = {
-				title : 'Ingresos del mes',
+				title : 'Composición',
 				is3D: true,
 // 				chartArea:{left:0,top:0,width:"100%",height:"100%"},
 // 				height: 400,
